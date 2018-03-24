@@ -9,6 +9,10 @@ public class BoundaryRechercheFichier {
 
 	private ControlRecherche controlRecherche;
 	
+	public BoundaryRechercheFichier(ControlRecherche controlRecherche) {
+		this.controlRecherche = controlRecherche;
+	}
+
 	public String rechercheFichier() {
 		int choix = 0;
 		Clavier clavier = new Clavier();

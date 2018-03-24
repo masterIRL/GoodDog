@@ -10,10 +10,10 @@ public class Comparaison {
 		
 		//Simulation resultat
 		List<String> listTexte = new ArrayList<>();
-		listTexte.add("chamions league.txt");
-		listTexte.add("regles du football.pdf");
-		listTexte.add("transfert de Neymar.docx");
-		listTexte.add("europa league.pdf");
+		listTexte.add("chamions league.xml");
+		listTexte.add("regles du football.xml");
+		listTexte.add("transfert de Neymar.xml");
+		listTexte.add("europa league.xml");
 		return listTexte;
 	}
 
@@ -34,10 +34,10 @@ public class Comparaison {
 		
 		//Simulation resultat
 		List<String> listImage = new ArrayList<>();
-		listImage.add("1asri.jpeg");
+		listImage.add("1asri.png");
 		listImage.add("PGE.png");
-		listImage.add("YOUPSSITECH.jpeg");
-		listImage.add("ups.jpeg");
+		listImage.add("YOUPSSITECH.png");
+		listImage.add("ups.png");
 		return listImage;
 	}
 

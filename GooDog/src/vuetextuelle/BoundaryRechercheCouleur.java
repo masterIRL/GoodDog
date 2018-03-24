@@ -9,6 +9,10 @@ public class BoundaryRechercheCouleur {
 	
 	private ControlRecherche controlRecherche;
 	
+	public BoundaryRechercheCouleur(ControlRecherche controlRecherche) {
+		this.controlRecherche = controlRecherche;
+	}
+
 	public String rechercheCouleur() {
 		int choix = 0;
 		Clavier clavier = new Clavier();
