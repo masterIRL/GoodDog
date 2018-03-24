@@ -2,19 +2,19 @@ package model;
 
 public class FabriqueDescripteurs {
 
-	public void indexerImage() {
+	public boolean indexerImage() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
-	public void indexerSon() {
+	public boolean indexerSon() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
-	public void indexerTexte() {
+	public boolean indexerTexte() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 		
 }
