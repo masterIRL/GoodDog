@@ -18,14 +18,25 @@ public class testCasSIdentifier {
 		System.out.println("VERIFICATION");
 		System.out.println(controlSIdentifier.visualiserAdmin());
 		
-		
-		// Resultat du test
-		// Veuilliez entrer votre login
-		// Admin
-		// Veuillez entrer votre mot de passe
-		// admin
-		// VERIFICATION
-		// login=Admin, mdp=admin, connecte=true
+		/*
+		 Resultat du test
+
+			Veuillez entrer votre login
+			admin
+			Veuillez entrer votre mot de passe
+			admin
+			Erreur de connection : Login ou mot de passe erron� !
+			Il vous reste 3tentatives
+
+			Veuilliez entrer votre login
+			Admin
+			Veuillez entrer votre mot de passe
+			admin
+			VERIFICATION
+			login=Admin, mdp=admin, connecte=true
+
+		 */
+
 	}
 
 }
