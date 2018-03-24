@@ -1,6 +1,7 @@
 package test;
 
-import control.ControlVerifierAdmin;
+
+import control.ControlVerifierIdentification;
 import model.FabriqueDescripteurs;
 import org.junit.Test;
 
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
 public class ControlIndexationTest {
     @Test
     public void verifierIdentification() throws Exception {
-        ControlVerifierAdmin verifierAdmin= new ControlVerifierAdmin();
+        ControlVerifierIdentification verifierAdmin= new ControlVerifierIdentification();
         assertTrue("Devrais etre true",verifierAdmin.verifierIdentification());
     }
 
