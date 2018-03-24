@@ -9,9 +9,9 @@ public class ControlSIdentifier {
 	public ControlSIdentifier() {
 	}
 
-	public void sIdentifier(String login, String mdp) {
+	public boolean sIdentifier(String login, String mdp) {
 		// TODO Auto-generated method stub
-		admin.connexion(login, mdp);
+		return admin.connexion(login, mdp);
 	}
 	
 	public String visualiserAdmin() {

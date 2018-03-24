@@ -11,13 +11,27 @@ public class BoundarySIdentifier {
 	}
 
 	public void identification() {
+		int i=0;
+		boolean identifiantOk = false;
 		Clavier clavier = new Clavier() ;
-        System.out.println("Veuillez entrer votre login");
-        String login = clavier.entrerClavierString();
-
-        System.out.println("Veuillez entrer votre mot de passe");
-        String mdp = clavier.entrerClavierString();
-
-        controlSIdentifier.sIdentifier(login,mdp);
+		
+		while (!identifiantOk || i < 3) {
+			System.out.println("Veuillez entrer votre login");
+	        String login = clavier.entrerClavierString();
+	
+	        System.out.println("Veuillez entrer votre mot de passe");
+	        String mdp = clavier.entrerClavierString();
+	
+	        identifiantOk = controlSIdentifier.sIdentifier(login,mdp);
+	        if(identifiantOk)
+	        	System.out.println("Identification correcte");
+	        else
+	        	System.out.println("Erreur de connection : Login ou mot de passe erroné !\n Il vous reste " + String.valueOf(3-i) + "tentatives");
+	        i++;
+		}
+		
+		if(i>=3) {
+			System.out.println("Vous avez dépassé le nombre de tentatives");
+		}
 	}
 }

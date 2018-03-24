@@ -8,8 +8,11 @@ import model.TypeFichier;
 
 public class ControlRecherche {
 
-	private Comparaison comparaison;
+	private Comparaison comparaison = new Comparaison();
 	
+	public ControlRecherche() {
+	}
+
 	public List<String> rechercheFichier(TypeFichier fichier, String nom, int seuil) {
 		// TODO Auto-generated method stub
 		switch (fichier) {
