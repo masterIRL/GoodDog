@@ -32,33 +32,49 @@ public class BoundaryRechercheFichier {
 			}
 		}
 		
+		System.out.println("Resulat de la requette fichier : " + nom + " similaire à " + seuil + "%");
+
 		String resultat = new String();
 		switch (choix) {
 		case 1:
 			List<String> listeTexte = controlRecherche.rechercheFichier(TypeFichier.TEXTE,nom,seuil);
-			int i = 1;
-			for (String string : listeTexte) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeTexte != null) {
+				int i = 1;
+				for (String string : listeTexte) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		case 2:
 			List<String> listeSon = controlRecherche.rechercheFichier(TypeFichier.SON,nom,seuil);
-			i = 1;
-			for (String string : listeSon) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeSon != null) {
+				int i = 1;
+				for (String string : listeSon) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
+			
 			break;
 			
 		case 3:
 			List<String> listeImage = controlRecherche.rechercheFichier(TypeFichier.IMAGE,nom,seuil);
-			i = 1;
-			for (String string : listeImage) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeImage != null) {
+				int i = 1;
+				for (String string : listeImage) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
+			
 			break;
 			
 		default:

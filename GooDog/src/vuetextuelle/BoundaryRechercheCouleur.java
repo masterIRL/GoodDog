@@ -32,48 +32,73 @@ public class BoundaryRechercheCouleur {
 		String resultat = new String();
 		switch (choix) {
 		case 1:
+			System.out.println("Resulat de la requette couleur : Blanc présent à " + pourcentage + "%");
 			List<String> listeBlanc = controlRecherche.rechercheCouleur(Couleur.BLANC,pourcentage);
-			int i = 1;
-			for (String string : listeBlanc) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeBlanc != null) {
+				int i = 1;
+				for (String string : listeBlanc) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		case 2:
+			System.out.println("Resulat de la requette couleur : Noir présent à " + pourcentage + "%");
 			List<String> listeNoir = controlRecherche.rechercheCouleur(Couleur.NOIR,pourcentage);
-			i = 1;
-			for (String string : listeNoir) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeNoir != null) {
+				int i = 1;
+				for (String string : listeNoir) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		case 3:
+			System.out.println("Resulat de la requette couleur : Rouge présent à " + pourcentage + "%");
 			List<String> listeRouge = controlRecherche.rechercheCouleur(Couleur.ROUGE,pourcentage);
-			i = 1;
-			for (String string : listeRouge) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeRouge != null) {
+				int i = 1;
+				for (String string : listeRouge) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		case 4:
+			System.out.println("Resulat de la requette couleur : Vert présent à " + pourcentage + "%");
 			List<String> listeVert = controlRecherche.rechercheCouleur(Couleur.VERT,pourcentage);
-			i = 1;
-			for (String string : listeVert) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeVert != null) {
+				int i = 1;
+				for (String string : listeVert) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		case 5:
+			System.out.println("Resulat de la requette couleur : Bleu présent à " + pourcentage + "%");
 			List<String> listeBleu = controlRecherche.rechercheCouleur(Couleur.BLEU,pourcentage);
-			i = 1;
-			for (String string : listeBleu) {
-				resultat += i + " : " + string;
-				i++;
+			if(listeBleu != null) {
+				int i = 1;
+				for (String string : listeBleu) {
+					resultat += i + " : " + string;
+					i++;
+				}
 			}
+			else
+				System.out.println("Aucun résultat");
 			break;
 			
 		default:
