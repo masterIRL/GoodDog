@@ -1,5 +1,7 @@
 package vuetextuelle;
 
+import java.util.List;
+
 import control.ControlRecherche;
 import model.Couleur;
 
@@ -30,28 +32,48 @@ public class BoundaryRechercheCouleur {
 		String resultat = new String();
 		switch (choix) {
 		case 1:
-			String listeBlanc = controlRecherche.rechercheCouleur(Couleur.BLANC,pourcentage);
-			resultat = listeBlanc;
+			List<String> listeBlanc = controlRecherche.rechercheCouleur(Couleur.BLANC,pourcentage);
+			int i = 1;
+			for (String string : listeBlanc) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 2:
-			String listeNoir = controlRecherche.rechercheCouleur(Couleur.NOIR,pourcentage);
-			resultat = listeNoir;
+			List<String> listeNoir = controlRecherche.rechercheCouleur(Couleur.NOIR,pourcentage);
+			i = 1;
+			for (String string : listeNoir) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 3:
-			String listeRouge = controlRecherche.rechercheCouleur(Couleur.ROUGE,pourcentage);
-			resultat = listeRouge;
+			List<String> listeRouge = controlRecherche.rechercheCouleur(Couleur.ROUGE,pourcentage);
+			i = 1;
+			for (String string : listeRouge) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 4:
-			String listeVert = controlRecherche.rechercheCouleur(Couleur.VERT,pourcentage);
-			resultat = listeVert;
+			List<String> listeVert = controlRecherche.rechercheCouleur(Couleur.VERT,pourcentage);
+			i = 1;
+			for (String string : listeVert) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 5:
-			String listeBleu = controlRecherche.rechercheCouleur(Couleur.BLEU,pourcentage);
-			resultat = listeBleu;
+			List<String> listeBleu = controlRecherche.rechercheCouleur(Couleur.BLEU,pourcentage);
+			i = 1;
+			for (String string : listeBleu) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		default:

@@ -1,23 +1,25 @@
 package model;
 
+import java.util.List;
+
 public class Comparaison {
 
-	public String comparaisonTexte(String nom, int seuil) {
+	public List<String> comparaisonTexte(String nom, int seuil) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String comparaisonSon(String nom, int seuil) {
+	public List<String> comparaisonSon(String nom, int seuil) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String comparaisonImage(String nom, int seuil) {
+	public List<String> comparaisonImage(String nom, int seuil) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public String comparaisonCouleur(int i, int pourcentage) {
+	public List<String> comparaisonCouleur(int i, int pourcentage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,5 +1,7 @@
 package vuetextuelle;
 
+import java.util.List;
+
 import control.ControlRecherche;
 import model.TypeFichier;
 
@@ -33,18 +35,30 @@ public class BoundaryRechercheFichier {
 		String resultat = new String();
 		switch (choix) {
 		case 1:
-			String listeTexte = controlRecherche.rechercheFichier(TypeFichier.TEXTE,nom,seuil);
-			resultat = listeTexte;
+			List<String> listeTexte = controlRecherche.rechercheFichier(TypeFichier.TEXTE,nom,seuil);
+			int i = 1;
+			for (String string : listeTexte) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 2:
-			String listeSon = controlRecherche.rechercheFichier(TypeFichier.SON,nom,seuil);
-			resultat = listeSon;
+			List<String> listeSon = controlRecherche.rechercheFichier(TypeFichier.SON,nom,seuil);
+			i = 1;
+			for (String string : listeSon) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		case 3:
-			String listeImage = controlRecherche.rechercheFichier(TypeFichier.IMAGE,nom,seuil);
-			resultat = listeImage;
+			List<String> listeImage = controlRecherche.rechercheFichier(TypeFichier.IMAGE,nom,seuil);
+			i = 1;
+			for (String string : listeImage) {
+				resultat += i + " : " + string;
+				i++;
+			}
 			break;
 			
 		default:
