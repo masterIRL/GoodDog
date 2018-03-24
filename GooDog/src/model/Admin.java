@@ -18,11 +18,14 @@ public class Admin {
 	 }
 	    	
 	    
-	public void connexion(String login, String mdp) {
+	public boolean connexion(String login, String mdp) {
 		// TODO Auto-generated method stub
 		if(this.login.equals(login) && this.mdp.equals(mdp)) {
 			setConnecte(true);
+			return true;
 		}
+		else
+			return false;
 	}
 
 

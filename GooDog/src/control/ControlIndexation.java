@@ -1,32 +1,32 @@
 package control;
 
-import model.FabriqueDescripteurs;
+import model.Indexeur;
 import model.TypeFichier;
 
 public class ControlIndexation {
 	
-	ControlVerifierAdmin controlVerifierAdmin;
-	FabriqueDescripteurs fabriqueDescripteurs = new FabriqueDescripteurs();
+	ControlVerifierIdentification controlVerifierIdentification;
+	Indexeur indexeur = new Indexeur();
 
 	public boolean verifierIdentification() {
-		return controlVerifierAdmin.verifierIdentification();
+		return controlVerifierIdentification.verifierIdentification();
 	}	
 
 	public boolean indexer(TypeFichier fichier) {
-		boolean OK = true;
+		boolean OK = false;
 		switch (fichier) {
 		case IMAGE:
-			fabriqueDescripteurs.indexerImage();
+			OK = indexeur.indexerImage();
 			//verifier le fichier descripteur image
 			break;
 			
 		case SON:
-			fabriqueDescripteurs.indexerSon();
+			OK = indexeur.indexerSon();
 			//verifier le fichier descripteur son
 			break;
 			
 		case TEXTE:
-			fabriqueDescripteurs.indexerTexte();
+			OK = indexeur.indexerTexte();
 			//verifier le fichier descripteur texte
 			break;
 		}
