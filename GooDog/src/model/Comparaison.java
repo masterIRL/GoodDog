@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Comparaison {
 
@@ -46,9 +48,16 @@ public class Comparaison {
 		return null;
 	}
 
-	public List<String> comparaisonMotCle(String mot) {
+	public Map<String,Integer> comparaisonMotCle(String mot) {
 		// TODO Auto-generated method stub
-		return null;
+		Map<String,Integer> listMotCle= new HashMap<>();
+
+		listMotCle.put("Damso",11);
+		listMotCle.put("monsterHunter",10);
+		listMotCle.put("OrangeBud",9);
+		listMotCle.put("TheWeeknd",8);
+
+		return listMotCle;
 	}
 
 }

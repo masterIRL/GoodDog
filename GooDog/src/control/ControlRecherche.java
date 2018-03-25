@@ -2,6 +2,7 @@ package control;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import model.Comparaison;
 import model.Couleur;
@@ -64,7 +65,7 @@ public class ControlRecherche {
 				|| mot.contains("*") || mot.contains("[") || mot.contains("]")
 				|| mot.contains("@") || mot.contains("_") || mot.contains("/")
 				|| mot.contains("-") || mot.contains("?") || mot.contains("!")
-				|| mot.contains("§") || mot.contains("#") || mot.contains("=")) 
+				|| mot.contains("ï¿½") || mot.contains("#") || mot.contains("=")) 
 		{
 			return false;
 		}
@@ -77,8 +78,16 @@ public class ControlRecherche {
 		List<String> listMotCle = new ArrayList<>();
 		//TODO appeler la fonction comparaison.comparaisonMotCle qui va devoir renvoyer un map.
 		// ce map aura donc le mot et son occurence. Pour chaque mot il faut comparer son occu avec
-		// celui présent en parametre de CETTE fonction (occurrenceMotCle) et ceux sup ou egale
+		// celui prï¿½sent en parametre de CETTE fonction (occurrenceMotCle) et ceux sup ou egale
 		//tu stocke le mot dnas le "listMotCle"
+
+		Comparaison compare = new Comparaison();
+		for (Map.Entry<String,Integer> entry : compare.comparaisonMotCle(mot).entrySet() ) {
+			if (entry.getValue() >= occurrenceMotCle){
+				listMotCle.add(entry.getKey());
+			}
+		}
+
 		return listMotCle;
 	}
 

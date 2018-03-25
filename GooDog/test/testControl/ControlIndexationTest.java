@@ -15,6 +15,7 @@ public class ControlIndexationTest {
 
     @Test
     public void indexer() throws Exception {
+
         Indexeur indexeur = new Indexeur();
         assertTrue("devrais etre true lors de l'indexion du image",indexeur.indexerImage());
         assertTrue("devrais renvoyer true lors de l'indexion du son ",indexeur.indexerSon());
