@@ -74,14 +74,12 @@ public class ControlRecherche {
 	}
 
 	public List<String> rechercheMotCle(String mot, int occurrenceMotCle) {
-		// TODO Auto-generated method stub
-		List<String> listeAllMotCle = comparaison.comparaisonMotCle(mot);
 		List<String> listMotCle = new ArrayList<>();
-		for (String string : listMotCle) {
-			
-		}
+		//TODO appeler la fonction comparaison.comparaisonMotCle qui va devoir renvoyer un map.
+		// ce map aura donc le mot et son occurence. Pour chaque mot il faut comparer son occu avec
+		// celui présent en parametre de CETTE fonction (occurrenceMotCle) et ceux sup ou egale
+		//tu stocke le mot dnas le "listMotCle"
 		return listMotCle;
-		//gerer cas occurrence
 	}
 
 }
