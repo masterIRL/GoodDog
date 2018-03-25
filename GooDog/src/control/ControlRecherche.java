@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Comparaison;
@@ -55,6 +56,32 @@ public class ControlRecherche {
 			return listeBleu;
 		}
 		return null;
+	}
+	
+	public boolean verifierMotCle(String mot) {
+		// TODO Auto-generated method stub
+		if(mot.contains("&") || mot.contains("{") || mot.contains("}")
+				|| mot.contains("*") || mot.contains("[") || mot.contains("]")
+				|| mot.contains("@") || mot.contains("_") || mot.contains("/")
+				|| mot.contains("-") || mot.contains("?") || mot.contains("!")
+				|| mot.contains("§") || mot.contains("#") || mot.contains("=")) 
+		{
+			return false;
+		}
+		else
+			return true;
+		
+	}
+
+	public List<String> rechercheMotCle(String mot, int occurrenceMotCle) {
+		// TODO Auto-generated method stub
+		List<String> listeAllMotCle = comparaison.comparaisonMotCle(mot);
+		List<String> listMotCle = new ArrayList<>();
+		for (String string : listMotCle) {
+			
+		}
+		return listMotCle;
+		//gerer cas occurrence
 	}
 
 }

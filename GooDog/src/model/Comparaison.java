@@ -10,10 +10,10 @@ public class Comparaison {
 		
 		//Simulation resultat
 		List<String> listTexte = new ArrayList<>();
-		listTexte.add("chamions league.xml");
-		listTexte.add("regles du football.xml");
-		listTexte.add("transfert de Neymar.xml");
-		listTexte.add("europa league.xml");
+		listTexte.add("chamions_league.xml");
+		listTexte.add("regles_du_football.xml");
+		listTexte.add("transfert_de_Neymar.xml");
+		listTexte.add("europa_league.xml");
 		return listTexte;
 	}
 
@@ -23,9 +23,9 @@ public class Comparaison {
 		//Simulation resultat
 		List<String> listSon = new ArrayList<>();
 		listSon.add("zouk.wav");
-		listSon.add("sonerie 1.wav");
-		listSon.add("sonnerie 2 .wav");
-		listSon.add("radio ups .wav");
+		listSon.add("sonerie1.wav");
+		listSon.add("sonnerie2 .wav");
+		listSon.add("radio_ups .wav");
 		return listSon;
 	}
 
@@ -42,6 +42,11 @@ public class Comparaison {
 	}
 
 	public List<String> comparaisonCouleur(int i, int pourcentage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<String> comparaisonMotCle(String mot) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -13,11 +13,11 @@ public class BoundaryRechercheFichier {
 		this.controlRecherche = controlRecherche;
 	}
 
-	public String rechercheFichier() {
+	public void rechercheFichier() {
 		int choix = 0;
 		Clavier clavier = new Clavier();
 		while(!(choix == 1 || choix == 2 || choix == 3)) {
-			System.out.println("1.recherche fichier texte\n" + "2.recherche fichier son\n" + "3.recherche fichier image");
+			System.out.println("1. Recherche fichier texte\n" + "2. Recherche fichier son\n" + "3. Recherche fichier image");
 			choix = clavier.entrerClavierInt();	
 			if(!(choix==1 || choix==2 || choix==3)) {
 				System.out.println("Veuillez entrer 1, 2 ou 3");
@@ -36,7 +36,7 @@ public class BoundaryRechercheFichier {
 			}
 		}
 		
-		System.out.println("Resulat de la requette fichier : " + nom + " similaire à " + seuil + "%");
+		System.out.println("Resulat de la requette: '" + nom + "'		similaire à " + seuil + "% :");
 
 		String resultat = new String();
 		switch (choix) {
@@ -45,7 +45,7 @@ public class BoundaryRechercheFichier {
 			if(listeTexte != null) {
 				int i = 1;
 				for (String string : listeTexte) {
-					resultat += i + " : " + string;
+					resultat += i + " : " + string + "\n";
 					i++;
 				}
 			}
@@ -85,6 +85,6 @@ public class BoundaryRechercheFichier {
 			System.out.println("Type de recherche fichier non reconnu");
 			break;
 		}
-		return resultat;
+		System.out.println(resultat);
 	}
 }

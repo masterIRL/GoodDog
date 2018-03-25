@@ -31,7 +31,7 @@ public class testCasRechercheFichier {
 		   1
 		   
 		   Rentrez le nom du fichier
-		   football
+		   champions_league.xml
 		   
 		   Rentrez le seuil (en pourcentage)
 		   
@@ -49,16 +49,11 @@ public class testCasRechercheFichier {
 	 	  
 	 	  10
 	 	  
-	 	  Resulat de la requette : 
-
-		  Liste des fichier Texte : football
-		  chamions league.txt
-		  regles du football.pdf
-		  transfert de Neymar.docx
-		  europa league.pdf
-		  
-		  seuil = 10
-	
+	 	  Resulat de la requette: 'champions_league.xml'		similaire à 10% :
+	 	  1 : chamions_league.xml
+	 	  2 : regles_du_football.xml
+	 	  3 : transfert_de_Neymar.xml
+	 	  4 : europa_league.xml
 		*/
 		
 	}
