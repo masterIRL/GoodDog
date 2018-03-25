@@ -7,15 +7,15 @@ import control.ControlVerifierIdentification;
 
 public class BoundaryReglage {
 
-    private ControlVerifierIdentification controller;
+    private ControlVerifierIdentification controler;
 
-    public BoundaryReglage(ControlVerifierIdentification controller) {
-        this.controller = controller;
+    public BoundaryReglage(ControlVerifierIdentification controler) {
+        this.controler = controler;
     }
 
 
     public void reglage(){
-        if(controller.verifierIdentification()){
+        if(controler.verifierIdentification()){
             int choix =0;
             Clavier clavier = new Clavier();
             System.out.println("1. Mode Gestion \n" + "2. ConfigTexte\n" + "3. Config Son\n" + "4. Config Image\n");

@@ -3,6 +3,7 @@ package vuetextuelle;
 import java.util.List;
 
 import control.ControlRecherche;
+import model.Couleur;
 
 public class BoundaryRechercheAudio {
 	
@@ -34,6 +35,17 @@ public class BoundaryRechercheAudio {
 			}
 		}
 		
-		List<String> resultat = controlRecherche.rechercheAudio(chemin,occurenceAudio);
+		String resultat = new String();
+		System.out.println("Resulat de la requette audio : " + chemin + "présent " + occurenceAudio + "fois");
+		List<String> listeAudio = controlRecherche.rechercheAudio(chemin,occurenceAudio);
+		if(listeAudio != null) {
+			int i = 1;
+			for (String string : listeAudio) {
+				resultat += i + " : " + string;
+				i++;
+			}
+		}
+		else
+			System.out.println("Aucun résultat");
 	}
 }
