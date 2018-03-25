@@ -1,25 +1,41 @@
 package testControl;
 
+import control.ControlIndexation;
 import control.ControlVerifierIdentification;
 import model.Indexeur;
+import model.TypeFichier;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class ControlIndexationTest {
+	
+	ControlVerifierIdentification controlVerifierIdentification;
+	
+	@Before
+    public void setup(){
+		controlVerifierIdentification = new ControlVerifierIdentification(); 
+		ControlIndexation controlIdexation = new ControlIndexation(controlVerifierIdentification);
+    	Assume.assumeNotNull(controlVerifierIdentification,ControlIndexation);
+    }
+	
+	@Test
+	public void createControlVerifierIdentification() {
+		ControlIndexation controlIdexation = new ControlIndexation(controlVerifierIdentification);
+		Assert.assertNotNull("Création d'un controler d'indexation", controlIdexation);
+	}
+	
     @Test
     public void verifierIdentification() throws Exception {
-        ControlVerifierIdentification verifierAdmin= new ControlVerifierIdentification();
-        assertTrue("Devrais etre true",verifierAdmin.verifierIdentification());
+		ControlIndexation controlIdexation = new ControlIndexation(controlVerifierIdentification);
+        Assert.assertTrue("Devrais etre true:",controlIdexation.verifierIdentification());
     }
 
     @Test
     public void indexer() throws Exception {
-        Indexeur indexeur = new Indexeur();
-        assertTrue("devrais etre true lors de l'indexion du image",indexeur.indexerImage());
-        assertTrue("devrais renvoyer true lors de l'indexion du son ",indexeur.indexerSon());
-        assertTrue("devrais etre true lors de l'indexion du texte",indexeur.indexerTexte());
-
+		ControlIndexation controlIdexation = new ControlIndexation(controlVerifierIdentification);
+        Assert.assertTrue("Indexation image",controlIdexation.indexer(TypeFichier.IMAGE));
+        Assert.assertTrue("Indexation son ",controlIdexation.indexer(TypeFichier.SON));
+        Assert.assertTrue("Indexation texte",controlIdexation.indexer(TypeFichier.TEXTE));
     }
 
 }

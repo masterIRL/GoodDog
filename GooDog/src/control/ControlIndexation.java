@@ -8,6 +8,10 @@ public class ControlIndexation {
 	ControlVerifierIdentification controlVerifierIdentification;
 	Indexeur indexeur = new Indexeur();
 
+	public ControlIndexation(ControlVerifierIdentification controlVerifierIdentification) {
+		this.controlVerifierIdentification = controlVerifierIdentification;
+	}
+
 	public boolean verifierIdentification() {
 		return controlVerifierIdentification.verifierIdentification();
 	}	
