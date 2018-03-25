@@ -1,4 +1,4 @@
-package model;
+package autre;
 
 public class BDAdmin {
 
