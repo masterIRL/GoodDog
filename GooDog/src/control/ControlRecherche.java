@@ -84,5 +84,15 @@ public class ControlRecherche {
 
 		return listMotCle;
 	}
+	
+	public boolean verifierChemin(String chemin) {
+		return true;
+	}
+
+	public List<String> rechercheAudio(String chemin, int occurenceAudio) {
+		// TODO Auto-generated method stub
+		List<String> listAudio = comparaison.comparaisonSon(chemin, 80);
+		return listAudio;
+	}
 
 }
