@@ -29,15 +29,18 @@ public class BoundaryRechercheMotsCles {
 		
 		int occurrenceMotCle;
 		do {
-			System.out.println("Veuillez entrer le nombre d'occurence de votre requête: ");
+			System.out.println("Veuillez entrer le nombre d'occurence de votre requete: ");
 			occurrenceMotCle = clavier.entrerClavierInt();
 			
 			if(occurrenceMotCle<0) {
-				System.out.println("Le nombre d'occurrence ne doit pas être négatif !");
+				System.out.println("Le nombre d'occurrence ne doit pas etre negatif !");
 			} 
 		}while(occurrenceMotCle<0);
-			
-		String resultat = controlRechercheMotCle.rechercheMotCle(mot,occurrenceMotCle);
-		System.out.println(resultat);
+
+		for (String resultat : controlRechercheMotCle.rechercheMotCle(mot,occurrenceMotCle)) {
+
+			System.out.println(resultat);
+		}
+
 	}
 }
