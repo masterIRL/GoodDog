@@ -30,7 +30,7 @@ public class BoundaryReglage {
                     new BoundaryModeGestion(new ControlModeGestion()).gestionMode();
                     break;
                 case 2 :
-                    new BoundaryConfigTexte().configurerSon();
+                    new BoundaryConfigTexte().configurerTexte();
                     break;
                 case 3 :
                     new BoundaryConfigSon().configurerSon();

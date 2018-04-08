@@ -7,7 +7,7 @@ public class BoundaryConfigTexte {
 	
 	ControlConfig control = new ControlConfig();
 	
-	public void configurerSon() {
+	public void configurerTexte() {
 		
 		Fichier fichier= new Fichier();
 		boolean nOK=false;
