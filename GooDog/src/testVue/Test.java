@@ -1,0 +1,17 @@
+package testVue;
+
+import control.ControlSIdentifier;
+import vue.EcranAcceuil;
+
+import javax.swing.*;
+
+public class Test {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ControlSIdentifier.getInstance().setEcranAcceuil();
+            }
+        });
+    }
+}
