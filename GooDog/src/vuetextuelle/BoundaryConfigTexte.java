@@ -15,7 +15,7 @@ public class BoundaryConfigTexte {
 		int n,m,p;
 		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 		
-		configActuelle = fichier.lireInt("../DESCRIPTEURS/configTexte.txt");
+		configActuelle = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
 		System.out.println("Configuration actuelle: ");
 		System.out.println("Valeur du seuil= "+ String.valueOf(configActuelle.get(0)));
 		System.out.println("Valeur du nombre de mots= "+ String.valueOf(configActuelle.get(1)));
@@ -27,8 +27,8 @@ public class BoundaryConfigTexte {
 			nOK = true; //test pour le seuil
 		} while (!nOK);
 		
-		fichier.effacer("../DESCRIPTEURS/configTexte.txt");
-		fichier.ecrire(String.valueOf(n),"../DESCRIPTEURS/configTexte.txt");
+		fichier.effacer("DESCRIPTEURS/configTexte.txt");
+		fichier.ecrire(String.valueOf(n),"DESCRIPTEURS/configTexte.txt");
 		
 		nOK=false;
 		do {
@@ -37,7 +37,7 @@ public class BoundaryConfigTexte {
 			nOK = true; //test pour le nombre de lettre
 		} while (!nOK);
 		
-		fichier.ecrire(String.valueOf(m),"../DESCRIPTEURS/configTexte.txt");
+		fichier.ecrire(String.valueOf(m),"DESCRIPTEURS/configTexte.txt");
 		
 		do {
 			System.out.println("Rentrez la nouvelle valeur du nombre de mot:");
@@ -45,7 +45,7 @@ public class BoundaryConfigTexte {
 			nOK = true; //test pour le nombre de mot
 		} while (!nOK);
 		
-		fichier.ecrire(String.valueOf(p),"../DESCRIPTEURS/configTexte.txt");
+		fichier.ecrire(String.valueOf(p),"DESCRIPTEURS/configTexte.txt");
 		// indexer(TypeFichier.TEXTE);
 	}
 	

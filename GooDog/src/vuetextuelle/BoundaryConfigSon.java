@@ -16,7 +16,7 @@ public class BoundaryConfigSon {
 		int m;
 		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 		
-		configActuelle = fichier.lireInt("../DESCRIPTEURS/config_son.txt");
+		configActuelle = fichier.lireInt("DESCRIPTEURS/config_son.txt");
 		System.out.println("Configuration actuelle: ");
 		System.out.println("Le nombre d'échantillons par fenêtre="+ String.valueOf(configActuelle.get(0)));
 		System.out.println("Le nombre d'intervalle par fenêtre="+ String.valueOf(configActuelle.get(1)));
@@ -30,8 +30,8 @@ public class BoundaryConfigSon {
 			}
 		} while (!nOK);
 		
-		fichier.effacer("../DESCRIPTEURS/config_son.txt");
-		fichier.ecrire(String.valueOf(n),"../DESCRIPTEURS/config_son.txt");
+		fichier.effacer("DESCRIPTEURS/config_son.txt");
+		fichier.ecrire(String.valueOf(n),"DESCRIPTEURS/config_son.txt");
 		
 		nOK=false;
 		do {
@@ -43,7 +43,7 @@ public class BoundaryConfigSon {
 			}
 		} while (!nOK);
 		
-		fichier.ecrire(String.valueOf(m),"../DESCRIPTEURS/config_son.txt");
+		fichier.ecrire(String.valueOf(m),"DESCRIPTEURS/config_son.txt");
 		// indexer(TypeFichier.SON);
 	}
 	

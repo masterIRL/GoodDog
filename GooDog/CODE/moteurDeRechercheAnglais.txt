@@ -1,0 +1,64 @@
+This search engine can be used in Admin mode or as a lambda user!
+
+To enter Administrator mode, you MUST enter a login and you are entitled to three attempts.
+
+Important: if you enter the floats, they will automatically be converted to integers.
+
+In addition to the search, the administrator can also index a text file, sound or image, he can also configure the indexing systems, change for example change:
+ - the percentage of the threshold, the number of letters and words of a relative to the indexing of a text file;
+- change the number of sampling per window and the interval per window relating to the indexing of a sound file;
+- accuracy in indexing an image file.
+
+In user mode lambda, you can only do the search described below.
+
+The search depends on the criterion specified by the user. It is based on an exploitation of the descriptors generated during indexing. If no descriptor is available, the automatic indexing of the data will be started beforehand.
+
+Text type document
+In the case of a search for text documents, the user will have the choice between:
+- carry out a search by keyword. The user will have to enter the corresponding word (ex: "sport", "tennis", "politics" ...) and the system will return the list of files (or paths) containing this keyword. This list will be sorted in descending order of the number of occurrences of the keyword in these files.
+
+Example:
+
+Keyword query: "music"
+Results (file -> occurrences):
+
+28-Festival ___ Ososphere, _un_week-end.xml -> 6
+05-Music_electronics ___ the_collective_element.xml -> 5
+12- Music_of_the_world ___ the.xml -> 4
+17-The_village_of_Girija.xml -> 4
+22-Dance ___ forty_young_of.xml -> 3
+
+- search for texts closest to a given text knowing that a close text will have a maximum of keywords in common with the chosen text.
+
+Example:
+
+File request: "28-Festival ___ Ososphere, _un_week-end.xml"
+Results (file -> number of common keywords):
+05-Music_electronics ___ the_collective_element.xml -> 10
+12-Musics_the_world ___ the.xml -> 8
+For both types of searches, the document at the top of the list will be opened automatically using a text editor.
+
+Document type Image
+
+In the case of an image document search, the user will search from a color image (RGB components) or a grayscale image. The user will have to enter the name (or path) of the chosen image or select it in a displayed readout and the system will return the list of paths to the files that are closest (for example after calculating the intersection of the histograms representing the images ...).
+
+Example:
+
+Image query: "45.jpg"
+Results -> 13.jpg 47.jpg 44.jpg 46.jpg
+
+Audio type document
+
+In the case of a search for documents of the type sound, the user will carry out a search from a sound file (contained in the directory "request"). The user will have to enter the name (or path) of the chosen jingle or select it in a displayed readout and the system will return the list of paths to the file (s) which are closest to them for example, after calculating the intersections of the histograms representing the corpus and those representing the jingle. An added value will consist in locating temporally (in seconds) each appearance of the jingle in the corpus.
+
+Example:
+
+Sound request (jingle): "jingle_m6.wav"
+Resultants (corpus) -> corpus_m6.wav: 45s 87s 135s ...
+
+For this type of search, the nearest sound file (corpus) will be listened to automatically using an audio player.
+
+
+We hope this description has been helpful to you.
+
+Cordially !!!!!!

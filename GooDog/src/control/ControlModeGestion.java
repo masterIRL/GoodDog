@@ -1,17 +1,15 @@
 package control;
 
-import java.io.IOException;
-
-import model.modeOuvert;
+import model.modeOuvertThread;
 
 public class ControlModeGestion {
 
 	private boolean ouvert = false;
 	private String statut = "Fermé";
-	private modeOuvert threadImageNB = new modeOuvert("../DATA/IMAGE/NB");
-	private modeOuvert threadImageRGB = new modeOuvert("../DATA/IMAGE/RGB");
-	private modeOuvert threadSon = new modeOuvert("../DATA/SON");
-	private modeOuvert threadTexte = new modeOuvert("../DATA/TEXTE");
+	private modeOuvertThread threadImageNB = new modeOuvertThread("DATA/IMAGE/NB");
+	private modeOuvertThread threadImageRGB = new modeOuvertThread("DATA/IMAGE/RGB");
+	private modeOuvertThread threadSon = new modeOuvertThread("DATA/SON");
+	private modeOuvertThread threadTexte = new modeOuvertThread("DATA/TEXTE");
 	
 	public ControlModeGestion() {
 	}
@@ -23,15 +21,10 @@ public class ControlModeGestion {
 	public void activerModeOuvert() {
 		this.ouvert = true;
 		this.setStatut("Ouvert");
-		try {
-			this.threadImageNB.process();
-			this.threadImageRGB.process();
-			this.threadSon.process();
-			this.threadTexte.process();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		this.threadImageNB.start();
+		this.threadImageRGB.start();
+		this.threadSon.start();
+		this.threadTexte.start();
 	}
 	
 	public void desactiverModeOuvert() {

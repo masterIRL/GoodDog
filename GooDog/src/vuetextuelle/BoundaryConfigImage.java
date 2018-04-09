@@ -15,7 +15,7 @@ public class BoundaryConfigImage {
 		int n;
 		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 		
-		configActuelle = fichier.lireInt("../DESCRIPTEURS/ImageConfig");
+		configActuelle = fichier.lireInt("DESCRIPTEURS/ImageConfig");
 		System.out.println("Configuration actuelle: ");
 		System.out.println("Le nombre de bits de quantification = "+ String.valueOf(configActuelle.get(0)));
 		
@@ -28,8 +28,8 @@ public class BoundaryConfigImage {
 			}
 		} while (!nOK);
 		
-		fichier.effacer("../DESCRIPTEURS/ImageConfig");
-		fichier.ecrire(String.valueOf(n),"../DESCRIPTEURS/ImageConfig");
+		fichier.effacer("DESCRIPTEURS/ImageConfig");
+		fichier.ecrire(String.valueOf(n),"DESCRIPTEURS/ImageConfig");
 		// indexer(TypeFichier.IMAGE);
 	}
 	

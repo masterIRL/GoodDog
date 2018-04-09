@@ -1,0 +1,66 @@
+Ce moteur de recherche peut être utilisé en mode Admin ou en utilisateur lambda ! 
+
+Pour passer en mode Administrateur, vous devez OBLIGATOIREMENT entrez un login et vous avez droit à trois tentatives. 
+
+En plus de la recherche, l'administrateur peut aussi indexer un fichier texte, son ou image, il peut aussi configurer les systemes d'indexations, changer par exemple changer :
+ - le pourcentage du seuil, le nombre de lettre et de mot d'un relatifs à l'indexation d'un fichier texte;
+- changer le nombre d'echantillonage par fenêtre et l'interval par fêtre relatifs à l'indexation d'un fichier son;
+- precision relative à l'indexation d'un ficher image.
+
+En mode utilisateur lambda, vous ne pouvez faire que la recherche decrite ci-àprès.
+
+La recherche dépend du critère spécifié par l’utilisateur. Elle est basée sur une exploitation des descripteurs générés lors de l’indexation. Si aucun descripteur n’est disponible, l’indexation automatique des données sera lancée au préalable.
+
+Document de type Texte
+
+Dans le cas d’une recherche de documents de type texte, l’utilisateur aura le choix entre :
+- réaliser une recherche par mot-clé. L’utilisateur devra saisir le mot correspondant (ex : « sport », « tennis », « politique »…) et le système renverra la liste des fichiers (ou chemins) contenant ce mot-clé. Cette liste sera triée par ordre décroissant du nombre d’occurrences du mot-clé dans ces fichiers.
+
+Exemple :
+
+Requête mot-clé : "musique"
+Résultats (fichier -> occurrences) :
+
+28-Festival___Ososphère,_un_week-end.xml                 -> 6
+05-Musique_électronique___l_élan_collectif.xml         -> 5
+12- Musiques_du_monde___les.xml                                    -> 4
+17-La_voix_envoûtante_de_Girija.xml                                -> 4
+22-Danse___quarante_jeunes_de.xml                                 -> 3
+
+- réaliser la recherche des textes les plus proches d’un texte donné sachant  
+qu’un texte proche aura un maximum de mots clés en commun avec le texte choisi.
+
+Exemple :
+
+Requête fichier : "28-Festival___Ososphère,_un_week-end.xml"
+Résultats (fichier -> nombre de mots-clés communs) :
+
+05-Musique_électronique___l_élan_collectif.xml           -> 10
+12-Musiques_du_monde___les.xml                                       -> 8
+Pour ces deux types de recherche, le document en tête de liste sera ouvert automatiquement à l’aide d’un éditeur de textes.
+
+Document de type Image
+
+Dans le cas d’une recherche de documents de type image, l’utilisateur réalisera une recherche à partir d’une image couleur (composantes RGB) ou bien d’une image en niveaux de gris. L’utilisateur devra saisir le nom (ou chemin) de l’image choisie ou le sélectionner dans une lise affichée et le système renverra la liste des chemins vers les fichiers qui sont les plus proches (par exemple après calcul de l’intersection des histogrammes représentant les images…).
+
+Exemple :
+
+Requête image : "45.jpg"
+Résultats -> 13.jpg 47.jpg 44.jpg 46.jpg
+
+Document de type Audio
+
+Dans le cas d’une recherche de documents de type son, l’utilisateur réalisera une recherche à partir d’un fichier son (contenu dans le répertoire « requête »). L’utilisateur devra saisir le nom (ou chemin) du jingle choisi ou le sélectionner dans une lise affichée et le système renverra la liste des chemins vers le (ou les) fichier(s) qui sont le(s) plus proche(s) : par exemple, après calcul des intersections des histogrammes représentant le corpus et ceux représentant le jingle. Une plus-value consistera à localiser temporellement (en secondes) chacune des apparitions du jingle dans le corpus.
+
+Exemple :
+
+Requête son (jingle) : "jingle_m6.wav"
+Résultats (corpus) -> corpus_m6.wav : 45s 87s 135s …
+
+Pour ce type de recherche, le fichier sonore (corpus) le  plus proche
+sera écouté automatiquement à l’aide d’un lecteur audio.
+
+
+Nous esperons que cette desciption vous a été utile.
+
+Cordialement  !!!!!!

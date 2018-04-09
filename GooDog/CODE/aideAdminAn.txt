@@ -1,0 +1,27 @@
+This search engine can be use either in Admin mode or in lambda user mode!
+
+	To switch to Administrator mode, you should MANDATORY to enter a login and you are entitled to three attempt. Beyond 3, you no longer have to continue. If you are really Admin and that the three attempts are just mistakes involuntary; then the only possibility you have is to leave in
+Admin mode, go to the main menu and return to Admin mode.
+
+important: if you enter the floats, they will automatically be converted to integers.
+
+	If the login is valid, an exhaustive list of choices ispresent!
+
+Case of Choice 1 (Configure Indexing): The program present the administrator the configuration file that he can thus modify, and after modification save. This file will be automatically indexed depending on the new settings. Only modified documents will be crushed, the others will remain identical as at the beginning. 
+
+Case of choice 2 (manual indexing): the program starts the function indexing and returns a message to the administrator telling him if the base has been correctly indexed or not.
+
+Case of choice 3 (search): the administrator will be asked to choose between search from a keyword (valid only for texts), a text document, an image or a sound.
+
+
+	
+Choice of the search by a key word: it will be asked to the administrator to enter a keyword. Then the program must select the descriptors that contain this word to finally display a detailed result in descending order of frequencies (percentage appearance of a word in a document).
+
+Choice of text search: the administrator can either enter the file name(without giving its extension) enter the path to the file. If it is the name of the file, the search is done through the existing base: the detailed result will be displayed in descending order similarity based on similarity rate
+
+Choice of image search: similar to text (but with images).
+
+Choice of research by sound: similar to text and image (but with audio files).
+	Following the display of the result: it will be proposed to the administrator to possibly return to the screen of choices for administrator,or then leave the program. If he chooses to return to the screen of selection back to part 4 If he chooses to leave the program (see 4.iv Case of choice 4)
+
+Case of choice 4 (quit): the program ends by wishing goodbye.
