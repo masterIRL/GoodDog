@@ -85,10 +85,24 @@ public class FrameRechercheU extends JFrame {
 			e1.printStackTrace();
 		}
 		
+//		BufferedImage imageConnect=null;
+//		try {
+//			imageConnect = ImageIO.read(new File("LogoAdmin.png"));
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}		
+//		JLabel labelConnexion = new JLabel(new ImageIcon(imageConnect));
+//		labelConnexion.setLayout(null);
+//		labelConnexion.setBounds(0, 0, 0, 0);
+//		panRechercheU.add(labelConnexion);
+		
+		
 		BufferedImage logo=scale(logo1,0.5);
 		JLabel logoLabel = new JLabel(new ImageIcon(logo));
 		boxLogo.add(logoLabel);
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageMotCle.add(boxLogo);
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		
 		textAreaMotCle.setMaximumSize(new Dimension(800,30));
 		boxMotCle.add(textAreaMotCle);
@@ -108,7 +122,7 @@ public class FrameRechercheU extends JFrame {
 			}
 		});
 		boxvaliderMotCle.add(validerMotCle);
-		boxMotCle.add(Box.createRigidArea(new Dimension(0,40)));
+		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
 		boxMotCle.add(boxvaliderMotCle);
 		boxMiseEnPageMotCle.add(boxMotCle);
 		this.panRechercheU.add(boxMiseEnPageMotCle);
