@@ -2,11 +2,12 @@ package vuegraphique;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Point;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import autre.ImageJLabel;
 
 public class FramePrincipal extends JFrame {
 
@@ -39,13 +40,20 @@ public class FramePrincipal extends JFrame {
 	
 	private void initialisationAcceuil(){
 	      this.panAccueil.setBackground(Color.WHITE);
+			
+	      ImageJLabel labelConnexion = new ImageJLabel("RESSOURCE/IMAGE/LogoAdmin.png");
+//	      labelConnexion.setBounds(0, 0, 0, 0);
+//	      labelConnexion.setLayout(null);
 	      
-	      //BufferedImage myPicture = ImageIO.read(new File("RESSOURCE/IMAGE/MoteurGooDog.png")); //genere exception (charge une image)
-	      //ImageIcon image = new ImageIcon(myPicture); //transforme l'image en icon utilisable
-	      ImageIcon image = new ImageIcon("RESSOURCE/IMAGE/MoteurGooDog.png");
-	      JLabel labelAcceuil = new JLabel(image, JLabel.CENTER);  //Cree un label avec l'image 
+	      ImageJLabel labelAcceuil = new ImageJLabel("RESSOURCE/IMAGE/MoteurGooDog.png"); //Cree un label avec l'image
+	      
+	      this.panAccueil.add(labelConnexion);
 	      this.panAccueil.add(labelAcceuil);
+//	      panAccueil.setLayout(null);
 	      
+	      labelConnexion.setLocation(0, 0);
+	      
+	      labelAcceuil.setLocation((int)JPanel.CENTER_ALIGNMENT, (int)JPanel.CENTER_ALIGNMENT);
 	      this.panAccueil.setVisible(true);
 	      
 	      this.panContents.add(panAccueil, "ACCEUIL");

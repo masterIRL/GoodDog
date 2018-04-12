@@ -9,7 +9,7 @@ public class PanUser extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	public void initialisation() {
-		this.setBackground(Color.YELLOW);
+		this.setBackground(Color.WHITE);
 	}
 
 }
