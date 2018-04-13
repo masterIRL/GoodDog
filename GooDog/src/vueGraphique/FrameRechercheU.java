@@ -48,12 +48,14 @@ public class FrameRechercheU extends JFrame {
 	JPanel panContents=new JPanel();
 	CardLayout cartes = new CardLayout();
 	
+	Box boxListeResultats = Box.createVerticalBox();
+	//Box boxRetour = Box.createHorizontalBox();
 	
 	//REDIMENTSIONNER UNE IMAGE
 	public static BufferedImage scale(BufferedImage bImage, double factor) {
         int destWidth=(int) (bImage.getWidth() * factor);
         int destHeight=(int) (bImage.getHeight() * factor);
-        //créer l'image de destination
+        //crÃ©er l'image de destination
         GraphicsConfiguration configuration = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
         BufferedImage bImageNew = configuration.createCompatibleImage(destWidth, destHeight);
         Graphics2D graphics = bImageNew.createGraphics();
@@ -122,7 +124,7 @@ public class FrameRechercheU extends JFrame {
 					boxMiseEnPageMotCle.setVisible(false); 
 					boxMiseEnPageMotCleResultat.setVisible(true); 
 					panRechercheU.repaint(); 
-					System.out.println("Recherche lancée");
+					System.out.println("Recherche lancÃ©e");
 				} else {
 					System.out.println("Non valide");
 				}
@@ -184,8 +186,9 @@ public class FrameRechercheU extends JFrame {
 
 
 	private void initBoxMiseEnPageMotCleResultat() {
+	
 		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
-		JLabel texteResultat=new JLabel("Résultats de votre recherche par mots clés:");
+		JLabel texteResultat=new JLabel("RÃ©sultats de votre recherche par mots clÃ©s:");
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		boxMiseEnPageMotCleResultat.add(texteResultat);
 		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
@@ -194,15 +197,35 @@ public class FrameRechercheU extends JFrame {
 	
 	
 	private void resultatsMotCles(List<String> liste) {
+		panRechercheU.setBackground(new Color(220, 220, 255));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
-			boxMiseEnPageMotCleResultat.add(listeResultat);
-			boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,20)));
+			boxListeResultats.add(listeResultat);
+			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
-	
+		boxMiseEnPageMotCleResultat.add(boxListeResultats);
+
+		JButton boutonRetour = new JButton();
+		boutonRetour.setText("â—„  RETOUR   ");
+		boutonRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boxMiseEnPageMotCleResultat.setVisible(false); 
+				panRechercheU.setBackground(Color.WHITE);
+				boxListeResultats.removeAll();
+				boxMiseEnPageMotCleResultat.remove(boutonRetour);
+				boxMiseEnPageMotCle.setVisible(true); 
+				panRechercheU.repaint(); 
+			}
+		});
+
+		//boxRetour.add(boutonRetour);
+		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,50)));
+		boxMiseEnPageMotCleResultat.add(boutonRetour);
 	}
+	
 	
 	
 	
