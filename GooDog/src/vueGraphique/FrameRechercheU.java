@@ -49,7 +49,8 @@ public class FrameRechercheU extends JFrame {
 	CardLayout cartes = new CardLayout();
 	
 	Box boxListeResultats = Box.createVerticalBox();
-	//Box boxRetour = Box.createHorizontalBox();
+	Box boxRetour = Box.createVerticalBox();
+	JButton boutonRetour = new JButton();
 	
 	//REDIMENTSIONNER UNE IMAGE
 	public static BufferedImage scale(BufferedImage bImage, double factor) {
@@ -172,6 +173,9 @@ public class FrameRechercheU extends JFrame {
 		boxMiseEnPageMotCle.add(boxMotCle);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageMotCle.add(boxBoutons);
+		
+		
+		
 		this.panRechercheU.add(boxMiseEnPageMotCle);
 		this.panRechercheU.add(boxMiseEnPageMotCleResultat);
 		boxMiseEnPageMotCle.setVisible(true);
@@ -192,7 +196,22 @@ public class FrameRechercheU extends JFrame {
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		boxMiseEnPageMotCleResultat.add(texteResultat);
 		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
-	
+		
+		
+		
+		boutonRetour.setText("◄  RETOUR   ");
+		
+		boutonRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boxMiseEnPageMotCleResultat.setVisible(false); 
+				panRechercheU.setBackground(Color.WHITE);
+				boxListeResultats.removeAll();
+				boxMiseEnPageMotCleResultat.remove(boutonRetour);
+				boxMiseEnPageMotCle.setVisible(true); 
+				panRechercheU.repaint(); 
+			}
+		});
 	}
 	
 	
@@ -205,25 +224,11 @@ public class FrameRechercheU extends JFrame {
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
+		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageMotCleResultat.add(boxListeResultats);
 
-		JButton boutonRetour = new JButton();
-		boutonRetour.setText("◄  RETOUR   ");
-		boutonRetour.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				boxMiseEnPageMotCleResultat.setVisible(false); 
-				panRechercheU.setBackground(Color.WHITE);
-				boxListeResultats.removeAll();
-				boxMiseEnPageMotCleResultat.remove(boutonRetour);
-				boxMiseEnPageMotCle.setVisible(true); 
-				panRechercheU.repaint(); 
-			}
-		});
-
-		//boxRetour.add(boutonRetour);
-		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,50)));
-		boxMiseEnPageMotCleResultat.add(boutonRetour);
+		boxRetour.add(boutonRetour);
+		boxMiseEnPageMotCleResultat.add(boxRetour);
 	}
 	
 	
