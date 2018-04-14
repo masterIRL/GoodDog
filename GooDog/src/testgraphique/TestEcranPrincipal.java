@@ -2,7 +2,7 @@ package testgraphique;
 
 import vuegraphique.FramePrincipal;
 
-public class testEcranPrincipal {
+public class TestEcranPrincipal {
 
 	public static void main(String[] args) {
 		FramePrincipal fenetre = new FramePrincipal(); 

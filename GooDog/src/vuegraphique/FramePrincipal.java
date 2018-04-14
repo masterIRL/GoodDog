@@ -2,7 +2,8 @@ package vuegraphique;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,8 +33,8 @@ public class FramePrincipal extends JFrame {
 		this.panContents.add(this.panUser,"USER");
 		this.panContents.add(this.panAdmin,"ADMIN");
 		
-		this.getContentPane().add(panContents);
 		this.initialisationAcceuil();
+		this.getContentPane().add(panContents);
 
 		this.setVisible(true);
 	}
@@ -41,23 +42,36 @@ public class FramePrincipal extends JFrame {
 	private void initialisationAcceuil(){
 	      this.panAccueil.setBackground(Color.WHITE);
 			
-	      ImageJLabel labelConnexion = new ImageJLabel("RESSOURCE/IMAGE/LogoAdmin.png");
-//	      labelConnexion.setBounds(0, 0, 0, 0);
-//	      labelConnexion.setLayout(null);
-	      
 	      ImageJLabel labelAcceuil = new ImageJLabel("RESSOURCE/IMAGE/MoteurGooDog.png"); //Cree un label avec l'image
-	      
-	      this.panAccueil.add(labelConnexion);
 	      this.panAccueil.add(labelAcceuil);
-//	      panAccueil.setLayout(null);
-	      
-	      labelConnexion.setLocation(0, 0);
-	      
-	      labelAcceuil.setLocation((int)JPanel.CENTER_ALIGNMENT, (int)JPanel.CENTER_ALIGNMENT);
+	      this.panAccueil.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			      cartes.show(panContents, "USER");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
 	      this.panAccueil.setVisible(true);
 	      
 	      this.panContents.add(panAccueil, "ACCEUIL");
-	      this.cartes.show(panContents, "ACCEUIL");    
+	      this.cartes.show(panContents, "ACCEUIL");
 
 	}
 	

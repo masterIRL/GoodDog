@@ -25,3 +25,5 @@ public class Utilities {
 		return bImageNew;
 	}
 }
+
+//JDialog
