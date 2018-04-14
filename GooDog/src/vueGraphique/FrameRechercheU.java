@@ -1,5 +1,6 @@
 package vueGraphique;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import control.ControlRecherche;
 
@@ -38,6 +40,7 @@ public class FrameRechercheU extends JFrame {
 	Box boxMotCle = Box.createHorizontalBox();
 	Box boxvaliderMotCle = Box.createHorizontalBox();
 	Box boxBoutons = Box.createHorizontalBox();
+	Box boxTopRecherche= Box.createHorizontalBox();
 
 	JButton validerRecherche = new JButton();
 	Box boxMiseEnPageMotCleResultat = Box.createVerticalBox();
@@ -45,6 +48,8 @@ public class FrameRechercheU extends JFrame {
 	private TextArea textAreaMotCle = new TextArea();
 	
 	private JPanel panRechercheU = new JPanel();
+	private JPanel panTopRecherche = new JPanel();
+	private JPanel panFinalRecherche = new JPanel();
 	JPanel panContents=new JPanel();
 	CardLayout cartes = new CardLayout();
 	
@@ -73,16 +78,23 @@ public class FrameRechercheU extends JFrame {
 	
 	
 	public FrameRechercheU (ControlRecherche controlRecherche) {
+	
 		this.controlRecherche=controlRecherche;
 		
 		this.setSize(1200,720);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.panContents.setLayout(cartes);
-		panContents.add(panRechercheU, "RECHERCHE"); 
+		panContents.add(panFinalRecherche, "RECHERCHE"); 
 		this.getContentPane().add(panContents);
-		
+		this.panFinalRecherche.setBackground(Color.WHITE);
 		this.panRechercheU.setBackground(Color.WHITE);
+		this.panTopRecherche.setBackground(Color.RED);
+		this.panTopRecherche.setLayout(new BorderLayout());
+		initBoxTopRecherche();
+		panTopRecherche.add(boxTopRecherche);
+		this.panTopRecherche.setVisible(true);
+		this.panFinalRecherche.add(panTopRecherche, BorderLayout.NORTH);
 		
 /*		BufferedImage imageConnect=null;
 		try {
@@ -123,12 +135,14 @@ public class FrameRechercheU extends JFrame {
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
 					resultatsMotCles(controlRecherche.rechercheMotCle(entreeMotCle, 1));
 					boxMiseEnPageMotCle.setVisible(false); 
+					boxTopRecherche.setVisible(false); 
 					boxMiseEnPageMotCleResultat.setVisible(true); 
 					panRechercheU.repaint(); 
 					System.out.println("Recherche lancée");
 				} else {
 					System.out.println("Non valide");
 				}
+				textAreaMotCle.setText("");
 			}
 		});
 		
@@ -180,10 +194,26 @@ public class FrameRechercheU extends JFrame {
 		this.panRechercheU.add(boxMiseEnPageMotCleResultat);
 		boxMiseEnPageMotCle.setVisible(true);
 		boxMiseEnPageMotCleResultat.setVisible(false);
-		this.panRechercheU.setVisible(true);
-		this.panContents.add(panRechercheU, "RECHERCHE");
+		this.panFinalRecherche.add(panRechercheU, BorderLayout.CENTER);
+		this.panFinalRecherche.setVisible(true);
+		this.panContents.add(panFinalRecherche, "RECHERCHE");
 		cartes.show(panContents, "RECHERCHE");  
 		this.setVisible(true);		
+	}
+
+
+
+
+	private void initBoxTopRecherche() {
+		BufferedImage logoAdmin= null;
+		try {
+			logoAdmin = ImageIO.read(new File("LogoAdmin.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		JLabel labelAdmin = new JLabel(new ImageIcon(logoAdmin));
+		boxTopRecherche.add(labelAdmin,BorderLayout.BEFORE_FIRST_LINE);
+		
 	}
 
 
@@ -197,19 +227,19 @@ public class FrameRechercheU extends JFrame {
 		boxMiseEnPageMotCleResultat.add(texteResultat);
 		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
 		
-		
-		
 		boutonRetour.setText("◄  RETOUR   ");
 		
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageMotCleResultat.setVisible(false); 
+				boxTopRecherche.setVisible(true); 
+				panFinalRecherche.setBackground(Color.WHITE);
 				panRechercheU.setBackground(Color.WHITE);
 				boxListeResultats.removeAll();
 				boxMiseEnPageMotCleResultat.remove(boutonRetour);
 				boxMiseEnPageMotCle.setVisible(true); 
-				panRechercheU.repaint(); 
+				panFinalRecherche.repaint(); 
 			}
 		});
 	}
@@ -217,6 +247,7 @@ public class FrameRechercheU extends JFrame {
 	
 	private void resultatsMotCles(List<String> liste) {
 		panRechercheU.setBackground(new Color(220, 220, 255));
+		panFinalRecherche.setBackground(new Color(220, 220, 255));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
