@@ -24,6 +24,9 @@ public class PanUser extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	ControlRecherche controlRecherche;
+	ControlSIdentifier controlSIdentifier;
+	
+	private FramePrincipal framePrincipal;
 	
 	Font policeTitre = new Font("Calibri", Font.BOLD,24);
 	Font policeEntreeU = new Font("Poppins-Black", Font.PLAIN,20);
@@ -52,9 +55,11 @@ public class PanUser extends JPanel {
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
 	
 	
-	public PanUser(ControlRecherche controlRecherche) {
+	public PanUser(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier) {
 		super();
+		this.framePrincipal = framePrincipal;
 		this.controlRecherche=controlRecherche;
+		this.controlSIdentifier=controlSIdentifier;
 	}
 
 
@@ -73,7 +78,7 @@ public class PanUser extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      new FrameConnexion(new ControlSIdentifier()).identification();
+			      new FrameConnexion(framePrincipal,controlSIdentifier);
 			}
 			
 			@Override
@@ -92,8 +97,8 @@ public class PanUser extends JPanel {
 		this.panTop.add(labelConnect,BorderLayout.WEST); // ajout de l'image au panel haut
 		this.add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
 
-		
-		boxLogo.add(logoLabel); // configuration du panel central 
+		// configuration du panel central
+		boxLogo.add(logoLabel);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageMotCle.add(boxLogo);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));

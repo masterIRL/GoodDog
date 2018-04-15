@@ -10,11 +10,13 @@ import javax.swing.JPanel;
 
 import autre.ImageJLabel;
 import control.ControlRecherche;
+import control.ControlSIdentifier;
 
 public class FramePrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	ControlRecherche controlRecherche = new ControlRecherche();
+	ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 	
 	private JPanel panAccueil = new JPanel();
 	private JPanel panContents = new JPanel();
@@ -29,8 +31,8 @@ public class FramePrincipal extends JFrame {
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
-		this.panUser = new PanUser(controlRecherche);
-		this.panAdmin = new PanAdmin(controlRecherche);
+		this.panUser = new PanUser(this,controlRecherche,controlSIdentifier);
+		this.panAdmin = new PanAdmin(this,controlRecherche,controlSIdentifier);
 		this.panUser.initialisation();
 		this.panAdmin.initialisation();
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
@@ -56,7 +58,7 @@ public class FramePrincipal extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      cartes.show(panContents, "USER");
+			      showPanUser();
 			}
 			
 			@Override
@@ -77,6 +79,24 @@ public class FramePrincipal extends JFrame {
 	      this.panContents.add(panAccueil, "ACCEUIL");
 	      this.cartes.show(panContents, "ACCEUIL");
 
+	}
+	
+	public void showPanUser() {
+		this.cartes.show(panContents, "USER");
+		this.repaint();
+	}
+	
+	public void showPanAdmin() {
+		this.cartes.show(panContents, "ADMIN");
+		this.repaint();
+	}
+
+	public JPanel getPanContents() {
+		return panContents;
+	}
+
+	public CardLayout getCartes() {
+		return cartes;
 	}
 	
 	

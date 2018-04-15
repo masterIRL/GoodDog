@@ -25,6 +25,9 @@ public class PanAdmin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	ControlRecherche controlRecherche;
+	ControlSIdentifier controlSIdentifier;
+	
+	private FramePrincipal framePrincipal;
 	
 	Font policeTitre = new Font("Calibri", Font.BOLD,24);
 	Font policeEntreeU = new Font("Poppins-Black", Font.PLAIN,20);
@@ -54,9 +57,11 @@ public class PanAdmin extends JPanel {
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
 	
 	
-	public PanAdmin(ControlRecherche controlRecherche) {
+	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier) {
 		super();
+		this.framePrincipal = framePrincipal;
 		this.controlRecherche=controlRecherche;
+		this.controlSIdentifier=controlSIdentifier;
 	}
 
 
@@ -75,7 +80,7 @@ public class PanAdmin extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      new FrameConnexion(new ControlSIdentifier()).identification();
+				//ajouter module de déconnexion
 			}
 			
 			@Override
