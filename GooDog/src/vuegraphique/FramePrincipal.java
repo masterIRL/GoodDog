@@ -9,24 +9,28 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import autre.ImageJLabel;
+import control.ControlRecherche;
 
 public class FramePrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	ControlRecherche controlRecherche = new ControlRecherche();
 	
 	private JPanel panAccueil = new JPanel();
 	private JPanel panContents = new JPanel();
-	private PanUser panUser = new PanUser();
-	private PanAdmin panAdmin = new PanAdmin();
+	private PanUser panUser;
+	private PanAdmin panAdmin;
 	
 	private CardLayout cartes = new CardLayout();
 
 	public FramePrincipal() {
 		this.setTitle("GooDog");  //Définit un titre
-		this.setSize(1300, 900); //Définit sa taille 
+		this.setSize(1500, 1300); //Définit sa taille 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
+		this.panUser = new PanUser(controlRecherche);
+		this.panAdmin = new PanAdmin(controlRecherche);
 		this.panUser.initialisation();
 		this.panAdmin.initialisation();
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
