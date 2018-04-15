@@ -19,20 +19,25 @@ import vuetextuelle.Fichier;
 public class PanConfig extends JPanel {
 	
 	private static final long serialVersionUID = 631353338464027426L;
-	Box boxMiseEnPageConfig = Box.createHorizontalBox();
-	Box boxConfigTexte= Box.createHorizontalBox();
-	Box boxConfigImage= Box.createHorizontalBox();
-	Box boxConfigSon= Box.createHorizontalBox();
+	Box boxMiseEnPageConfig = Box.createVerticalBox();
+	Box boxConfigTexte= Box.createVerticalBox();
+	Box boxConfigImage= Box.createVerticalBox();
+	Box boxConfigSon= Box.createVerticalBox();
 	JButton boutonConfigTexte = new JButton();
 	JButton boutonConfigImage = new JButton();
 	JButton boutonConfigSon = new JButton();
 	int puissance;
 	int intervalle;
+	int quantification;
+	Box boxConfigSon1 = Box.createHorizontalBox();
+	Box boxConfigSon2 = Box.createHorizontalBox();
 	
-	Box boxConfigSon1 = Box.createVerticalBox();
-	Box boxConfigSon2 = Box.createVerticalBox();
-	Fichier fichier;
+	Box boxConfigImg1 = Box.createHorizontalBox();
+	Fichier fichier=new Fichier();
 	JButton boutonRetour = new JButton();
+	JButton boutonRetourImg = new JButton();
+	JButton boutonRetourTxt = new JButton();
+	
 	public PanConfig () {
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		JLabel texteResultat=new JLabel("Configuration de l'indexation:");
@@ -148,8 +153,8 @@ public class PanConfig extends JPanel {
 	
 			}
 		});
-		
-		
+		boxConfigSon.add(boutonConfigSon);
+		boxConfigSon.add(Box.createRigidArea(new Dimension(0,40)));
 		boutonRetour.setText("◄  RETOUR   ");
 		
 		boutonRetour.addActionListener(new ActionListener() {
@@ -162,20 +167,90 @@ public class PanConfig extends JPanel {
 				repaint(); 
 			}
 		});
-		 
-		 
-		 
+		
+		boxConfigSon.add(boutonRetour);
 	}
 
+	
+	
 
 	private void initBoxConfigImage() {
-		// TODO Auto-generated method stub
+		JLabel texteResultat=new JLabel("Configuration de l'indexation image:");
+		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,25));
+		boxConfigImage.add(texteResultat);
+		boxConfigImage.add(Box.createRigidArea(new Dimension(0,70)));
+		
+		
+		JLabel texteQuanti=new JLabel("Nombre de bits de quantification:");
+		texteQuanti.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		boxConfigImg1.add(texteQuanti);
+		boxConfigImg1.add(Box.createRigidArea(new Dimension(10,0)));
+		
+		final JComboBox <String> comboBoxImg= new JComboBox<>();
+		 
+		comboBoxImg.addItem("");
+		comboBoxImg.addItem("1");
+		comboBoxImg.addItem("2");
+		comboBoxImg.addItem("3");
+		comboBoxImg.addItem("4");
+		comboBoxImg.addItem("5");
+
+		comboBoxImg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				quantification = comboBoxImg.getSelectedIndex();	
+			}
+		});
+		 this.boxConfigImg1.add(comboBoxImg);
+		 this.boxConfigImage.add(boxConfigImg1);
+		 boxConfigImage.add(Box.createRigidArea(new Dimension(0,70)));
+		 
+		
+		 
+		JButton boutonConfigImage = new JButton();
+		boutonConfigImage.setText("Configurer");
+		
+		
+		JLabel texteOKCONFIG=new JLabel("Configuration réussi");
+		texteOKCONFIG.setFont(new Font("Poppins-Black", Font.ITALIC,16));
+		
+		
+		boutonConfigImage.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (quantification>0) {
+					fichier.effacer("DESCRIPTEURS/configTexte.txt");
+					fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/configTexte.txt");
+					boxConfigImage.add(texteOKCONFIG); 
+					repaint();
+				} else {
+					System.out.println("Valeur non valide");
+				}
+	
+			}
+		});
+		boxConfigImage.add(boutonConfigImage);
+		boxConfigImage.add(Box.createRigidArea(new Dimension(0,40)));
+		boutonRetourImg.setText("◄  RETOUR   ");
+		
+		boutonRetourImg.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boxConfigImage.remove(boutonRetourImg);
+				boxConfigImage.remove(texteOKCONFIG);
+				boxConfigImage.setVisible(false); 
+				boxMiseEnPageConfig.setVisible(true);
+				repaint(); 
+			}
+		});
+		
+		boxConfigImage.add(boutonRetourImg);
 		
 	}
 
 
 	private void initBoxConfigTexte() {
-		// TODO Auto-generated method stub
+		// A FINIR
 		
 	}
 
@@ -185,8 +260,9 @@ public class PanConfig extends JPanel {
 		boutonConfigTexte.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boxMiseEnPageConfig.setVisible(false); 
-				boxConfigTexte.setVisible(true);
+				//boxMiseEnPageConfig.setVisible(false); 
+				//boxConfigTexte.setVisible(true);
+				//repaint();
 
 			}
 		});
@@ -199,7 +275,9 @@ public class PanConfig extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageConfig.setVisible(false); 
+				boxConfigImage.add(boutonRetourImg);
 				boxConfigImage.setVisible(true);
+				repaint();
 
 			}
 		});
@@ -212,7 +290,9 @@ public class PanConfig extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageConfig.setVisible(false); 
+				boxConfigSon.add(boutonRetour);
 				boxConfigSon.setVisible(true);
+				repaint();
 
 			}
 		});

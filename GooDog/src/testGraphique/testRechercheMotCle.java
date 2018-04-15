@@ -5,7 +5,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import control.ControlRecherche;
+import vueGraphique.FrameRechercheAdmin;
 import vueGraphique.FrameRechercheU;
+import vueGraphique.FrameTestConfig;
 import vueGraphique.PanRechercheMotCle;
 
 
@@ -29,7 +31,7 @@ public class testRechercheMotCle {
 		 panTest.setVisible(true);
 		 fenetre.repaint();*/
 		
-		new FrameRechercheU(controlRecherche);
+		new FrameTestConfig(controlRecherche);
 	}
 
 }

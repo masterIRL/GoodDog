@@ -3,6 +3,7 @@ package vueGraphique;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -87,6 +88,8 @@ public class FrameRechercheAdmin extends JFrame {
 
 		this.panContents.setLayout(cartes);
 		panContents.add(panFinalRechercheA, "RECHERCHE"); 
+		
+		
 		this.getContentPane().add(panContents);
 		this.panFinalRechercheA.setBackground(Color.WHITE);
 		this.panRechercheA.setBackground(Color.WHITE);
@@ -209,6 +212,7 @@ public class FrameRechercheAdmin extends JFrame {
 		this.panFinalRechercheA.add(panRechercheA, BorderLayout.CENTER);
 		this.panFinalRechercheA.setVisible(true);
 		this.panContents.add(panFinalRechercheA, "RECHERCHE");
+		
 		cartes.show(panContents, "RECHERCHE");  
 		this.setVisible(true);		
 	}
