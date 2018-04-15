@@ -12,6 +12,8 @@ import java.awt.RenderingHints;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +42,6 @@ public class FrameRechercheU extends JFrame {
 	Box boxMotCle = Box.createHorizontalBox();
 	Box boxvaliderMotCle = Box.createHorizontalBox();
 	Box boxBoutons = Box.createHorizontalBox();
-	Box boxTopRecherche= Box.createHorizontalBox();
 
 	JButton validerRecherche = new JButton();
 	Box boxMiseEnPageMotCleResultat = Box.createVerticalBox();
@@ -81,7 +82,7 @@ public class FrameRechercheU extends JFrame {
 	
 		this.controlRecherche=controlRecherche;
 		
-		this.setSize(1200,720);
+		this.setSize(1366,768);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		this.panContents.setLayout(cartes);
@@ -89,12 +90,20 @@ public class FrameRechercheU extends JFrame {
 		this.getContentPane().add(panContents);
 		this.panFinalRecherche.setBackground(Color.WHITE);
 		this.panRechercheU.setBackground(Color.WHITE);
-		this.panTopRecherche.setBackground(Color.RED);
+		this.panTopRecherche.setBackground(Color.WHITE);
 		this.panTopRecherche.setLayout(new BorderLayout());
-		initBoxTopRecherche();
-		panTopRecherche.add(boxTopRecherche);
-		this.panTopRecherche.setVisible(true);
-		this.panFinalRecherche.add(panTopRecherche, BorderLayout.NORTH);
+		
+		BufferedImage logoAdmin= null;
+		try {
+			logoAdmin = ImageIO.read(new File("LogoAdmin.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		JLabel labelAdmin = new JLabel(new ImageIcon(logoAdmin));
+		
+		this.panTopRecherche.add(labelAdmin, BorderLayout.EAST);
+		this.panFinalRecherche.add(panTopRecherche,BorderLayout.NORTH);
+
 		
 /*		BufferedImage imageConnect=null;
 		try {
@@ -135,7 +144,7 @@ public class FrameRechercheU extends JFrame {
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
 					resultatsMotCles(controlRecherche.rechercheMotCle(entreeMotCle, 1));
 					boxMiseEnPageMotCle.setVisible(false); 
-					boxTopRecherche.setVisible(false); 
+					panTopRecherche.setVisible(false);
 					boxMiseEnPageMotCleResultat.setVisible(true); 
 					panRechercheU.repaint(); 
 					System.out.println("Recherche lancée");
@@ -153,9 +162,12 @@ public class FrameRechercheU extends JFrame {
 			e1.printStackTrace();
 		}		
 		JLabel labelFile = new JLabel(new ImageIcon(logoFiles1));
-		boxBoutons.add(labelFile);
+	
 		
 		int espaceEntreBouton = 60;
+
+		boxBoutons.add(labelFile);
+		
 		
 		BufferedImage logoCouleu1= null;
 		try {
@@ -203,22 +215,6 @@ public class FrameRechercheU extends JFrame {
 
 
 
-
-	private void initBoxTopRecherche() {
-		BufferedImage logoAdmin= null;
-		try {
-			logoAdmin = ImageIO.read(new File("LogoAdmin.png"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}		
-		JLabel labelAdmin = new JLabel(new ImageIcon(logoAdmin));
-		boxTopRecherche.add(labelAdmin,BorderLayout.BEFORE_FIRST_LINE);
-		
-	}
-
-
-
-
 	private void initBoxMiseEnPageMotCleResultat() {
 	
 		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
@@ -233,9 +229,9 @@ public class FrameRechercheU extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageMotCleResultat.setVisible(false); 
-				boxTopRecherche.setVisible(true); 
 				panFinalRecherche.setBackground(Color.WHITE);
 				panRechercheU.setBackground(Color.WHITE);
+				panTopRecherche.setVisible(true);
 				boxListeResultats.removeAll();
 				boxMiseEnPageMotCleResultat.remove(boutonRetour);
 				boxMiseEnPageMotCle.setVisible(true); 
