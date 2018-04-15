@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 import autre.ImageJLabel;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
-import control.ControlVerifierIdentification;
 
 public class PanAdmin extends JPanel {
 
@@ -106,7 +105,7 @@ public class PanAdmin extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      new FrameReglage(new ControlVerifierIdentification()).reglage();
+			      new FrameReglage().reglage();
 			}
 			
 			@Override
