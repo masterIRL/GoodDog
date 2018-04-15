@@ -2,11 +2,14 @@ package vuegraphique;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import autre.ImageJLabel;
+import control.ControlVerifierIdentification;
 
 public class PanUser extends JPanel {
 
@@ -30,6 +33,30 @@ public class PanUser extends JPanel {
 		this.panTop.setLayout(new BorderLayout());
 		this.panTop.add(labelConnect,BorderLayout.WEST);
 		this.panTop.add(labelReglage,BorderLayout.EAST);
+		this.labelReglage.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			      new FrameReglage(new ControlVerifierIdentification()).reglage();
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
 		this.add(panTop,BorderLayout.NORTH);
 		
 		JLabel texte = new JLabel("module de Recherche");
