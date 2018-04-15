@@ -15,17 +15,18 @@ import javax.swing.JPanel;
 
 public class FrameAdmin extends JFrame{
 
-	private JPanel panContents=new JPanel();
-	private JPanel panAccueil = new JPanel();
+	public JPanel panContents=new JPanel();
+	public JPanel panAccueil = new JPanel();
 	private PanIndexer panIndexer=new PanIndexer();
 	private JButton indexation=new JButton();
-	private CardLayout cartes=new CardLayout();
+	public CardLayout cartes=new CardLayout();
 	private Box boxIndexation=Box.createHorizontalBox();
 	
 	public FrameAdmin() throws IOException {
 		this.setTitle("mode Admin");
-		this.setSize(900, 400);
+		this.setSize(400, 400);
 		this.panIndexer.initialisation();
+		
 		
 		
 		this.panContents.setLayout(cartes);
