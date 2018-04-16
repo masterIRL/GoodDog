@@ -1,5 +1,8 @@
 package vuegraphique;
 
-public class panReglage {
+import javax.swing.JPanel;
+
+public class panReglage extends JPanel {
+	
 
 }
