@@ -20,6 +20,7 @@ import autre.ImageJLabel;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
 
+
 public class PanUser extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class PanUser extends JPanel {
 	Box boxMotCle = Box.createHorizontalBox();
 	Box boxvaliderMotCle = Box.createHorizontalBox();
 	Box boxBoutons = Box.createHorizontalBox();
-	Box boxMiseEnPageMotCleResultat = Box.createVerticalBox();
+	Box boxMiseEnPageResultat = Box.createVerticalBox();
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
 
@@ -97,7 +98,18 @@ public class PanUser extends JPanel {
 		this.panTop.add(labelConnect,BorderLayout.WEST); // ajout de l'image au panel haut
 		this.add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
 
-		// configuration du panel central
+		initBoxMiseEnPageMotCle();
+
+		this.panCenter.add(boxMiseEnPageMotCle);
+		boxMiseEnPageMotCle.setVisible(true);
+		this.add(panCenter,BorderLayout.CENTER);
+
+	}
+
+
+
+	private void initBoxMiseEnPageMotCle() { // configuration du panel central
+
 		boxLogo.add(logoLabel);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageMotCle.add(boxLogo);
@@ -106,85 +118,114 @@ public class PanUser extends JPanel {
 		textAreaMotCle.setMaximumSize(new Dimension(700,30));
 		boxMotCle.add(textAreaMotCle);
 		textAreaMotCle.setFont(policeEntreeU);
-		
+
 		JButton validerMotCle = new JButton();
 		validerMotCle.setText("Rechercher");
+
 		validerMotCle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textAreaMotCle.setFont(policeEntreeU);
 				String entreeMotCle = (textAreaMotCle.getText());
+
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
-					resultatsMotCles(controlRecherche.rechercheMotCle(entreeMotCle, 1));
-					boxMiseEnPageMotCle.setVisible(false); 
-					panTop.setVisible(false);
-					boxMiseEnPageMotCleResultat.setVisible(true); 
-					repaint(); 
-					System.out.println("Recherche lancée");
-				} else {
+
+					initBoxMiseEnPageResultat("Recherche par mots Clés");
+//					panCenter.add(boxMiseEnPageResultat);
+
+					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, 1));
+//					boxMiseEnPageMotCle.setVisible(false); 
+//					panTop.setVisible(false);
+//					boxMiseEnPageResultat.setVisible(true); 
+//					repaint(); 
+					System.out.println("Recherche lancée");				
+					textAreaMotCle.setText("");
+				} 
+				else {
 					System.out.println("Non valide");
+					//ajouter une interraction pour le signaler 
 				}
-				textAreaMotCle.setText("");
 			}
 		});
-		
+
 		int espaceEntreBouton = 60;
 
 		boxBoutons.add(labelFile);
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
+
 		boxBoutons.add(labelCouleur);
+		labelCouleur.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				new FrameCouleur(PanUser.this, controlRecherche);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
+
 		boxBoutons.add(labelAudio);
-		//boxBoutons.add(Box.createRigidArea(new Dimension(100,0)));
-		
-		initBoxMiseEnPageMotCleResultat();
-		
+
 		boxvaliderMotCle.add(validerMotCle);
 		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
 		boxMotCle.add(boxvaliderMotCle);
 		boxMiseEnPageMotCle.add(boxMotCle);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageMotCle.add(boxBoutons);
-		
-		
-		
-		this.panCenter.add(boxMiseEnPageMotCle);
-		this.panCenter.add(boxMiseEnPageMotCleResultat);
-		boxMiseEnPageMotCle.setVisible(true);
-		boxMiseEnPageMotCleResultat.setVisible(false);
-		this.add(panCenter,BorderLayout.CENTER);
-	
 	}
 
 
 
-	private void initBoxMiseEnPageMotCleResultat() {
-	
-		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
-		JLabel texteResultat=new JLabel("Résultats de votre recherche par mots clés:");
+	public void initBoxMiseEnPageResultat(String s) {
+
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(0,70)));
+		JLabel texteResultat=new JLabel(s);
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
-		boxMiseEnPageMotCleResultat.add(texteResultat);
-		boxMiseEnPageMotCleResultat.add(Box.createRigidArea(new Dimension(0,70)));
-		
+		boxMiseEnPageResultat.add(texteResultat);
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(0,70)));
+
 		boutonRetour.setText("   RETOUR   ");
-		
+
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boxMiseEnPageMotCleResultat.setVisible(false); 
+				boxMiseEnPageResultat.setVisible(false); 
 				setBackground(Color.WHITE);
 				panCenter.setBackground(Color.WHITE);
 				panTop.setVisible(true);
 				boxListeResultats.removeAll();
-				boxMiseEnPageMotCleResultat.remove(boutonRetour);
-				boxMiseEnPageMotCle.setVisible(true); 
+				boxMiseEnPageResultat.remove(boutonRetour);
+				boxMiseEnPageMotCle.setVisible(true);
+				boxMiseEnPageResultat.removeAll();
 				repaint(); 
 			}
 		});
+		panCenter.add(boxMiseEnPageResultat);
+		boxMiseEnPageMotCle.setVisible(false); 
+		panTop.setVisible(false);
+		boxMiseEnPageResultat.setVisible(true); 
+		repaint(); 
 	}
-	
-	
-	private void resultatsMotCles(List<String> liste) {
+
+
+	public void resultatsTextes(List<String> liste) { //sera valable pour tout les texte, ajouter ouverture texte
 		panCenter.setBackground(new Color(220, 220, 255));
 		setBackground(new Color(220, 220, 255));
 		for(int i=0; i<liste.size(); i++) {
@@ -195,12 +236,27 @@ public class PanUser extends JPanel {
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
-		boxMiseEnPageMotCleResultat.add(boxListeResultats);
+		boxMiseEnPageResultat.add(boxListeResultats);
 
 		boxRetour.add(boutonRetour);
-		boxMiseEnPageMotCleResultat.add(boxRetour);
+		boxMiseEnPageResultat.add(boxRetour);
 	}
-	
-	
-		
+
+	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
+		panCenter.setBackground(new Color(220, 220, 255));
+		setBackground(new Color(220, 220, 255));
+		for(int i=0; i<liste.size(); i++) {
+			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
+			boxListeResultats.add(listeResultat);
+			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+		}
+		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
+		boxMiseEnPageResultat.add(boxListeResultats);
+
+		boxRetour.add(boutonRetour);
+		boxMiseEnPageResultat.add(boxRetour);
+	}
+
 }
