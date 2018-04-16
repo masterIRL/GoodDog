@@ -42,8 +42,7 @@ public class FrameConnexion extends JFrame{
 		this.controlSIdentifier = controlSIdentifier;
 		
 		this.setTitle("connexion admin");
-        this.setSize(new Dimension(700,500
-        ));
+        this.setSize(new Dimension(700,500));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

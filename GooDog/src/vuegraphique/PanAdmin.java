@@ -48,9 +48,9 @@ public class PanAdmin extends JPanel {
 	private JPanel panTop = new JPanel();
 	private JPanel panCenter = new JPanel();
 	
-	private ImageJLabel labelConnect = new ImageJLabel("RESSOURCE/IMAGE/LogoAdmin.png");
-	private ImageJLabel labelReglage = new ImageJLabel("RESSOURCE/IMAGE/IconeReglage.png");
-	private ImageJLabel logoLabel = new ImageJLabel("RESSOURCE/IMAGE/LOGO.png");
+	private ImageJLabel labelConnect = new ImageJLabel("RESSOURCE/IMAGE/LogoUser.png");
+	private ImageJLabel labelReglage = new ImageJLabel("RESSOURCE/IMAGE/settings.png");  //modifié
+	private ImageJLabel logoLabel = new ImageJLabel("RESSOURCE/IMAGE/LOGO_seul.png"); //modifié
 	private ImageJLabel labelFile = new ImageJLabel("RESSOURCE/IMAGE/folder2.png");
 	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/color-icon-12545.png");
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
