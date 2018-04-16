@@ -101,7 +101,7 @@ public class FrameRechercheU extends JFrame {
 		}		
 		JLabel labelAdmin = new JLabel(new ImageIcon(logoAdmin));
 		
-		this.panTopRecherche.add(labelAdmin, BorderLayout.EAST);
+		//this.panTopRecherche.add(labelAdmin, BorderLayout.EAST);
 		this.panFinalRecherche.add(panTopRecherche,BorderLayout.NORTH);
 
 		

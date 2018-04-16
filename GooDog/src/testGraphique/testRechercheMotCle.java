@@ -31,7 +31,8 @@ public class testRechercheMotCle {
 		 panTest.setVisible(true);
 		 fenetre.repaint();*/
 		
-		new FrameTestConfig(controlRecherche);
+		//new FrameTestConfig(controlRecherche);
+		new FrameRechercheU(controlRecherche);
 	}
 
 }
