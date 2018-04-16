@@ -24,7 +24,7 @@ public class FrameUser extends JFrame{
 	
 	public FrameUser() throws IOException {
 		this.setTitle("mode Admin");
-		this.setSize(400, 400);
+		this.setSize(900, 400);
 		this.panRechercheAudio.initialisation();
 		
 		
