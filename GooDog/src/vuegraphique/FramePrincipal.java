@@ -58,7 +58,7 @@ public class FramePrincipal extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      showPanUser();
+				cartes.show(panContents, "USER");
 			}
 			
 			@Override
@@ -82,12 +82,14 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	public void showPanUser() {
-		this.cartes.show(panContents, "USER");
+		//this.cartes.show(panContents, "USER");
+		panUser.showUser();
 		this.repaint();
 	}
 	
 	public void showPanAdmin() {
-		this.cartes.show(panContents, "ADMIN");
+		//this.cartes.show(panContents, "ADMIN");
+		panUser.showAdmin();
 		this.repaint();
 	}
 
