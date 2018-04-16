@@ -23,7 +23,7 @@ public class FrameReglage extends JFrame {
 		this.setTitle("Réglage");  //Définit un titre
 		this.setSize(800, 500); //Définit sa taille 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
 		this.panContents.add(panReglage,"REGLAGE");
