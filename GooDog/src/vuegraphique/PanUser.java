@@ -162,7 +162,7 @@ public class PanUser extends JPanel {
 		ImageIcon folder11=new ImageIcon(folder);
 		BufferedImage folder2=null;
 		try {
-			folder2 = ImageIO.read(new File("RESSOURCE/IMAGE/Fichier2.png"));
+			folder2 = ImageIO.read(new File("RESSOURCE/IMAGE/FichierClick.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}	
@@ -194,6 +194,21 @@ public class PanUser extends JPanel {
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
 
+		BufferedImage couleur=null;
+		try {
+			couleur = ImageIO.read(new File("RESSOURCE/IMAGE/Couleur2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon couleur11=new ImageIcon(couleur);
+		BufferedImage couleur2=null;
+		try {
+			couleur2 = ImageIO.read(new File("RESSOURCE/IMAGE/CouleurClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}	
+		ImageIcon couleur22=new ImageIcon(couleur2);
+		labelCouleur.setIcon(couleur11);
 		boxBoutons.add(labelCouleur);
 		this.labelCouleur.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelCouleur.addMouseListener(new MouseListener() {
@@ -207,28 +222,66 @@ public class PanUser extends JPanel {
 				new FrameCouleur(PanUser.this, controlRecherche);
 			}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-				labelCouleur.setSize(labelCouleur.getHeight()-10,labelCouleur.getWidth()-10);
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				labelCouleur.setSize(labelCouleur.getHeight()+10,labelCouleur.getWidth()+10);
-			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	labelCouleur.setIcon(couleur22);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	labelCouleur.setIcon(couleur11);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
 			}
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
 
 		boxBoutons.add(labelAudio);
 		this.labelAudio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		
+		
+		BufferedImage audio=null;
+		try {
+			audio = ImageIO.read(new File("RESSOURCE/IMAGE/Audio2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon audio11=new ImageIcon(audio);
+		BufferedImage audio2=null;
+		try {
+			audio2 = ImageIO.read(new File("RESSOURCE/IMAGE/AudioClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}	
+		ImageIcon audio22=new ImageIcon(audio2);
+		labelAudio.setIcon(audio11);
+		boxBoutons.add(labelAudio);
+		labelAudio.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
 
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	labelAudio.setIcon(audio22);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	labelAudio.setIcon(audio11);
+            }
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		
 		boxvaliderMotCle.add(validerMotCle);
 		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
 		boxMotCle.add(boxvaliderMotCle);
