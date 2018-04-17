@@ -117,7 +117,7 @@ public class PanAdmin extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      new FrameReglage().reglage();
+			      new FrameReglage();
 			}
 			
 			@Override
@@ -283,8 +283,8 @@ public class PanAdmin extends JPanel {
 
 
 	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(157, 228, 234));
+		setBackground(new Color(157, 228, 234));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
@@ -300,8 +300,8 @@ public class PanAdmin extends JPanel {
 	}
 
 	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(248, 168, 83));
+		setBackground(new Color(248, 168, 83));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
@@ -317,8 +317,8 @@ public class PanAdmin extends JPanel {
 	}
 
 	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(230, 209, 70));
+		setBackground(new Color(230, 209, 70));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));

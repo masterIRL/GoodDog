@@ -5,14 +5,20 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -52,8 +58,9 @@ public class PanUser extends JPanel {
 	private ImageJLabel labelConnect = new ImageJLabel("RESSOURCE/IMAGE/LogoAdmin.png");
 	private ImageJLabel logoLabel = new ImageJLabel("RESSOURCE/IMAGE/LOGO_seul.png"); //modifié
 	private ImageJLabel labelFile = new ImageJLabel("RESSOURCE/IMAGE/folder2.png");
-	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/color-icon-12545.png");
-	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
+	//private ImageJLabel labelFile2 = new ImageJLabel("RESSOURCE/IMAGE/folder3.png");
+	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/Couleur2.png");
+	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/Audio2.png");
 	
 	
 	public PanUser(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier) {
@@ -131,7 +138,7 @@ public class PanUser extends JPanel {
 
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
 
-					initBoxMiseEnPageResultat("Recherche par mots Clés");
+					initBoxMiseEnPageResultat("Résulats de votre recherche par mots-clés");
 
 					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, 1));
 					System.out.println("Recherche lancée");				
@@ -145,7 +152,23 @@ public class PanUser extends JPanel {
 		});
 
 		int espaceEntreBouton = 60;
-
+		
+		BufferedImage folder=null;
+		try {
+			folder = ImageIO.read(new File("RESSOURCE/IMAGE/Fichier2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon folder11=new ImageIcon(folder);
+		BufferedImage folder2=null;
+		try {
+			folder2 = ImageIO.read(new File("RESSOURCE/IMAGE/Fichier2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}	
+		ImageIcon folder22=new ImageIcon(folder2);
+		labelFile.setIcon(folder11);
+		
 		boxBoutons.add(labelFile);
 		this.labelFile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelFile.addMouseListener(new MouseListener() {
@@ -156,14 +179,15 @@ public class PanUser extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				new FrameFichier(PanUser.this, controlRecherche);
 			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                labelFile.setIcon(folder22);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	labelFile.setIcon(folder11);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
@@ -186,15 +210,18 @@ public class PanUser extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
+				
+				labelCouleur.setSize(labelCouleur.getHeight()-10,labelCouleur.getWidth()-10);
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
+				labelCouleur.setSize(labelCouleur.getHeight()+10,labelCouleur.getWidth()+10);
 			}
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub	
 			}
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
@@ -245,8 +272,8 @@ public class PanUser extends JPanel {
 
 
 	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(157, 228, 234));
+		setBackground(new Color(157, 228, 234));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
@@ -262,8 +289,8 @@ public class PanUser extends JPanel {
 	}
 
 	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(248, 168, 83));
+		setBackground(new Color(248, 168, 83));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
@@ -279,8 +306,8 @@ public class PanUser extends JPanel {
 	}
 
 	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
-		panCenter.setBackground(new Color(220, 220, 255));
-		setBackground(new Color(220, 220, 255));
+		panCenter.setBackground(new Color(230, 209, 70));
+		setBackground(new Color(230, 209, 70));
 		for(int i=0; i<liste.size(); i++) {
 			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));

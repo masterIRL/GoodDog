@@ -23,7 +23,7 @@ public class PanReglage extends JPanel {
 
 	
 	 public void initialisation() {
-		this.setBackground(Color.RED);
+		this.setBackground(Color.WHITE);
 		boutonConfig.setText("CONFIGURATION DE L'INDEXATION");
 		boutonConfig.addActionListener(new ActionListener() {
 			@Override
@@ -32,14 +32,14 @@ public class PanReglage extends JPanel {
 			}
 		});
 		boutonIndexation.setText("INDEXER");
-		boutonConfig.addActionListener(new ActionListener() {
+		boutonIndexation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		boutonIndexation.setText("Changer de mode");
-		boutonConfig.addActionListener(new ActionListener() {
+		boutonMode.setText("Changer de mode");
+		boutonMode.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -55,6 +55,7 @@ public class PanReglage extends JPanel {
 		boxMiseEnPageReglage.add(Box.createRigidArea(new Dimension(0,50)));
 
 		boxMiseEnPageReglage.setVisible(true);
+		this.add(boxMiseEnPageReglage);
 
 		
 	}

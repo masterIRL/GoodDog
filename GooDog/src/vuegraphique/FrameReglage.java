@@ -31,7 +31,7 @@ public class FrameReglage extends JFrame {
 		this.panReglage.initialisation();
 		this.panReglage.setVisible(true);
 		this.getContentPane().add(panContents);
-		this.cartes.show(panReglage, "REGLAGE");
+		this.cartes.show(panContents, "REGLAGE");
 		this.setVisible(true);
 		this.repaint();
 		
@@ -40,7 +40,6 @@ public class FrameReglage extends JFrame {
 	}
 	
 	public void reglage(){
-	      this.panReglage.setBackground(Color.WHITE);
 	      
 	      
 	}
