@@ -11,10 +11,9 @@ public class FrameReglage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel panContents = new JPanel();
-	private JPanel panReglage = new JPanel();
 	//private JPanel panConfig;
 	//private JPanel panIndexation;
-	
+	private PanReglage panReglage= new PanReglage();
 	private CardLayout cartes = new CardLayout();
 
 
@@ -29,9 +28,15 @@ public class FrameReglage extends JFrame {
 		this.panContents.add(panReglage,"REGLAGE");
 		//this.panContents.add(panConfig);
 		//this.panContents.add(panIndexation);
-		
+		this.panReglage.initialisation();
+		this.panReglage.setVisible(true);
 		this.getContentPane().add(panContents);
+		this.cartes.show(panReglage, "REGLAGE");
 		this.setVisible(true);
+		this.repaint();
+		
+
+		  
 	}
 	
 	public void reglage(){

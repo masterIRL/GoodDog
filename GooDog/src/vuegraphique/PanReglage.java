@@ -1,5 +1,6 @@
 package vuegraphique;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,7 @@ import javax.swing.JPanel;
 
 
 
-public class panReglage extends JPanel {
+public class PanReglage extends JPanel {
 
 	private static final long serialVersionUID = -7586081042841575443L;
 	Box boxMiseEnPageReglage = Box.createVerticalBox();
@@ -21,7 +22,8 @@ public class panReglage extends JPanel {
 
 
 	
-	public panReglage () {
+	 public void initialisation() {
+		this.setBackground(Color.RED);
 		boutonConfig.setText("CONFIGURATION DE L'INDEXATION");
 		boutonConfig.addActionListener(new ActionListener() {
 			@Override
