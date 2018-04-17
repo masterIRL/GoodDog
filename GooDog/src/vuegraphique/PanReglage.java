@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class PanReglage extends JPanel {
 
 	private static final long serialVersionUID = -7586081042841575443L;
+	
 	Box boxMiseEnPageReglage = Box.createVerticalBox();
 	JButton boutonConfig = new JButton();
 	JButton boutonIndexation = new JButton();
@@ -22,15 +23,25 @@ public class PanReglage extends JPanel {
 
 
 	
-	 public void initialisation() {
+	 public PanReglage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public void initialisation() {
 		this.setBackground(Color.WHITE);
+		
 		boutonConfig.setText("CONFIGURATION DE L'INDEXATION");
 		boutonConfig.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 		});
+		
 		boutonIndexation.setText("INDEXER");
 		boutonIndexation.addActionListener(new ActionListener() {
 			@Override
@@ -38,6 +49,7 @@ public class PanReglage extends JPanel {
 
 			}
 		});
+		
 		boutonMode.setText("Changer de mode");
 		boutonMode.addActionListener(new ActionListener() {
 			@Override

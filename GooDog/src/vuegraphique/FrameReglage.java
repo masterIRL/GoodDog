@@ -39,8 +39,4 @@ public class FrameReglage extends JFrame {
 		  
 	}
 	
-	public void reglage(){
-	      
-	      
-	}
 }
