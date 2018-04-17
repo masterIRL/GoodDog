@@ -22,7 +22,7 @@ public class FrameUser extends JFrame{
 	public CardLayout cartes=new CardLayout();
 	//private Box boxRecherche=Box.createHorizontalBox();
 	
-	public FrameUser() throws IOException {
+	public FrameUser() throws Exception {
 		this.setTitle("mode Admin");
 		this.setSize(900, 400);
 		this.panRechercheAudio.initialisation();
