@@ -59,30 +59,30 @@ public class FrameConnexion extends JFrame{
 		
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
-		boxMiseEnPageConnexion.add(getError());
+		boxMiseEnPageConnexion.add(getError()); //ajout du label d'erreur 
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
-		JLabel texteLogin=new JLabel("Pseudo");
+		JLabel texteLogin=new JLabel("Pseudo"); //texte du login
 		boxTexteLogin.add(texteLogin);
 		boxMiseEnPageConnexion.add(boxTexteLogin);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		textAreaLogin.setMaximumSize(new Dimension(150,30));
+		textAreaLogin.setMaximumSize(new Dimension(150,30)); //zone d'ecriture du login
 		boxLogin.add(textAreaLogin);
 		boxMiseEnPageConnexion.add(boxLogin);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
 		
-		JLabel texteMDP=new JLabel("Password");
+		JLabel texteMDP=new JLabel("Password"); //texte du mdp
 		boxTexteMDP.add(texteMDP);
 		boxMiseEnPageConnexion.add(boxTexteMDP);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		fieldMDP.setMaximumSize(new Dimension(150,30));
+		fieldMDP.setMaximumSize(new Dimension(150,30)); //zone d'ecriture securisee pour le mdp
 		boxMDP.add(fieldMDP);
 		boxMiseEnPageConnexion.add(boxMDP);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
 		
-		buttonLogin.setText("LOG IN");
+		buttonLogin.setText("LOG IN"); //bouton de connexion
 		buttonLogin.setMaximumSize(new Dimension(150,30));
 		buttonLogin.addActionListener(new ActionListener() {
 			@Override
@@ -95,7 +95,7 @@ public class FrameConnexion extends JFrame{
 		boxMiseEnPageConnexion.add(boxBouton);
 	}
 
-    private Box getError() {
+    private Box getError() { //recupere un bouton d'erreur
     	JLabel errorLabel = new JLabel("Login ou mot de passe incorrect");
         errorLabel.setForeground(Color.red);
         boxErreur.add(errorLabel);
@@ -103,7 +103,7 @@ public class FrameConnexion extends JFrame{
         return boxErreur;
     }
     
-    private void identification() {
+    private void identification() { //La fonction pour se connecter
 		int i=0;
 		boolean identifiantOk = false;
 		if(!identifiantOk || i < 3) {
@@ -122,7 +122,7 @@ public class FrameConnexion extends JFrame{
 		}
 		
 		else {
-			dispose();
+			dispose(); //ferme la fenetre
 		}
 	}
 }

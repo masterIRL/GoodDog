@@ -111,17 +111,17 @@ public class FrameFichier  extends JFrame{
 		boxMiseEnPage.add(texteChemin);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
 		this.parcourir.setText("...");
-		this.parcourir.addActionListener(new ActionListener() {
+		this.parcourir.addActionListener(new ActionListener() { //interaction pour parcourir les fichier
 			public void actionPerformed(ActionEvent e) {
-				FileFilter filtreFichier = new FileNameExtensionFilter("Fichier lisible", "jpg", "xml", "wav");
-				fc.addChoosableFileFilter(filtreFichier);
-				int returnVal = fc.showOpenDialog(parcourir);
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
+				FileFilter filtreFichier = new FileNameExtensionFilter("Fichier lisible", "jpg", "xml", "wav"); //creation d'un filtre pour faciliter
+				fc.addChoosableFileFilter(filtreFichier); // ajout du filtre
+				int returnVal = fc.showOpenDialog(parcourir); //lance le gestionaire de fichier en mode ouverture
+				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a été sélectionné
 					File file = fc.getSelectedFile();
 					nom = file.getName();
-					texteChemin.setText(file.getAbsolutePath());
+					texteChemin.setText(file.getAbsolutePath()); //récupère le chemin absolu du fichier sélectionné et le stock
 				} 
-				else { //Que faire?
+				else { //Aucun fichier de sélectionner. Que faire?
 				}
 			}
 		});
@@ -134,7 +134,7 @@ public class FrameFichier  extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//récupère le type de fichier
 				if(texteChemin.getText().length() >= 3) {
-					String extension = texteChemin.getText().substring(texteChemin.getText().length()-3);
+					String extension = texteChemin.getText().substring(texteChemin.getText().length()-3); //récupère les 3 dernieres lettre
 					if(extension.equals("xml")) {
 						typeFichier = TypeFichier.TEXTE;
 					}
@@ -152,8 +152,7 @@ public class FrameFichier  extends JFrame{
 					choixSeuil = comboBoxSeuil.getSelectedIndex();
 					System.out.println(choixSeuil); // vérifier la valeur
 
-					//lance la recherche
-					rechercheFichier();
+					rechercheFichier();//lance la recherche
 				}
 				else {
 					System.out.println("Choisissez un fichier"); //Le faire apparaitre à l'écran
@@ -196,10 +195,10 @@ public class FrameFichier  extends JFrame{
 					break;
 				}
 			}
-			dispose();
+			dispose(); //ferme la fenetre
 		}
 		else {
-			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'écran
+			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'écran grace a un label etc
 		}
 		
 	}
