@@ -90,6 +90,7 @@ public class Comparaison {
 	}
 
 	public Map<String,Integer> comparaisonMotCle(String mot) {
+		
 		// TODO Auto-generated method stub
 		Map<String,Integer> listMotCle= new HashMap<>();
 
