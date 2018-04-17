@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +57,6 @@ public class PanUser extends JPanel {
 	private ImageJLabel labelConnect = new ImageJLabel("RESSOURCE/IMAGE/LogoAdmin.png");
 	private ImageJLabel logoLabel = new ImageJLabel("RESSOURCE/IMAGE/LOGO_seul.png"); //modifié
 	private ImageJLabel labelFile = new ImageJLabel("RESSOURCE/IMAGE/folder2.png");
-	//private ImageJLabel labelFile2 = new ImageJLabel("RESSOURCE/IMAGE/folder3.png");
 	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/Couleur2.png");
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/Audio2.png");
 	
@@ -89,7 +87,6 @@ public class PanUser extends JPanel {
 				// TODO Auto-generated method stub
 			      new FrameConnexion(framePrincipal,controlSIdentifier);
 			}
-			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -153,6 +150,7 @@ public class PanUser extends JPanel {
 
 		int espaceEntreBouton = 60;
 		
+		//ajout des images pour l'interaction avec la souris du label fichier 
 		BufferedImage folder=null;
 		try {
 			folder = ImageIO.read(new File("RESSOURCE/IMAGE/Fichier2.png"));
@@ -162,13 +160,13 @@ public class PanUser extends JPanel {
 		ImageIcon folder11=new ImageIcon(folder);
 		BufferedImage folder2=null;
 		try {
-			folder2 = ImageIO.read(new File("RESSOURCE/IMAGE/Fichier2.png"));
+			folder2 = ImageIO.read(new File("RESSOURCE/IMAGE/FichierClick.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}	
 		ImageIcon folder22=new ImageIcon(folder2);
 		labelFile.setIcon(folder11);
-		
+		//Bouton + interaction
 		boxBoutons.add(labelFile);
 		this.labelFile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelFile.addMouseListener(new MouseListener() {
@@ -194,6 +192,23 @@ public class PanUser extends JPanel {
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
 
+		//ajout des images pour l'interaction avec la souris du label couleur
+		BufferedImage couleur=null;
+		try {
+			couleur = ImageIO.read(new File("RESSOURCE/IMAGE/Couleur2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon couleur11=new ImageIcon(couleur);
+		BufferedImage couleur2=null;
+		try {
+			couleur2 = ImageIO.read(new File("RESSOURCE/IMAGE/CouleurClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}	
+		ImageIcon couleur22=new ImageIcon(couleur2);
+		labelCouleur.setIcon(couleur11);
+		//Bouton + interaction
 		boxBoutons.add(labelCouleur);
 		this.labelCouleur.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelCouleur.addMouseListener(new MouseListener() {
@@ -209,15 +224,12 @@ public class PanUser extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-				labelCouleur.setSize(labelCouleur.getHeight()-10,labelCouleur.getWidth()-10);
+				labelCouleur.setIcon(couleur11);
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				labelCouleur.setSize(labelCouleur.getHeight()+10,labelCouleur.getWidth()+10);
+				labelCouleur.setIcon(couleur22);
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -226,9 +238,47 @@ public class PanUser extends JPanel {
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
 
+		//ajout des images pour l'interaction avec la souris du label audio
+		BufferedImage audio=null;
+		try {
+			audio = ImageIO.read(new File("RESSOURCE/IMAGE/Audio2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon audio11=new ImageIcon(audio);
+		BufferedImage audio2=null;
+		try {
+			audio2 = ImageIO.read(new File("RESSOURCE/IMAGE/AudioClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}	
+		ImageIcon audio22=new ImageIcon(audio2);
+		labelAudio.setIcon(audio11);
+		//Bouton + interaction
 		boxBoutons.add(labelAudio);
 		this.labelAudio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
-
+		labelAudio.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				//ajouter interaction avec l'icone audio
+			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	labelAudio.setIcon(audio22);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	labelAudio.setIcon(audio11);
+            }
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
 		boxvaliderMotCle.add(validerMotCle);
 		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
 		boxMotCle.add(boxvaliderMotCle);

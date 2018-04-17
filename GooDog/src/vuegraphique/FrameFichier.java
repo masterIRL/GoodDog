@@ -44,7 +44,7 @@ public class FrameFichier  extends JFrame{
 //	private JTextField texteChemin = new JTextField ();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 	private TextArea texteChemin = new TextArea();
-	private String nom;
+	//private String nom;
 	private TypeFichier typeFichier;
 	
 	private int choixSeuil = 0;
@@ -61,7 +61,7 @@ public class FrameFichier  extends JFrame{
 			this.controlRecherche = controlRecherche;
 			
 			this.setTitle("Recherche Fichier");
-			this.setSize(new Dimension(900,300));
+			this.setSize(new Dimension(900,100));
 	        this.setLocationRelativeTo(null);
 	        this.setResizable(true);
 	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -79,7 +79,7 @@ public class FrameFichier  extends JFrame{
 			this.admin = true;
 			
 			this.setTitle("Recherche Fichier");
-			this.setSize(new Dimension(900,300));
+			this.setSize(new Dimension(900,100));
 	        this.setLocationRelativeTo(null);
 	        this.setResizable(true);
 	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -91,13 +91,15 @@ public class FrameFichier  extends JFrame{
 		}
 	
 	private void initialisation() {
-		this.panelGeneral.setBackground(Color.WHITE);
+		this.panelGeneral.setBackground(new Color(102, 51, 81));
 		int espaceEntreElement = 50;
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
+		//boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
 		
-		JLabel texteSeuil = new JLabel("seuil:"); //ajout de la partie seuil
+		JLabel texteSeuil = new JLabel("Seuil:"); //ajout de la partie seuil
+		texteSeuil.setForeground(Color.WHITE);
 		boxMiseEnPage.add(texteSeuil);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		comboBoxSeuil.setPreferredSize(new Dimension(50,30));
 		for(int i=0;i<101;i++){
 			listSeuil.add(i);
 		}
@@ -107,7 +109,11 @@ public class FrameFichier  extends JFrame{
 		boxMiseEnPage.add(comboBoxSeuil);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(10,0)));
 		
-		this.texteChemin.setMaximumSize(new Dimension(150,30)); //ajout de la partie du texte du chemin et son bouton pour parcourir
+		JLabel texteFichier = new JLabel("    Fichier: "); //ajout de la partie seuil
+		texteFichier.setForeground(Color.WHITE);
+		boxMiseEnPage.add(texteFichier);
+		
+		this.texteChemin.setPreferredSize(new Dimension(500,30)); //ajout de la partie du texte du chemin et son bouton pour parcourir
 		boxMiseEnPage.add(texteChemin);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
 		this.parcourir.setText("...");
@@ -118,7 +124,7 @@ public class FrameFichier  extends JFrame{
 				int returnVal = fc.showOpenDialog(parcourir); //lance le gestionaire de fichier en mode ouverture
 				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a été sélectionné
 					File file = fc.getSelectedFile();
-					nom = file.getName();
+					//nom = file.getName();
 					texteChemin.setText(file.getAbsolutePath()); //récupère le chemin absolu du fichier sélectionné et le stock
 				} 
 				else { //Aucun fichier de sélectionner. Que faire?
@@ -128,7 +134,8 @@ public class FrameFichier  extends JFrame{
 		boxMiseEnPage.add(parcourir);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
 		
-		lancerRecherche.setText("OK"); //ajout du bouton recherche et son interaction 
+		lancerRecherche.setMaximumSize(new Dimension(100,30));
+		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

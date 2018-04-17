@@ -50,7 +50,7 @@ public class FrameCouleur  extends JFrame{
 		this.controlRecherche = controlRecherche;
 
 		this.setTitle("Recherche Couleur");
-		this.setSize(new Dimension(700,500));
+		this.setSize(new Dimension(500,150));
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -68,7 +68,7 @@ public class FrameCouleur  extends JFrame{
 		this.admin = true;
 
 		this.setTitle("Recherche Couleur");
-		this.setSize(new Dimension(700,500));
+		this.setSize(new Dimension(500,150));
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -81,13 +81,15 @@ public class FrameCouleur  extends JFrame{
 
 	//Methode privee
 	private void initialisation() {
-		this.panelGeneral.setBackground(Color.WHITE);
+		this.panelGeneral.setBackground(new Color(220, 151, 53));
 		int espaceEntreElement = 15;
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
 
-		JLabel texteSeuil = new JLabel("seuil:"); //ajout de la partie sélection seuil
+		JLabel texteSeuil = new JLabel("Pourcentage:"); //ajout de la partie sélection seuil
+		texteSeuil.setForeground(Color.WHITE);
 		boxMiseEnPage.add(texteSeuil);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		comboBoxSeuil.setMaximumSize(new Dimension(50,30));
 		for(int i=0;i<101;i++){
 			listSeuil.add(i);
 		}
@@ -98,16 +100,18 @@ public class FrameCouleur  extends JFrame{
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
 
 		JLabel texteCouleur = new JLabel("Couleur:"); //ajout de la partie selection couleur
+		texteCouleur.setForeground(Color.WHITE);
 		boxMiseEnPage.add(texteCouleur);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		comboBoxCouleur.setMaximumSize(new Dimension(70,30));
 		comboBoxCouleur.addItem("");
 		for (String string : listCouleurs) {
 			comboBoxCouleur.addItem(string);
 		}
 		boxMiseEnPage.add(comboBoxCouleur);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(20,0)));
-
-		lancerRecherche.setText("OK"); //ajout du bouton recherche et son interaction 
+		lancerRecherche.setMaximumSize(new Dimension(100,30));
+		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
