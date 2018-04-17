@@ -84,10 +84,10 @@ public class FrameCouleur  extends JFrame{
 	//Methode privee
 	private void initialisation() {
 		this.panelGeneral.setBackground(Color.WHITE);
-		int espaceEntreElement = 100;
+		int espaceEntreElement = 15;
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
 		
-		JLabel texteSeuil = new JLabel("seuil:");
+		JLabel texteSeuil = new JLabel("seuil:"); //ajout de la partie sélection seuil
 		boxMiseEnPage.add(texteSeuil);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
 		for(int i=0;i<101;i++){
@@ -96,28 +96,25 @@ public class FrameCouleur  extends JFrame{
 		for (Integer integer : listSeuil) {
 			comboBoxSeuil.addItem(integer);
 		}
-		comboBoxSeuil.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				choixSeuil = comboBoxSeuil.getSelectedIndex();
-				System.out.println(choixSeuil); // vérifier la valeur
-			}
-		});
 		boxMiseEnPage.add(comboBoxSeuil);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
 		
-		JLabel texteCouleur = new JLabel("Couleur:");
+		JLabel texteCouleur = new JLabel("Couleur:"); //ajout de la partie selection couleur
 		boxMiseEnPage.add(texteCouleur);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
 		comboBoxCouleur.addItem("");
 		for (String string : listCouleurs) {
 			comboBoxCouleur.addItem(string);
 		}
-		comboBoxCouleur.addActionListener(new ActionListener() {
+		boxMiseEnPage.add(comboBoxCouleur);
+		boxMiseEnPage.add(Box.createRigidArea(new Dimension(20,0)));
+		
+		lancerRecherche.setText("OK"); //ajout du bouton recherche et son interaction 
+		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				//Recupere la couleur dans la box
 				switch((String)comboBoxCouleur.getSelectedItem()) {
 				case "NOIR":
 					choixCouleur = Couleur.NOIR;
@@ -138,15 +135,10 @@ public class FrameCouleur  extends JFrame{
 					choixCouleur = null;
 					break;
 				}
-			}
-		});
-		boxMiseEnPage.add(comboBoxCouleur);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
-		
-		lancerRecherche.setText("Rechercher");
-		lancerRecherche.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+				//Recupere la valeur du seuil dans sa box
+				choixSeuil = comboBoxSeuil.getSelectedIndex();
+				System.out.println(choixSeuil); // vérifier la valeur
+				//lance la recherche
 				rechercheCouleur();
 			}
 		});

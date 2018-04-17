@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import autre.ImageJLabel;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
+import vuegraphique.FramePrincipal;
+import vuegraphique.FrameReglage;
 
 public class PanAdmin extends JPanel {
 
@@ -266,6 +268,23 @@ public class PanAdmin extends JPanel {
 	}
 
 	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
+		panCenter.setBackground(new Color(220, 220, 255));
+		setBackground(new Color(220, 220, 255));
+		for(int i=0; i<liste.size(); i++) {
+			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
+			boxListeResultats.add(listeResultat);
+			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+		}
+		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
+		boxMiseEnPageResultat.add(boxListeResultats);
+
+		boxRetour.add(boutonRetour);
+		boxMiseEnPageResultat.add(boxRetour);
+	}
+	
+	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
 		panCenter.setBackground(new Color(220, 220, 255));
 		setBackground(new Color(220, 220, 255));
 		for(int i=0; i<liste.size(); i++) {

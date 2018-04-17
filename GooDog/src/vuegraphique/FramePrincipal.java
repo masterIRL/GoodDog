@@ -12,6 +12,7 @@ import autre.ImageJLabel;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
 
+
 public class FramePrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;

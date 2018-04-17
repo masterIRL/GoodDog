@@ -2,6 +2,7 @@ package vuegraphique;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.TextArea;
@@ -19,6 +20,8 @@ import javax.swing.JPanel;
 import autre.ImageJLabel;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
+import vuegraphique.FramePrincipal;
+import vuegraphique.FrameReglage;
 
 public class PanUser extends JPanel {
 
@@ -162,12 +165,14 @@ public class PanUser extends JPanel {
 
 	public void initialisation() {
 		this.setBackground(Color.WHITE);
-		panTop.setSize(labelReglage.getSize());
 		this.panTop.setBackground(Color.WHITE);
 		this.panCenter.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 
 		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		
+		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -248,6 +253,26 @@ public class PanUser extends JPanel {
 		int espaceEntreBouton = 60;
 
 		boxBoutons.add(labelFile);
+		labelFile.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new FrameFichier(PanUser.this, controlRecherche);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
 
 		boxBoutons.add(labelCouleur);
@@ -255,23 +280,18 @@ public class PanUser extends JPanel {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 			}
-
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				new FrameCouleur(PanUser.this, controlRecherche);
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
 			}
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
 			}
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
@@ -322,7 +342,7 @@ public class PanUser extends JPanel {
 	}
 
 
-	public void resultatsTextes(List<String> liste) { //sera valable pour tout les texte, ajouter ouverture texte
+	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
 		panCenter.setBackground(new Color(220, 220, 255));
 		setBackground(new Color(220, 220, 255));
 		for(int i=0; i<liste.size(); i++) {
@@ -356,4 +376,20 @@ public class PanUser extends JPanel {
 		boxMiseEnPageResultat.add(boxRetour);
 	}
 
+	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
+		panCenter.setBackground(new Color(220, 220, 255));
+		setBackground(new Color(220, 220, 255));
+		for(int i=0; i<liste.size(); i++) {
+			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
+			boxListeResultats.add(listeResultat);
+			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+		}
+		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
+		boxMiseEnPageResultat.add(boxListeResultats);
+
+		boxRetour.add(boutonRetour);
+		boxMiseEnPageResultat.add(boxRetour);
+	}
 }
