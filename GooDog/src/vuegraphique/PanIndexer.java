@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
@@ -91,9 +92,15 @@ class PanIndexer extends JPanel {
 				frame.showReglage();
 			}
 		});
-
-
 		panTop.add(buttonRetour,BorderLayout.WEST);
+		
+		//////////////////////////////////////////////////////////////////////
+		////////////                Texte titre            ///////////////////
+		//////////////////////////////////////////////////////////////////////
+		JLabel texteResultat=new JLabel("Indexation:");
+		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
+		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+		panTop.add(texteResultat,BorderLayout.CENTER);
 
 		//////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////

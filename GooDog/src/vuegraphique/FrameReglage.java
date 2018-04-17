@@ -19,7 +19,7 @@ public class FrameReglage extends JFrame {
 	
 	private JPanel panContents = new JPanel();
 	private JPanel panReglage = new JPanel();
-	//private JPanel panConfig;
+	private PanConfig panConfig;
 	private PanIndexer panIndexation;
 	
 	private CardLayout cartes = new CardLayout();
@@ -38,11 +38,11 @@ public class FrameReglage extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         this.panIndexation = new PanIndexer(this, controlVerifier);
-//      this.panConfig = new Pan
+        this.panConfig = new PanConfig(this);
 
         this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
 		this.panContents.add(this.panIndexation,"INDEXER");
-//		this.panContents.add(this.panConfig,"CONFIG");
+		this.panContents.add(this.panConfig,"CONFIG");
 	
 		this.initialisation(); //initialisation de la page de reglage
 		this.getContentPane().add(panContents);
@@ -57,7 +57,7 @@ public class FrameReglage extends JFrame {
 		boutonConfig.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				this.panConfig.initialisation(); //initialisation de la page de configuration
+				panConfig.initialisation(); //initialisation de la page de configuration
 				showConfig();
 			}
 		});

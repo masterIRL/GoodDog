@@ -1,11 +1,9 @@
-package vueGraphique;
+package vuegraphique;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -13,33 +11,44 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 import vuetextuelle.Fichier;
 
 public class PanConfig extends JPanel {
 	
 	private static final long serialVersionUID = 631353338464027426L;
+	private FrameReglage frame;
+	
 	Box boxMiseEnPageConfig = Box.createVerticalBox();
 	Box boxConfigTexte= Box.createVerticalBox();
 	Box boxConfigImage= Box.createVerticalBox();
 	Box boxConfigSon= Box.createVerticalBox();
+	
 	JButton boutonConfigTexte = new JButton();
 	JButton boutonConfigImage = new JButton();
 	JButton boutonConfigSon = new JButton();
+	
 	int puissance;
 	int intervalle;
 	int quantification;
+	
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
 	
 	Box boxConfigImg1 = Box.createHorizontalBox();
 	Fichier fichier=new Fichier();
+	
 	JButton boutonRetour = new JButton();
+	JButton boutonRetourSon = new JButton();
 	JButton boutonRetourImg = new JButton();
 	JButton boutonRetourTxt = new JButton();
 	
-	public PanConfig () {
-		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
+	public PanConfig (FrameReglage frame) {
+		super();
+		this.frame = frame;
+	}
+	
+	public void initialisation() {
+		//boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		JLabel texteResultat=new JLabel("Configuration de l'indexation:");
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		boxMiseEnPageConfig.add(texteResultat);
@@ -54,6 +63,16 @@ public class PanConfig extends JPanel {
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageConfig.add(boutonConfigSon);
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,50)));
+		boutonRetour.setText("   RETOUR   "); //Ajout du bouton retour
+		boutonRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boxMiseEnPageConfig.removeAll();
+				removeAll();
+				frame.showReglage();
+			}
+		});
+		boxMiseEnPageConfig.add(boutonRetour);
 		
 		initBoxConfigTexte();
 		initBoxConfigImage();
@@ -155,20 +174,19 @@ public class PanConfig extends JPanel {
 		});
 		boxConfigSon.add(boutonConfigSon);
 		boxConfigSon.add(Box.createRigidArea(new Dimension(0,40)));
-		boutonRetour.setText("◄  RETOUR   ");
 		
-		boutonRetour.addActionListener(new ActionListener() {
+		boutonRetourSon.setText("   RETOUR   ");
+		boutonRetourSon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boxConfigSon.remove(boutonRetour);
+				boxConfigSon.remove(boutonRetourSon);
 				boxConfigSon.remove(texteOKCONFIG);
 				boxConfigSon.setVisible(false); 
 				boxMiseEnPageConfig.setVisible(true);
 				repaint(); 
 			}
 		});
-		
-		boxConfigSon.add(boutonRetour);
+		boxConfigSon.add(boutonRetourSon);
 	}
 
 	
@@ -231,7 +249,7 @@ public class PanConfig extends JPanel {
 		});
 		boxConfigImage.add(boutonConfigImage);
 		boxConfigImage.add(Box.createRigidArea(new Dimension(0,40)));
-		boutonRetourImg.setText("◄  RETOUR   ");
+		boutonRetourImg.setText("   RETOUR   ");
 		
 		boutonRetourImg.addActionListener(new ActionListener() {
 			@Override
@@ -290,7 +308,7 @@ public class PanConfig extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageConfig.setVisible(false); 
-				boxConfigSon.add(boutonRetour);
+				boxConfigSon.add(boutonRetourSon);
 				boxConfigSon.setVisible(true);
 				repaint();
 
