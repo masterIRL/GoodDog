@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import control.ControlSIdentifier;
 
@@ -31,7 +32,7 @@ public class FrameConnexion extends JFrame{
 	private Box boxBouton = Box.createHorizontalBox();
 
 	private TextArea textAreaLogin = new TextArea();
-	private TextArea textAreaMDP = new TextArea();
+	private JPasswordField fieldMDP = new JPasswordField();
 	
 	private JButton buttonLogin = new JButton();
 
@@ -42,11 +43,10 @@ public class FrameConnexion extends JFrame{
 		this.controlSIdentifier = controlSIdentifier;
 		
 		this.setTitle("connexion admin");
-        this.setSize(new Dimension(700,500));
+        this.setSize(new Dimension(400,300));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setPreferredSize(new Dimension(920,700));
         
         this.initBoxMiseEnPageConnexion();
         this.panel.add(boxMiseEnPageConnexion);
@@ -57,10 +57,10 @@ public class FrameConnexion extends JFrame{
 	
 	private void initBoxMiseEnPageConnexion() {
 		
-		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,40)));
+		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
 		boxMiseEnPageConnexion.add(getError());
-		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
 		JLabel texteLogin=new JLabel("Pseudo");
 		boxTexteLogin.add(texteLogin);
@@ -77,10 +77,10 @@ public class FrameConnexion extends JFrame{
 		boxMiseEnPageConnexion.add(boxTexteMDP);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		textAreaMDP.setMaximumSize(new Dimension(150,30));
-		boxMDP.add(textAreaMDP);
+		fieldMDP.setMaximumSize(new Dimension(150,30));
+		boxMDP.add(fieldMDP);
 		boxMiseEnPageConnexion.add(boxMDP);
-		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
 		
 		buttonLogin.setText("LOG IN");
 		buttonLogin.setMaximumSize(new Dimension(150,30));
@@ -108,7 +108,8 @@ public class FrameConnexion extends JFrame{
 		boolean identifiantOk = false;
 		if(!identifiantOk || i < 3) {
 			String login = textAreaLogin.getText();
-			String mdp = textAreaMDP.getText();
+			String mdp = new String(fieldMDP.getPassword());
+			System.out.println(mdp);
 			identifiantOk = controlSIdentifier.sIdentifier(login,mdp);
 	        if(identifiantOk) {	
 	        	framePrincipal.showPanAdmin(); //lancement passage à l'écran admin
