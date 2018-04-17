@@ -51,7 +51,7 @@ public class PanRechercheAudio extends JPanel{
 	private JButton buttonParcourir =new JButton();
 	private JButton buttonRecherche =new JButton();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
-	private Transferable transferable;
+	
 
 	
 	
@@ -65,8 +65,23 @@ public class PanRechercheAudio extends JPanel{
 		barederecherche.setBorder(BorderFactory.createCompoundBorder(border,
 	            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		barederecherche.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+		 new  FileDrop( barederecherche, new FileDrop.Listener()
+	      {   public void  filesDropped( java.io.File[] files )
+	          {   
+	              barederecherche.setText(files[0].getAbsolutePath());
+	          
+	          }   
+	      });
+		 
 		JLabel texteEspace = new JLabel("   ");
 		buttonRecherche.setText("Recherche");
+		buttonRecherche.addActionListener(new ActionListener() { //click sur le bouton
+			public void actionPerformed(ActionEvent e) {
+				  
+				}
+			
+
+		});
 	
 		boxBareDeRecherche.add(barederecherche);
 		boxBareDeRecherche.add(texteEspace);
@@ -98,13 +113,7 @@ public class PanRechercheAudio extends JPanel{
 	
 		
 		
-	      new  FileDrop( barederecherche, new FileDrop.Listener()
-	      {   public void  filesDropped( java.io.File[] files )
-	          {   
-	              barederecherche.setText(files[0].getAbsolutePath());
-	          
-	          }   
-	      });
+	     
 		JLabel texteNbOccurrences = new JLabel("Nombre d'occurrences :   ");
 		spinnerOccurrences.setMaximumSize(new Dimension(30,30));
 		spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
