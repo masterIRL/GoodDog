@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -68,6 +70,29 @@ public class FrameConnexion extends JFrame{
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
 		textAreaLogin.setMaximumSize(new Dimension(150,30)); //zone d'ecriture du login
+		textAreaLogin.addKeyListener(new KeyListener(){
+		    @Override
+		    public void keyPressed(KeyEvent e){
+		        if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_TAB ){
+		        	e.consume();
+		        	fieldMDP.requestFocusInWindow(); //passer a la bare de mdp
+		        }
+		    }
+
+		  
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		boxLogin.add(textAreaLogin);
 		boxMiseEnPageConnexion.add(boxLogin);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
@@ -85,6 +110,15 @@ public class FrameConnexion extends JFrame{
 		buttonLogin.setText("LOG IN"); //bouton de connexion
 		buttonLogin.setMaximumSize(new Dimension(150,30));
 		buttonLogin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				identification();
+			}
+		});
+		
+		//pour se connecter avec le bouton "entrer"
+		fieldMDP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -112,7 +146,7 @@ public class FrameConnexion extends JFrame{
 			System.out.println(mdp);
 			identifiantOk = controlSIdentifier.sIdentifier(login,mdp);
 	        if(identifiantOk) {	
-	        	framePrincipal.showPanAdmin(); //lancement passage à l'écran admin
+	        	framePrincipal.showPanAdmin(); //lancement passage ï¿½ l'ï¿½cran admin
 	        	dispose();
 	        }
 	        else {
