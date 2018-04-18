@@ -20,9 +20,9 @@ public class FrameUser extends JFrame{
 	private PanRechercheAudio panRechercheAudio=new PanRechercheAudio();
 	private JButton boutonrecherche=new JButton();
 	public CardLayout cartes=new CardLayout();
-	//private Box boxRecherche=Box.createHorizontalBox();
 	
-	public FrameUser() throws Exception {
+	
+	public FrameUser()  {
 		this.setTitle("mode Admin");
 		this.setSize(900, 400);
 		this.panRechercheAudio.initialisation();

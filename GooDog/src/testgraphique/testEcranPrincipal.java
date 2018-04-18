@@ -7,7 +7,7 @@ import vuegraphique.FrameUser;
 
 public class testEcranPrincipal {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args)   {
 		FrameUser frame = new FrameUser(); 
 	}
 }

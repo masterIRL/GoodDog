@@ -1,63 +1,61 @@
 package vuegraphique;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.List;
-import java.awt.TextArea;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTargetDropEvent;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.StringTokenizer;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
+
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
+
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
-import javax.swing.JToolTip;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 
-import model.TypeFichier;
+
 
 public class PanRechercheAudio extends JPanel{
 
 	
 	
 	private static final long serialVersionUID = 1L;
+	
 	private Box boxMiseEnPageAudio=Box.createVerticalBox();
 	private Box boxNbOccurrences=Box.createHorizontalBox();
 	private Box boxParcourir=Box.createHorizontalBox();
 	private Box boxBareDeRecherche=Box.createHorizontalBox();
+	
 	private JTextArea barederecherche=new JTextArea();
+	
 	private JSpinner spinnerOccurrences=new JSpinner(new SpinnerNumberModel(1, 1, 9, 1));
+	
 	private JButton buttonParcourir =new JButton();
 	private JButton buttonRecherche =new JButton();
+	
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 	
 
 	
 	
 	
-	public void initialisation() throws Exception, IOException {
+	public void initialisation()  {
 		this.setBackground(Color.WHITE);
+		////////////////////////////////////////////////////////////////////////////////
+		///////////////               Bare de Recherche               //////////////////
+		////////////////////////////////////////////////////////////////////////////////
 		barederecherche.setMaximumSize(new Dimension(650,30));
 		barederecherche.setMinimumSize(new Dimension(650,30));
 		barederecherche.setBackground(Color.WHITE);
@@ -65,6 +63,8 @@ public class PanRechercheAudio extends JPanel{
 		barederecherche.setBorder(BorderFactory.createCompoundBorder(border,
 	            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		barederecherche.getDocument().putProperty("filterNewlines", Boolean.TRUE);
+		
+		///////////////                 Drag and Drop                /////////////////
 		 new  FileDrop( barederecherche, new FileDrop.Listener()
 	      {   public void  filesDropped( java.io.File[] files )
 	          {   
@@ -73,8 +73,10 @@ public class PanRechercheAudio extends JPanel{
 	          }   
 	      });
 		 
+		/////////////                  Bouton Recherche              ////////////////
 		JLabel texteEspace = new JLabel("   ");
 		buttonRecherche.setText("Recherche");
+		buttonRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		buttonRecherche.addActionListener(new ActionListener() { //click sur le bouton
 			public void actionPerformed(ActionEvent e) {
 				  
@@ -83,12 +85,19 @@ public class PanRechercheAudio extends JPanel{
 
 		});
 	
+		
 		boxBareDeRecherche.add(barederecherche);
 		boxBareDeRecherche.add(texteEspace);
 		boxBareDeRecherche.add(buttonRecherche);
 		
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////               Bouton Parcourir                //////////////////
+        ////////////////////////////////////////////////////////////////////////////////
 		buttonParcourir.setText("Parcourir");
+		buttonParcourir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		boxParcourir.add(buttonParcourir);
+		 
+		/////////////              Parcourir des Fichiers               /////////////////
 		buttonParcourir.addActionListener(new ActionListener() { //interaction pour parcourir les fichier
 			
 
@@ -113,15 +122,21 @@ public class PanRechercheAudio extends JPanel{
 	
 		
 		
-	     
+       ////////////////////////////////////////////////////////////////////////////////
+       ///////////////              Nombre d'occurrences             //////////////////
+       ////////////////////////////////////////////////////////////////////////////////
 		JLabel texteNbOccurrences = new JLabel("Nombre d'occurrences :   ");
 		spinnerOccurrences.setMaximumSize(new Dimension(30,30));
 		spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
+		
+		
 		boxNbOccurrences.add(texteNbOccurrences);
 		boxNbOccurrences.add(spinnerOccurrences);
 		
 		
-		
+		////////////////////////////////////////////////////////////////////////////////
+	    ///////////////              Ajout au Pan Principal           //////////////////
+		////////////////////////////////////////////////////////////////////////////////
 		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageAudio.add(boxBareDeRecherche);
 		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
