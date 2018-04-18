@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import autre.ImageJLabel;
+import control.ControlModeGestion;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
 import control.ControlVerifierIdentification;
@@ -34,6 +35,7 @@ public class PanAdmin extends JPanel {
 	ControlRecherche controlRecherche;
 	ControlSIdentifier controlSIdentifier;
 	ControlVerifierIdentification controlVerifier;
+	ControlModeGestion controlModeGestion;
 	
 	private FramePrincipal framePrincipal;
 	
@@ -65,12 +67,13 @@ public class PanAdmin extends JPanel {
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
 	
 	
-	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier, ControlVerifierIdentification controlVerifier) {
+	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier, ControlVerifierIdentification controlVerifier, ControlModeGestion controlModeGestion) {
 		super();
 		this.framePrincipal = framePrincipal;
 		this.controlRecherche=controlRecherche;
 		this.controlSIdentifier=controlSIdentifier;
 		this.controlVerifier = controlVerifier;
+		this.controlModeGestion=controlModeGestion;
 	}
 
 
@@ -125,7 +128,7 @@ public class PanAdmin extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-			      new FrameReglage(controlVerifier);
+			      new FrameReglage(controlVerifier,controlModeGestion);
 			}
 			
 			@Override

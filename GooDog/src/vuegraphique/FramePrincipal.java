@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import autre.ImageJLabel;
+import control.ControlModeGestion;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
 import control.ControlVerifierIdentification;
@@ -18,6 +19,7 @@ public class FramePrincipal extends JFrame {
 	ControlRecherche controlRecherche = new ControlRecherche();
 	ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 	ControlVerifierIdentification controlVerifier = new ControlVerifierIdentification();
+	ControlModeGestion controlModeGestion = new ControlModeGestion();
 	
 	private JPanel panAccueil = new JPanel();
 	private JPanel panContents = new JPanel();
@@ -35,7 +37,7 @@ public class FramePrincipal extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
 		this.panUser = new PanUser(this,controlRecherche,controlSIdentifier);
-		this.panAdmin = new PanAdmin(this,controlRecherche,controlSIdentifier,controlVerifier);
+		this.panAdmin = new PanAdmin(this,controlRecherche,controlSIdentifier,controlVerifier,controlModeGestion);
 		this.panUser.initialisation();
 		this.panAdmin.initialisation();
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
