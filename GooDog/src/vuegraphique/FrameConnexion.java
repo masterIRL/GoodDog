@@ -44,7 +44,7 @@ public class FrameConnexion extends JFrame{
 		this.framePrincipal = framePrincipal;
 		this.controlSIdentifier = controlSIdentifier;
 		
-		this.setTitle("connexion admin");
+		this.setTitle("Connexion administrateur");
         this.setSize(new Dimension(400,300));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
@@ -58,7 +58,7 @@ public class FrameConnexion extends JFrame{
 	}	
 	
 	private void initBoxMiseEnPageConnexion() {
-		
+		panel.setBackground(Color.WHITE);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
 		boxMiseEnPageConnexion.add(getError()); //ajout du label d'erreur 

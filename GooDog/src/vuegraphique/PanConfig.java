@@ -1,5 +1,7 @@
 package vuegraphique;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,9 +21,15 @@ public class PanConfig extends JPanel {
 	private FrameReglage frame;
 	
 	Box boxMiseEnPageConfig = Box.createVerticalBox();
+	private JPanel panTop = new JPanel();
+	private JPanel panCenter = new JPanel();
 	Box boxConfigTexte= Box.createVerticalBox();
 	Box boxConfigImage= Box.createVerticalBox();
 	Box boxConfigSon= Box.createVerticalBox();
+	
+	JComboBox <String> comboBoxSon= new JComboBox<>();
+	JComboBox <String> comboBoxSon2= new JComboBox<>();
+	JComboBox <String> comboBoxImg= new JComboBox<>();
 	
 	JButton boutonConfigTexte = new JButton();
 	JButton boutonConfigImage = new JButton();
@@ -33,6 +41,8 @@ public class PanConfig extends JPanel {
 	
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
+	Box boxTop = Box.createVerticalBox();
+
 	
 	Box boxConfigImg1 = Box.createHorizontalBox();
 	Fichier fichier=new Fichier();
@@ -48,10 +58,21 @@ public class PanConfig extends JPanel {
 	}
 	
 	public void initialisation() {
-		//boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
-		JLabel texteResultat=new JLabel("Configuration de l'indexation:");
-		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
-		boxMiseEnPageConfig.add(texteResultat);
+		
+		this.panTop.setBackground(new Color(75,91,157));
+		this.panCenter.setBackground(Color.WHITE);
+		this.setLayout(new BorderLayout());
+		this.panTop.setLayout(new BorderLayout());
+		
+		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+		JLabel texteTop=new JLabel("                   CONFIGURATION DE L'INDEXATION"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		texteTop.setFont(new Font("Poppins-Black", Font.BOLD,30));
+		texteTop.setForeground(Color.WHITE);
+		boxTop.add(texteTop);
+		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+		this.panTop.add(boxTop,BorderLayout.CENTER);
+		
+
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		
 		initBoutonConfigTexte();
@@ -67,7 +88,15 @@ public class PanConfig extends JPanel {
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boxTop.removeAll();
 				boxMiseEnPageConfig.removeAll();
+				boxConfigImage.removeAll();
+				boxConfigSon.removeAll();
+				boxConfigTexte.removeAll();
+				comboBoxSon2.removeAll();
+				comboBoxSon.removeAll();
+				comboBoxImg.removeAll();
+				boxConfigImg1.removeAll();
 				removeAll();
 				frame.showReglage();
 			}
@@ -77,14 +106,19 @@ public class PanConfig extends JPanel {
 		initBoxConfigTexte();
 		initBoxConfigImage();
 		initBoxConfigSon();
-		this.add(boxMiseEnPageConfig);
-		this.add(boxConfigTexte);
-		this.add(boxConfigImage);
-		this.add(boxConfigSon);
+		this.panCenter.add(boxMiseEnPageConfig);
+		this.panCenter.add(boxConfigTexte);
+		this.panCenter.add(boxConfigImage);
+		this.panCenter.add(boxConfigSon);
 		boxMiseEnPageConfig.setVisible(true);
 		boxConfigTexte.setVisible(false);
 		boxConfigImage.setVisible(false);
 		boxConfigSon.setVisible(false);
+		
+		this.add(panTop,BorderLayout.NORTH);
+		this.add(panCenter,BorderLayout.CENTER);
+		this.panCenter.setVisible(true);
+
 		
 	}
 
@@ -96,12 +130,12 @@ public class PanConfig extends JPanel {
 		boxConfigSon.add(Box.createRigidArea(new Dimension(0,70)));
 		
 		
-		JLabel texteEchantillon=new JLabel("Nombre d'Ã©chantillons par fenÃªtre:");
+		JLabel texteEchantillon=new JLabel("Nombre d'échantillons par fenêtre:");
 		texteEchantillon.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon1.add(texteEchantillon);
 		boxConfigSon1.add(Box.createRigidArea(new Dimension(10,0)));
 		
-		final JComboBox <String> comboBoxSon= new JComboBox<>();
+
 		 
 		 comboBoxSon.addItem("");
 		 comboBoxSon.addItem("256");
@@ -123,12 +157,12 @@ public class PanConfig extends JPanel {
 		 boxConfigSon.add(Box.createRigidArea(new Dimension(0,70)));
 		 
 		 
-		JLabel texteIntervalle=new JLabel("Nombre d'intervalle par fenÃªtre:");
+		JLabel texteIntervalle=new JLabel("Nombre d'intervalle par fenêtre:");
 		texteIntervalle.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon2.add(texteIntervalle);
 		boxConfigSon2.add(Box.createRigidArea(new Dimension(10,0)));
 		
-		final JComboBox <String> comboBoxSon2= new JComboBox<>();
+		
 		 
 		comboBoxSon2.addItem("");
 		comboBoxSon2.addItem("10");
@@ -153,7 +187,7 @@ public class PanConfig extends JPanel {
 		boutonConfigSon.setText("Configurer");
 		
 		
-		JLabel texteOKCONFIG=new JLabel("Configuration rÃ©ussi");
+		JLabel texteOKCONFIG=new JLabel("Configuration réussi");
 		texteOKCONFIG.setFont(new Font("Poppins-Black", Font.ITALIC,16));
 		
 		
@@ -204,7 +238,7 @@ public class PanConfig extends JPanel {
 		boxConfigImg1.add(texteQuanti);
 		boxConfigImg1.add(Box.createRigidArea(new Dimension(10,0)));
 		
-		final JComboBox <String> comboBoxImg= new JComboBox<>();
+		
 		 
 		comboBoxImg.addItem("");
 		comboBoxImg.addItem("1");
