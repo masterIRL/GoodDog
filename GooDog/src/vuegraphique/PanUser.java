@@ -264,7 +264,7 @@ public class PanUser extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				//ajouter interaction avec l'icone audio
+				new FrameAudio(PanUser.this, controlRecherche);
 			}
             @Override
             public void mouseEntered(MouseEvent e) {

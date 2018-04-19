@@ -310,7 +310,7 @@ public class PanAdmin extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				//ajouter recherche audio
+				new FrameAudio(PanAdmin.this, controlRecherche);
 			}
             @Override
             public void mouseEntered(MouseEvent e) {

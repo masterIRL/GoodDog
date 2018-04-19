@@ -189,7 +189,7 @@ public class FrameFichier  extends JFrame{
 				}
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("Recherche par Fichier");
+				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
