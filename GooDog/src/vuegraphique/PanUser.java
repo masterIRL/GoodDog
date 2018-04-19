@@ -59,6 +59,8 @@ public class PanUser extends JPanel {
 	private ImageJLabel labelFile = new ImageJLabel("RESSOURCE/IMAGE/folder2.png");
 	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/Couleur2.png");
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/Audio2.png");
+	private ImageJLabel dog = new ImageJLabel("RESSOURCE/IMAGE/DOG copy.png");
+
 	
 	
 	public PanUser(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier) {
@@ -323,11 +325,17 @@ public class PanUser extends JPanel {
 
 	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
 		panCenter.setBackground(new Color(157, 228, 234));
+
 		setBackground(new Color(157, 228, 234));
 		for(int i=0; i<liste.size(); i++) {
-			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
+			Box boxListe=Box.createHorizontalBox();
+			JLabel listeResultat=new JLabel(liste.get(i));
+			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
-			boxListeResultats.add(listeResultat);
+			boxListe.add(os);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			boxListe.add(listeResultat);
+			boxListeResultats.add(boxListe, BorderLayout.WEST);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
