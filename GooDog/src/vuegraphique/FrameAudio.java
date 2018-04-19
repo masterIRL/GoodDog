@@ -55,7 +55,7 @@ public class FrameAudio extends JFrame {
 		this.controlRecherche = controlRecherche;
 		
 		this.setTitle("Recherche Audio");
-		this.setSize(new Dimension(900,400));
+		this.setSize(new Dimension(900,200));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -85,13 +85,26 @@ public class FrameAudio extends JFrame {
 	}
 	
 	private void initialisation() {
-		this.setBackground(Color.WHITE);
+		this.setBackground(new Color(102, 51, 81));
+		this.panelGeneral.setBackground(new Color(193, 94, 28));
+	       ////////////////////////////////////////////////////////////////////////////////
+	       ///////////////              Nombre d'occurrences             //////////////////
+	       ////////////////////////////////////////////////////////////////////////////////
+			JLabel texteNbOccurrences = new JLabel("Nombre d'occurrences :   ");
+			texteNbOccurrences.setForeground(Color.WHITE);
+			spinnerOccurrences.setPreferredSize(new Dimension(40,30));
+			spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
+			
+			
+			boxNbOccurrences.add(texteNbOccurrences);
+			boxNbOccurrences.add(spinnerOccurrences);
+			boxBareDeRecherche.add(boxNbOccurrences);
+			boxBareDeRecherche.add(Box.createRigidArea(new Dimension(30,0)));
 		
 		////////////////////////////////////////////////////////////////////////////////
 		///////////////               Barre de Recherche               //////////////////
 		////////////////////////////////////////////////////////////////////////////////
-		barreRecherche.setMaximumSize(new Dimension(650,30));
-		barreRecherche.setMinimumSize(new Dimension(650,30));
+		barreRecherche.setPreferredSize(new Dimension(500,30));
 		barreRecherche.setBackground(Color.WHITE);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		barreRecherche.setBorder(BorderFactory.createCompoundBorder(border,
@@ -109,6 +122,7 @@ public class FrameAudio extends JFrame {
 		/////////////                  Bouton Recherche              ////////////////
 		JLabel texteEspace = new JLabel("   ");
 		buttonRecherche.setText("Recherche");
+		buttonRecherche.setMaximumSize((new Dimension(100,30)));
 		buttonRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		buttonRecherche.addActionListener(new ActionListener() { //click sur le bouton
 			public void actionPerformed(ActionEvent e) {
@@ -140,6 +154,7 @@ public class FrameAudio extends JFrame {
         ///////////////               Bouton Parcourir                //////////////////
         ////////////////////////////////////////////////////////////////////////////////
 		buttonParcourir.setText("Parcourir");
+		buttonParcourir.setMinimumSize((new Dimension(100,30)));
 		buttonParcourir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		boxParcourir.add(buttonParcourir);
 		 
@@ -161,27 +176,16 @@ public class FrameAudio extends JFrame {
 			}
 		});
 		
-       ////////////////////////////////////////////////////////////////////////////////
-       ///////////////              Nombre d'occurrences             //////////////////
-       ////////////////////////////////////////////////////////////////////////////////
-		JLabel texteNbOccurrences = new JLabel("Nombre d'occurrences :   ");
-		spinnerOccurrences.setMaximumSize(new Dimension(30,30));
-		spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
-		
-		
-		boxNbOccurrences.add(texteNbOccurrences);
-		boxNbOccurrences.add(spinnerOccurrences);
-		
+
 		
 		////////////////////////////////////////////////////////////////////////////////
 	    ///////////////              Ajout au Pan Principal           //////////////////
 		////////////////////////////////////////////////////////////////////////////////
 		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageAudio.add(boxBareDeRecherche);
-		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,15)));
 		boxMiseEnPageAudio.add(boxParcourir);
-		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
-		boxMiseEnPageAudio.add(boxNbOccurrences);
+		
 		this.panelGeneral.add(boxMiseEnPageAudio);
 		
 	}
