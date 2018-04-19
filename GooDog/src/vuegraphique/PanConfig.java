@@ -1,5 +1,6 @@
 package vuegraphique;
 
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,6 +43,8 @@ public class PanConfig extends JPanel {
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
 	Box boxTop = Box.createVerticalBox();
+	Box boxTopImg = Box.createVerticalBox();
+	Box boxTopSon = Box.createVerticalBox();
 
 	
 	Box boxConfigImg1 = Box.createHorizontalBox();
@@ -51,7 +54,7 @@ public class PanConfig extends JPanel {
 	JButton boutonRetourSon = new JButton();
 	JButton boutonRetourImg = new JButton();
 	JButton boutonRetourTxt = new JButton();
-	
+
 	public PanConfig (FrameReglage frame) {
 		super();
 		this.frame = frame;
@@ -89,14 +92,27 @@ public class PanConfig extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxTop.removeAll();
+				panCenter.removeAll();
 				boxMiseEnPageConfig.removeAll();
 				boxConfigImage.removeAll();
 				boxConfigSon.removeAll();
 				boxConfigTexte.removeAll();
-				comboBoxSon2.removeAll();
-				comboBoxSon.removeAll();
-				comboBoxImg.removeAll();
+				comboBoxSon2.removeAllItems();
+				comboBoxSon.removeAllItems();
+				comboBoxImg.removeAllItems();
 				boxConfigImg1.removeAll();
+				boutonConfigTexte.removeAll();
+				boutonConfigImage.removeAll();
+				boutonConfigSon.removeAll();
+				boxConfigSon1.removeAll();
+				boxConfigSon2.removeAll();
+				boxConfigImg1.removeAll();				
+				boutonRetour.removeAll();
+				boutonRetourSon.removeAll();
+				boutonRetourImg.removeAll();
+				boutonRetourTxt.removeAll();
+				boxTopImg.removeAll();
+				boxTopSon.removeAll();
 				removeAll();
 				frame.showReglage();
 			}
@@ -123,12 +139,7 @@ public class PanConfig extends JPanel {
 	}
 
 
-	private void initBoxConfigSon() {
-		JLabel texteResultat=new JLabel("Configuration de l'indexation son:");
-		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,25));
-		boxConfigSon.add(texteResultat);
-		boxConfigSon.add(Box.createRigidArea(new Dimension(0,70)));
-		
+	private void initBoxConfigSon() {	
 		
 		JLabel texteEchantillon=new JLabel("Nombre d'échantillons par fenêtre:");
 		texteEchantillon.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -213,6 +224,18 @@ public class PanConfig extends JPanel {
 		boutonRetourSon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boxTop.removeAll();
+				boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+				JLabel texteTop=new JLabel("                   CONFIGURATION DE L'INDEXATION"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+				texteTop.setFont(new Font("Poppins-Black", Font.BOLD,30));
+				texteTop.setForeground(Color.WHITE);
+				boxTop.add(texteTop);
+				boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+				boxTopSon.removeAll();
+				panTop.removeAll();
+				panTop.add(boxTop,BorderLayout.CENTER);
+				
+				
 				boxConfigSon.remove(boutonRetourSon);
 				boxConfigSon.remove(texteOKCONFIG);
 				boxConfigSon.setVisible(false); 
@@ -227,11 +250,6 @@ public class PanConfig extends JPanel {
 	
 
 	private void initBoxConfigImage() {
-		JLabel texteResultat=new JLabel("Configuration de l'indexation image:");
-		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,25));
-		boxConfigImage.add(texteResultat);
-		boxConfigImage.add(Box.createRigidArea(new Dimension(0,70)));
-		
 		
 		JLabel texteQuanti=new JLabel("Nombre de bits de quantification:");
 		texteQuanti.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -288,6 +306,17 @@ public class PanConfig extends JPanel {
 		boutonRetourImg.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boxTop.removeAll();
+				boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+				JLabel texteTop=new JLabel("                   CONFIGURATION DE L'INDEXATION"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+				texteTop.setFont(new Font("Poppins-Black", Font.BOLD,30));
+				texteTop.setForeground(Color.WHITE);
+				boxTop.add(texteTop);
+				boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+				boxTopImg.removeAll();
+				panTop.removeAll();
+				panTop.add(boxTop,BorderLayout.CENTER);
+				
 				boxConfigImage.remove(boutonRetourImg);
 				boxConfigImage.remove(texteOKCONFIG);
 				boxConfigImage.setVisible(false); 
@@ -326,6 +355,16 @@ public class PanConfig extends JPanel {
 		boutonConfigImage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boxTopImg.removeAll();
+				boxTopImg.add(Box.createRigidArea(new Dimension(0,20)));
+				JLabel texteTopImg=new JLabel("           CONFIGURATION DE L'INDEXATION IMAGE"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+				texteTopImg.setFont(new Font("Poppins-Black", Font.BOLD,30));
+				texteTopImg.setForeground(Color.WHITE);
+				boxTopImg.add(texteTopImg);
+				boxTopImg.add(Box.createRigidArea(new Dimension(0,20)));
+				boxTop.removeAll();
+				panTop.add(boxTopImg,BorderLayout.CENTER);
+				
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigImage.add(boutonRetourImg);
 				boxConfigImage.setVisible(true);
@@ -341,6 +380,16 @@ public class PanConfig extends JPanel {
 		boutonConfigSon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				boxTopSon.removeAll();
+				boxTopSon.add(Box.createRigidArea(new Dimension(0,20)));
+				JLabel texteTopImg=new JLabel("             CONFIGURATION DE L'INDEXATION SON"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+				texteTopImg.setFont(new Font("Poppins-Black", Font.BOLD,30));
+				texteTopImg.setForeground(Color.WHITE);
+				boxTopSon.add(texteTopImg);
+				boxTopSon.add(Box.createRigidArea(new Dimension(0,20)));
+				boxTop.removeAll();
+				panTop.add(boxTopSon,BorderLayout.CENTER);
+				
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigSon.add(boutonRetourSon);
 				boxConfigSon.setVisible(true);
