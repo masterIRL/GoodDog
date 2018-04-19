@@ -28,9 +28,10 @@ public class modeOuvertThread extends Thread{
 		do {
 			
 			try {
-				Thread.sleep(30000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt(); // Très important de réinterrompre
+                break;
 			}
 			
 			try {

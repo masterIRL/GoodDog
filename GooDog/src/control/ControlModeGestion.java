@@ -6,10 +6,10 @@ public class ControlModeGestion {
 
 	private boolean ouvert = false;
 	private String statut = "Fermé";
-	private modeOuvertThread threadImageNB = new modeOuvertThread("DATA/IMAGE/NB");
-	private modeOuvertThread threadImageRGB = new modeOuvertThread("DATA/IMAGE/RGB");
-	private modeOuvertThread threadSon = new modeOuvertThread("DATA/SON");
-	private modeOuvertThread threadTexte = new modeOuvertThread("DATA/TEXTE");
+	private modeOuvertThread threadImageNB; //= new modeOuvertThread("DATA/IMAGE/NB");
+	private modeOuvertThread threadImageRGB; //= new modeOuvertThread("DATA/IMAGE/RGB");
+	private modeOuvertThread threadSon; //= new modeOuvertThread("DATA/SON");
+	private modeOuvertThread threadTexte; //= new modeOuvertThread("DATA/TEXTE");
 	
 	public ControlModeGestion() {
 	}
@@ -21,6 +21,12 @@ public class ControlModeGestion {
 	public void activerModeOuvert() {
 		this.ouvert = true;
 		this.setStatut("Ouvert");
+		
+		threadImageNB = new modeOuvertThread("DATA/IMAGE/NB");
+		threadImageRGB = new modeOuvertThread("DATA/IMAGE/RGB");
+		threadSon = new modeOuvertThread("DATA/SON");
+		threadTexte = new modeOuvertThread("DATA/TEXTE");
+		
 		this.threadImageNB.start();
 		this.threadImageRGB.start();
 		this.threadSon.start();
