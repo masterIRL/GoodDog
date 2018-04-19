@@ -34,7 +34,6 @@ public class ControlRecherche {
 	}
 
 	public List<String> rechercheCouleur(Couleur couleur, int pourcentage) {
-		// TODO Auto-generated method stub
 		switch (couleur) {
 		case BLANC:
 			List<String> listeBlanc = comparaison.comparaisonCouleur(63,pourcentage);
@@ -60,7 +59,6 @@ public class ControlRecherche {
 	}
 	
 	public boolean verifierMotCle(String mot) {
-		// TODO Auto-generated method stub
 		if(mot.contains("&") || mot.contains("{") || mot.contains("}")
 				|| mot.contains("*") || mot.contains("[") || mot.contains("]")
 				|| mot.contains("@") || mot.contains("_") || mot.contains("/")

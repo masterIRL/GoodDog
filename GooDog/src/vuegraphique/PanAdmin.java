@@ -47,16 +47,19 @@ public class PanAdmin extends JPanel {
 	Box boxMotCle = Box.createHorizontalBox();
 	Box boxvaliderMotCle = Box.createHorizontalBox();
 	Box boxBoutons = Box.createHorizontalBox();
-	Box boxMiseEnPageResultat = Box.createVerticalBox();
+	Box boxMiseEnPageResultat = Box.createHorizontalBox();
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
+	Box boxEnTete = Box.createHorizontalBox();
 
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
 
 	private TextArea textAreaMotCle = new TextArea();
 	
+	
 	private JPanel panTop = new JPanel();
+	private JPanel panTop2 = new JPanel();
 	private JPanel panCenter = new JPanel();
 	
 	private ImageJLabel labelConnect = new ImageJLabel("RESSOURCE/IMAGE/LogoUser.png");
@@ -65,6 +68,8 @@ public class PanAdmin extends JPanel {
 	private ImageJLabel labelFile = new ImageJLabel("RESSOURCE/IMAGE/folder2.png");
 	private ImageJLabel labelCouleur = new ImageJLabel("RESSOURCE/IMAGE/color-icon-12545.png");
 	private ImageJLabel labelAudio = new ImageJLabel("RESSOURCE/IMAGE/music.png");
+	private ImageJLabel dog = new ImageJLabel("RESSOURCE/IMAGE/DOG copy.png");
+
 	
 	
 	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier, ControlVerifierIdentification controlVerifier, ControlModeGestion controlModeGestion) {
@@ -80,10 +85,12 @@ public class PanAdmin extends JPanel {
 	public void initialisation() {
 		this.setBackground(Color.WHITE);
 		this.panTop.setBackground(Color.WHITE);
+		this.panTop2.setBackground(Color.WHITE);
 		this.panCenter.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		
 		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		this.panTop2.setLayout(new BorderLayout());
 		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
 			@Override
@@ -335,23 +342,39 @@ public class PanAdmin extends JPanel {
 
 
 
+
+
 	public void initBoxMiseEnPageResultat(String s) {
+		this.remove(panTop);
+		this.add(panTop2,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
+		boxEnTete.add(Box.createRigidArea(new Dimension(0,60)));
+		JLabel texteResultat=new JLabel("                                "+s);
+		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,35));
+		texteResultat.setForeground(Color.WHITE);
+		boxEnTete.add(texteResultat);
+		boxEnTete.add(Box.createRigidArea(new Dimension(0,100)));
+		boxMiseEnPageResultat.add(dog);
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(50,0)));
 
-		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(0,70)));
-		JLabel texteResultat=new JLabel(s);
-		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
-		boxMiseEnPageResultat.add(texteResultat);
-		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(0,70)));
-
-		boutonRetour.setText("   RETOUR   ");
-
+		
+		boutonRetour.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonRetour.setFocusPainted(false);
+		boutonRetour.setFont(new Font("Tahoma", Font.BOLD, 12));
+		boutonRetour.setText("Retour");
+		boutonRetour.setBorderPainted(false);
+		boutonRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageResultat.setVisible(false); 
 				setBackground(Color.WHITE);
 				panCenter.setBackground(Color.WHITE);
-				panTop.setVisible(true);
+				remove(panTop2);
+				boxEnTete.removeAll();
+				panTop2.remove(boxEnTete);
+				panTop2.removeAll();
+				add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
+				//panTop.setVisible(true);
 				boxListeResultats.removeAll();
 				boxMiseEnPageResultat.remove(boutonRetour);
 				boxMiseEnPageMotCle.setVisible(true);
@@ -359,62 +382,101 @@ public class PanAdmin extends JPanel {
 				repaint(); 
 			}
 		});
+		
+		panTop2.add(boutonRetour,BorderLayout.WEST);
+		//panTop2.add(Box.createRigidArea(new Dimension(0,100)));
+		panTop2.add(boxEnTete);
 		panCenter.add(boxMiseEnPageResultat);
 		boxMiseEnPageMotCle.setVisible(false); 
-		panTop.setVisible(false);
+		//panTop.setVisible(false);
+		
+
+
 		boxMiseEnPageResultat.setVisible(true); 
 		repaint(); 
 	}
 
 
 	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
-		panCenter.setBackground(new Color(157, 228, 234));
-		setBackground(new Color(157, 228, 234));
+		//panCenter.setBackground(new Color(157, 228, 234));
+		boutonRetour.setBackground(new Color(85,98,133));
+		panTop2.setBackground((new Color(85,98,133)));
+		panCenter.setBackground(new Color(222, 239, 255));
+		//setBackground(new Color(157, 228, 234));
 		for(int i=0; i<liste.size(); i++) {
-			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
-			boxListeResultats.add(listeResultat);
+			Box boxListe=Box.createHorizontalBox();
+			JLabel listeResultat=new JLabel(liste.get(i));
+			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+			boxListe.add(os);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			boxListe.add(listeResultat);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			//boxListe.add(os2);
+			boxListeResultats.add(boxListe, BorderLayout.WEST);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
 
-		boxRetour.add(boutonRetour);
-		boxMiseEnPageResultat.add(boxRetour);
+		//boxRetour.add(boutonRetour);
+		//boxMiseEnPageResultat.add(boxRetour);
 	}
 
 	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
-		panCenter.setBackground(new Color(248, 168, 83));
-		setBackground(new Color(248, 168, 83));
+		boutonRetour.setBackground(new Color(85,98,133));
+		panTop2.setBackground((new Color(85,98,133)));
+		panCenter.setBackground(new Color(222, 239, 255));
 		for(int i=0; i<liste.size(); i++) {
-			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
-			boxListeResultats.add(listeResultat);
+			Box boxListe=Box.createHorizontalBox();
+			JLabel listeResultat=new JLabel(liste.get(i));
+			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+			boxListe.add(os);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			boxListe.add(listeResultat);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			//boxListe.add(os2);
+			boxListeResultats.add(boxListe, BorderLayout.WEST);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(300,0)));
 
-		boxRetour.add(boutonRetour);
-		boxMiseEnPageResultat.add(boxRetour);
+		//boxRetour.add(boutonRetour);
+		//boxMiseEnPageResultat.add(boxRetour);
 	}
 
 	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
-		panCenter.setBackground(new Color(230, 209, 70));
-		setBackground(new Color(230, 209, 70));
+		boutonRetour.setBackground(new Color(85,98,133));
+		panTop2.setBackground((new Color(85,98,133)));
+		panCenter.setBackground(new Color(222, 239, 255));
 		for(int i=0; i<liste.size(); i++) {
-			JLabel listeResultat=new JLabel("-  "+ liste.get(i));
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,20));
-			boxListeResultats.add(listeResultat);
+			Box boxListe=Box.createHorizontalBox();
+			JLabel listeResultat=new JLabel(liste.get(i));
+			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+			boxListe.add(os);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			boxListe.add(listeResultat);
+			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+			//boxListe.add(os2);
+			boxListeResultats.add(boxListe, BorderLayout.WEST);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(300,0)));
 
-		boxRetour.add(boutonRetour);
-		boxMiseEnPageResultat.add(boxRetour);
+		//boxRetour.add(boutonRetour);
+		//boxMiseEnPageResultat.add(boxRetour);
 	}
 }
