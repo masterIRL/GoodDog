@@ -5,6 +5,6 @@ import vuegraphique.FramePrincipal;
 public class TestEcranPrincipal {
 
 	public static void main(String[] args) {
-		new FramePrincipal(); 
+		new FramePrincipal(1500,843); 
 	}
 }

@@ -31,9 +31,9 @@ public class FramePrincipal extends JFrame {
 
 //	private BufferedImage backgroundAcceuil1;
 	
-	public FramePrincipal() {
+	public FramePrincipal(int l1, int l2) {
 		this.setTitle("GooDog");  //Définit un titre
-		this.setSize(1500, 843); //Définit sa taille //modifié pour garder format 16:9
+		this.setSize(l1, l2); //Définit sa taille //modifié pour garder format 16:9
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
