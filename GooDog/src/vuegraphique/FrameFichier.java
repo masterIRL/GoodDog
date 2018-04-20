@@ -2,8 +2,9 @@ package vuegraphique;
 
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
-
+import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -114,6 +115,7 @@ public class FrameFichier  extends JFrame{
 		boxMiseEnPage.add(texteFichier);
 		
 		this.texteChemin.setPreferredSize(new Dimension(500,30)); //ajout de la partie du texte du chemin et son bouton pour parcourir
+		texteChemin.setFont(new Font("Poppins-Black", Font.PLAIN,15));
 		boxMiseEnPage.add(texteChemin);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
 		this.parcourir.setText("...");
@@ -136,6 +138,15 @@ public class FrameFichier  extends JFrame{
 		
 		lancerRecherche.setMaximumSize(new Dimension(100,30));
 		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
+		lancerRecherche.setBackground(Color.WHITE);
+		lancerRecherche.setForeground(Color.BLACK); 
+		lancerRecherche.setFocusPainted(false);
+		lancerRecherche.setFont(new Font("Tahoma", Font.BOLD, 12));
+		//validerMotCle.setBorderPainted(false);
+		lancerRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lancerRecherche.setPreferredSize(new Dimension(110,30));
+		lancerRecherche.setMaximumSize(new Dimension(110,30));
+		lancerRecherche.setMinimumSize(new Dimension(110,30));
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -175,7 +186,7 @@ public class FrameFichier  extends JFrame{
 		if(typeFichier != null)
 		{
 			if(!admin) {
-				panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
+				panUser.initBoxMiseEnPageResultat("                                    Résulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panUser.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
@@ -189,7 +200,7 @@ public class FrameFichier  extends JFrame{
 				}
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
+				panAdmin.initBoxMiseEnPageResultat("                                    Résulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));

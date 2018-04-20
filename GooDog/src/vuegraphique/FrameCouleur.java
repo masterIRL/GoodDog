@@ -1,7 +1,9 @@
 package vuegraphique;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -112,6 +114,15 @@ public class FrameCouleur  extends JFrame{
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(20,0)));
 		lancerRecherche.setMaximumSize(new Dimension(100,30));
 		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
+		lancerRecherche.setBackground(Color.WHITE);
+		lancerRecherche.setForeground(Color.BLACK); 
+		lancerRecherche.setFocusPainted(false);
+		lancerRecherche.setFont(new Font("Tahoma", Font.BOLD, 12));
+		//validerMotCle.setBorderPainted(false);
+		lancerRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lancerRecherche.setPreferredSize(new Dimension(110,30));
+		lancerRecherche.setMaximumSize(new Dimension(110,30));
+		lancerRecherche.setMinimumSize(new Dimension(110,30));
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -154,11 +165,11 @@ public class FrameCouleur  extends JFrame{
 		if(choixCouleur != null)
 		{
 			if(!admin) {
-				panUser.initBoxMiseEnPageResultat("Résulats de votre recherche couleur");
+				panUser.initBoxMiseEnPageResultat("                                     Résulats de votre recherche couleur");
 				panUser.resultatImages(controlRecherche.rechercheCouleur(choixCouleur,choixSeuil));
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche couleur");
+				panAdmin.initBoxMiseEnPageResultat("                                     Résulats de votre recherche couleur");
 				panAdmin.resultatImages(controlRecherche.rechercheCouleur(choixCouleur,choixSeuil));
 			}
 			dispose(); //ferme la fenetre

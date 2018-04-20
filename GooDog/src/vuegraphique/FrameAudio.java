@@ -3,6 +3,7 @@ package vuegraphique;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -73,7 +74,7 @@ public class FrameAudio extends JFrame {
 		this.admin = true;
 		
 		this.setTitle("Recherche Audio");
-		this.setSize(new Dimension(900,400));
+		this.setSize(new Dimension(900,200));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -92,6 +93,7 @@ public class FrameAudio extends JFrame {
 	       ////////////////////////////////////////////////////////////////////////////////
 			JLabel texteNbOccurrences = new JLabel("Nombre d'occurrences :   ");
 			texteNbOccurrences.setForeground(Color.WHITE);
+					
 			spinnerOccurrences.setPreferredSize(new Dimension(40,30));
 			spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
 			
@@ -122,7 +124,15 @@ public class FrameAudio extends JFrame {
 		/////////////                  Bouton Recherche              ////////////////
 		JLabel texteEspace = new JLabel("   ");
 		buttonRecherche.setText("Recherche");
-		buttonRecherche.setMaximumSize((new Dimension(100,30)));
+		buttonRecherche.setBackground(Color.WHITE);
+		buttonRecherche.setForeground(Color.BLACK); 
+		buttonRecherche.setFocusPainted(false);
+		buttonRecherche.setFont(new Font("Tahoma", Font.BOLD, 12));
+		//buttonRecherche.setBorderPainted(false);
+		buttonRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		buttonRecherche.setPreferredSize(new Dimension(110,30));
+		buttonRecherche.setMaximumSize(new Dimension(110,30));
+		buttonRecherche.setMinimumSize(new Dimension(110,30));
 		buttonRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		buttonRecherche.addActionListener(new ActionListener() { //click sur le bouton
 			public void actionPerformed(ActionEvent e) {
@@ -154,6 +164,15 @@ public class FrameAudio extends JFrame {
         ///////////////               Bouton Parcourir                //////////////////
         ////////////////////////////////////////////////////////////////////////////////
 		buttonParcourir.setText("Parcourir");
+		buttonParcourir.setBackground(Color.WHITE);
+		buttonParcourir.setForeground(Color.BLACK); 
+		buttonParcourir.setFocusPainted(false);
+		buttonParcourir.setFont(new Font("Tahoma", Font.BOLD, 12));
+		//buttonParcourir.setBorderPainted(false);
+		buttonParcourir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		buttonParcourir.setPreferredSize(new Dimension(110,30));
+		buttonParcourir.setMaximumSize(new Dimension(110,30));
+		buttonParcourir.setMinimumSize(new Dimension(110,30));
 		buttonParcourir.setMinimumSize((new Dimension(100,30)));
 		buttonParcourir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		boxParcourir.add(buttonParcourir);
@@ -192,11 +211,11 @@ public class FrameAudio extends JFrame {
 	
 	public void rechercheAudio() {
 		if(!admin) {
-			panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
+			panUser.initBoxMiseEnPageResultat("                                Résulats de votre recherche par audio");
 			panUser.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
 		}
 		else {
-			panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
+			panAdmin.initBoxMiseEnPageResultat("                                Résulats de votre recherche par audio");
 			panAdmin.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
 		}
 		dispose();

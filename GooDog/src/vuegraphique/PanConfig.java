@@ -251,16 +251,27 @@ public class PanConfig extends JPanel {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}		
+		
+		BufferedImage configIndexClickClick=null;
+		try {
+			configIndexClickClick = ImageIO.read(new File("RESSOURCE/IMAGE/AppliquerClickClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndexIconClickClick=new ImageIcon(configIndexClickClick);
+		
 		ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
 		boutonConfigSon.setIcon(configIndexIcon);
 		boutonConfigSon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		boutonConfigSon.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				boutonConfigSon.setIcon(configIndexIcon);
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if ((puissance>7) && (intervalle>1)) {
+					boutonConfigSon.setIcon(configIndexIconClickClick);
 					fichier.effacer("DESCRIPTEURS/config_son.txt");
 					fichier.ecrire(String.valueOf(Math.pow(2,puissance)),"DESCRIPTEURS/config_son.txt");
 					fichier.ecrire(String.valueOf(intervalle),"DESCRIPTEURS/config_son.txt");
@@ -364,14 +375,24 @@ public class PanConfig extends JPanel {
 			e1.printStackTrace();
 		}		
 		ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
+
+		BufferedImage configIndexClickClick=null;
+		try {
+			configIndexClickClick = ImageIO.read(new File("RESSOURCE/IMAGE/AppliquerClickClick.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndexIconClickClick=new ImageIcon(configIndexClickClick);
 		boutonConfigImage.setIcon(configIndexIcon);
 		boutonConfigImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		boutonConfigImage.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				boutonConfigImage.setIcon(configIndexIcon);
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
+				boutonConfigImage.setIcon(configIndexIconClickClick);
 				if (quantification>0) {
 					fichier.effacer("DESCRIPTEURS/configTexte.txt");
 					fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/configTexte.txt");

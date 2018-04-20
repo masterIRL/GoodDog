@@ -1,8 +1,10 @@
 package vuegraphique;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,18 +60,20 @@ public class FrameConnexion extends JFrame{
 	}	
 	
 	private void initBoxMiseEnPageConnexion() {
-		panel.setBackground(Color.WHITE);
+		panel.setBackground(new Color(48,89,124));
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
 		boxMiseEnPageConnexion.add(getError()); //ajout du label d'erreur 
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
-		JLabel texteLogin=new JLabel("Pseudo"); //texte du login
+		JLabel texteLogin=new JLabel("IDENTIFIANT"); //texte du login
+		texteLogin.setForeground(Color.WHITE);
 		boxTexteLogin.add(texteLogin);
 		boxMiseEnPageConnexion.add(boxTexteLogin);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
 		textAreaLogin.setMaximumSize(new Dimension(150,30)); //zone d'ecriture du login
+		textAreaLogin.setFont(new Font("Poppins-Black", Font.PLAIN,20));
 		textAreaLogin.addKeyListener(new KeyListener(){
 		    @Override
 		    public void keyPressed(KeyEvent e){
@@ -97,7 +101,8 @@ public class FrameConnexion extends JFrame{
 		boxMiseEnPageConnexion.add(boxLogin);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
 		
-		JLabel texteMDP=new JLabel("Password"); //texte du mdp
+		JLabel texteMDP=new JLabel("MOT DE PASSE"); //texte du mdp
+		texteMDP.setForeground(Color.WHITE);
 		boxTexteMDP.add(texteMDP);
 		boxMiseEnPageConnexion.add(boxTexteMDP);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
@@ -107,7 +112,16 @@ public class FrameConnexion extends JFrame{
 		boxMiseEnPageConnexion.add(boxMDP);
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,15)));
 		
-		buttonLogin.setText("LOG IN"); //bouton de connexion
+		buttonLogin.setText("SE CONNECTER"); //bouton de connexion
+		
+		buttonLogin.setBackground(Color.WHITE);
+		buttonLogin.setForeground(Color.BLACK); 
+		buttonLogin.setFocusPainted(false);
+		buttonLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
+		//buttonLogin.setBorderPainted(false);
+		buttonLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	
+		
 		buttonLogin.setMaximumSize(new Dimension(150,30));
 		buttonLogin.addActionListener(new ActionListener() {
 			@Override

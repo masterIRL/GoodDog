@@ -16,13 +16,17 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 import autre.ImageJLabel;
+import autre.Utilities;
 import control.ControlRecherche;
 import control.ControlSIdentifier;
 
@@ -31,6 +35,7 @@ public class PanUser extends JPanel {
 	private static final long serialVersionUID = 1L;
 	ControlRecherche controlRecherche;
 	ControlSIdentifier controlSIdentifier;
+	Utilities utilities = new Utilities() ;
 	
 	private FramePrincipal framePrincipal;
 	
@@ -50,7 +55,7 @@ public class PanUser extends JPanel {
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
 
-	private TextArea textAreaMotCle = new TextArea();
+	private JTextArea textAreaMotCle = new JTextArea();
 	
 	private JPanel panTop = new JPanel();
 	private JPanel panTop2 = new JPanel();
@@ -126,13 +131,29 @@ public class PanUser extends JPanel {
 		boxMiseEnPageMotCle.add(boxLogo);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMotCle.add(Box.createRigidArea(new Dimension(120,0)));
-		textAreaMotCle.setMaximumSize(new Dimension(700,30));
+		
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		textAreaMotCle.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		textAreaMotCle.setPreferredSize(new Dimension(750,40));
+		textAreaMotCle.setMaximumSize(new Dimension(750,40));
+		textAreaMotCle.setMinimumSize(new Dimension(750,40));
 		boxMotCle.add(textAreaMotCle);
 		textAreaMotCle.setFont(policeEntreeU);
 
 		JButton validerMotCle = new JButton();
 		validerMotCle.setText("Rechercher");
 
+		validerMotCle.setBackground(Color.WHITE);
+		validerMotCle.setForeground(Color.BLACK); 
+		validerMotCle.setFocusPainted(false);
+		validerMotCle.setFont(new Font("Tahoma", Font.BOLD, 14));
+		//validerMotCle.setBorderPainted(false);
+		validerMotCle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		validerMotCle.setPreferredSize(new Dimension(130,40));
+		validerMotCle.setMaximumSize(new Dimension(130,40));
+		validerMotCle.setMinimumSize(new Dimension(130,40));
+		
+		
 		validerMotCle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -141,7 +162,7 @@ public class PanUser extends JPanel {
 
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
 
-					initBoxMiseEnPageResultat("Résulats de votre recherche par mots-clés");
+					initBoxMiseEnPageResultat("                                Résulats de votre recherche par mots-clés");
 
 					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, 1));
 					System.out.println("Recherche lancée");				
@@ -299,7 +320,7 @@ public class PanUser extends JPanel {
 		this.remove(panTop);
 		this.add(panTop2,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
 		boxEnTete.add(Box.createRigidArea(new Dimension(0,60)));
-		JLabel texteResultat=new JLabel("                                "+s);
+		JLabel texteResultat=new JLabel(s);
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,35));
 		texteResultat.setForeground(Color.WHITE);
 		boxEnTete.add(texteResultat);
@@ -356,7 +377,9 @@ public class PanUser extends JPanel {
 		//setBackground(new Color(157, 228, 234));
 		for(int i=0; i<liste.size(); i++) {
 			Box boxListe=Box.createHorizontalBox();
-			JLabel listeResultat=new JLabel(liste.get(i));
+			String results = liste.get(i);
+			//System.out.println(results.length());
+			JLabel listeResultat=new JLabel(results);
 			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
@@ -365,13 +388,15 @@ public class PanUser extends JPanel {
 			boxListe.add(listeResultat);
 			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 			//boxListe.add(os2);
-			boxListeResultats.add(boxListe, BorderLayout.WEST);
+			boxListe.add(Box.createVerticalStrut(0));
+			//boxListe.setBorder(BorderFactory.createEtchedBorder());
+			boxListeResultats.add(boxListe);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
-		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(150,0)));
 
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
@@ -383,7 +408,9 @@ public class PanUser extends JPanel {
 		panCenter.setBackground(new Color(222, 239, 255));
 		for(int i=0; i<liste.size(); i++) {
 			Box boxListe=Box.createHorizontalBox();
-			JLabel listeResultat=new JLabel(liste.get(i));
+			String results = liste.get(i);
+			//System.out.println(results.length());
+			JLabel listeResultat=new JLabel(results);
 			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
@@ -392,13 +419,15 @@ public class PanUser extends JPanel {
 			boxListe.add(listeResultat);
 			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 			//boxListe.add(os2);
-			boxListeResultats.add(boxListe, BorderLayout.WEST);
+			boxListe.add(Box.createVerticalStrut(0));
+			//boxListe.setBorder(BorderFactory.createEtchedBorder());
+			boxListeResultats.add(boxListe);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
-		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(300,0)));
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
 
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
@@ -410,7 +439,9 @@ public class PanUser extends JPanel {
 		panCenter.setBackground(new Color(222, 239, 255));
 		for(int i=0; i<liste.size(); i++) {
 			Box boxListe=Box.createHorizontalBox();
-			JLabel listeResultat=new JLabel(liste.get(i));
+			String results = liste.get(i);
+			//System.out.println(results.length());
+			JLabel listeResultat=new JLabel(results);
 			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
@@ -419,13 +450,15 @@ public class PanUser extends JPanel {
 			boxListe.add(listeResultat);
 			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 			//boxListe.add(os2);
-			boxListeResultats.add(boxListe, BorderLayout.WEST);
+			boxListe.add(Box.createVerticalStrut(0));
+			//boxListe.setBorder(BorderFactory.createEtchedBorder());
+			boxListeResultats.add(boxListe);
 			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
 		}
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
-		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(300,0)));
+		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
 
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
