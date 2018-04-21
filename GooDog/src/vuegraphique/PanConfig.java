@@ -506,14 +506,11 @@ public class PanConfig extends JPanel {
 			boxConfigTexte2.add(texteNombreMot);
 			boxConfigTexte2.add(Box.createRigidArea(new Dimension(10,0)));
 			
+			
 			List<String> listeValeurLettre2 = new ArrayList<>();
-			listeValeurLettre2.add("3000"); 
-			listeValeurLettre2.add("3001"); 
-			listeValeurLettre2.add("3002"); 
-			listeValeurLettre2.add("3003"); 
-			listeValeurLettre2.add("3004"); 
-			listeValeurLettre2.add("3005"); 
-
+			for(int i = 5; i<=20; i++) {
+				listeValeurLettre2.add(""+i);
+			}
 			comboBoxTexte2.addItem("");
 			 for(String s : listeValeurLettre2) {
 				 comboBoxTexte2.addItem(s);
@@ -539,12 +536,9 @@ public class PanConfig extends JPanel {
 					boxConfigTexte3.add(Box.createRigidArea(new Dimension(10,0)));
 					
 					List<String> listeValeurLettre = new ArrayList<>();
-					listeValeurLettre.add("4000"); 
-					listeValeurLettre.add("4001"); 
-					listeValeurLettre.add("4002"); 
-					listeValeurLettre.add("4003"); 
-					listeValeurLettre.add("4004"); 
-					listeValeurLettre.add("4005"); 
+					for(int i = 3; i<=10; i++) {
+						listeValeurLettre.add(""+i);
+					}					
 
 					comboBoxTexte3.addItem("");
 					 for(String s : listeValeurLettre) {
