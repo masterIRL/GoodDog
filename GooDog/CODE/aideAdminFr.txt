@@ -1,34 +1,49 @@
-Ce moteur de recherche peut être utilisé en mode Admin ou en lambda mode utilisateur! Pour passer en mode Administrateur, vous devez OBLIGATOIREMENT entrez un login et vous avez droit à trois tentatives. 
+Ce moteur de recherche peut être utilisé en mode Admin ou en lambda mode utilisateur!
+Pour passer en mode Administrateur, vous devez OBLIGATOIREMENT entrez un Login et un Mot
+de Passe. 
 
-Important: si vous rentrez des flotants, ils seront automatiquement convertis en entiers.
+Si le login est valide, une liste exhaustive de choix à faire apparait!
 
- Au-delà de 3, vous n'êtes plus dois continuer. Si vous êtes vraiment administrateur et que les trois tentatives sont juste des erreurs involontaires; alors la seule possibilité que vous avez est de partir en Mode Admin, allez dans le menu principal et revenez en mode Admin.
+Cas de choix 1 (Configurer l'indexation): 
+Configurer les systemes d'indexations consiste, par exemple à changer :
 
-Si le login est valide, une liste exhaustive de choix est présente!
+- le pourcentage du seuil, le nombre de lettre et de mot d'un relatifs à 
+  l'indexation d'un fichier texte;
+- le nombre d'echantillonage par fenêtre et l'interval par fêtre relatifs à 
+  l'indexation d'un fichier son;
+- le nombre de bit de quantification relative à l'indexation d'un ficher image.
 
-Cas de choix 1 (Configurer l'indexation):  configurer les systemes d'indexations consiste, changer par exemple à changer :
- - le pourcentage du seuil, le nombre de lettre et de mot d'un relatifs à l'indexation d'un fichier texte;
--le nombre d'echantillonage par fenêtre et l'interval par fêtre relatifs à l'indexation d'un fichier son;
-- la precision relative à l'indexation d'un ficher image.
-Le programme présente le administrateur le fichier de configuration qu'il peut ainsi modifier, et après modification enregistrer. Ce fichier sera automatiquement indexé en  fonction de la nouveaux paramètres. Seuls les documents modifiés seront  écrasés, les autres reste identique au début.
+Pour changer une valeur, il peut suffir juste de metre le symbole "@" et la liste 
+des choix à faire apparaitra.  Le programme présente le administrateur le fichier de
+configuration qu'il peut ainsi modifier, et après modification enregistrer.
+Ce fichier sera automatiquement indexé en  fonction de la nouveaux paramètres.
+Seuls les documents modifiés seront  écrasés, les autres resteront identique au début.
 
-Cas de choix 2 (indexation manuelle): le programme lance la fonction indexation et renvoie un message à l'administrateur en lui disant si la base a été correctement indexé ou non.
+Cas de choix 2 (indexation manuelle): 
+Le programme lance la fonction indexation et le carreau juste en face du type d'indexation à
+faire (texet son ou image) se coche si la base a été correctement indexée ou non.
 
-Cas de choix 3 (recherche): l'administrateur sera invité à choisir entre une recherche à partir d'un mot-clé (valable uniquement pour les textes), un document texte, un image ou un son.
+Cas de choix 3 (recherche): 
+L'administrateur pourra choisir entre une recherche à partir d'un mot-clé, un document texte,
+image ou son.
 
 Choix de la recherche par mot clé: il sera demandé à l'administrateur de
-entrez un mot-clé. Ensuite, le programme doit sélectionner les descripteurs contenant ce mot pour finalement afficher un résultat détaillé dans l'ordre décroissant de fréquences (pourcentage d'apparition d'un mot dans un document).
+entrez un mot-clé. Ensuite, le programme doit sélectionner les descripteurs
+contenant ce mot pour finalement afficher un résultat détaillés dans l'ordre 
+décroissant de fréquences (pourcentage d'apparition d'un mot dans un document).
 
-Choix de la recherche de texte: l'administrateur peut soit entrer le nom du fichier (sans donner son extension) entrez le chemin d'accès au fichier. Si c'est le nom de le fichier, la recherche se fait à travers la base existante: le résultat détaillé sera affiché en ordre décroissant de similitude en fonction du taux de similarité
+Choix de la recherche par fichier texte: le bouton parcourir permet de recuperer le
+le chemin d'un fichier de reference depuis son ordinateur. Si c'est le nom de fichier,
+la recherche se fait à travers la base existante: le résultat détaillé sera affiché en 
+ordre décroissant de similitude en fonction du taux de similarité
 
 Choix de la recherche d'image: similaire au texte (mais avec des images).
 
-Choix de recherche par son: similaire au texte et à l'image (mais avec audio des dossiers). Suite à l'affichage du résultat: il sera proposé au administrateur pour éventuellement revenir à l'écran de choix pour administrateur, ou quittez le programme. S'il choisit de revenir à la
+Choix de recherche par son: similaire au texte et à l'image (mais avec des fichiers audios).
 
-l'écran de sélection retour à la partie 4 S'il choisit de quitter le programme(voir 4.iv Cas de choix 4)
+Il est possible à che fois de revenir au menu précedant en appuyant juste sur le bouton "retour"
 
-Cas de choix 4 (quitter): le programme se termine en souhaitant au revoir. 1
-hgjh 	 1 	 1 4)
+Nous esperons que cette desciption vous a été utile.
 
-Cas de choix 4 (quitter): le programme se termine en souhaitant au revoir.
-
+Cordialement  !!!!!!
+L'équipe GooDog

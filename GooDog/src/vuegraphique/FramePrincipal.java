@@ -21,6 +21,7 @@ public class FramePrincipal extends JFrame {
 	ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
 	ControlVerifierIdentification controlVerifier = new ControlVerifierIdentification();
 	ControlModeGestion controlModeGestion = new ControlModeGestion();
+	FrameAide aide= new FrameAide(); 
 	
 	private JPanel panAccueil = new JPanel();
 	private JPanel panContents = new JPanel();
@@ -37,8 +38,8 @@ public class FramePrincipal extends JFrame {
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
-		this.panUser = new PanUser(this,controlRecherche,controlSIdentifier);
-		this.panAdmin = new PanAdmin(this,controlRecherche,controlSIdentifier,controlVerifier,controlModeGestion);
+		this.panUser = new PanUser(this,controlRecherche,controlSIdentifier,aide);
+		this.panAdmin = new PanAdmin(this,controlRecherche,controlSIdentifier,controlVerifier,controlModeGestion,aide);
 		this.panUser.initialisation();
 		this.panAdmin.initialisation();
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes

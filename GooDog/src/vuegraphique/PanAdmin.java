@@ -39,7 +39,8 @@ public class PanAdmin extends JPanel {
 	ControlSIdentifier controlSIdentifier;
 	ControlVerifierIdentification controlVerifier;
 	ControlModeGestion controlModeGestion;
-	
+	FrameAide aide;
+
 	private FramePrincipal framePrincipal;
 	
 	Font policeTitre = new Font("Calibri", Font.BOLD,24);
@@ -76,13 +77,15 @@ public class PanAdmin extends JPanel {
 
 	
 	
-	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier, ControlVerifierIdentification controlVerifier, ControlModeGestion controlModeGestion) {
+	public PanAdmin(FramePrincipal framePrincipal, ControlRecherche controlRecherche, ControlSIdentifier controlSIdentifier, ControlVerifierIdentification controlVerifier, ControlModeGestion controlModeGestion,	FrameAide aide
+) {
 		super();
 		this.framePrincipal = framePrincipal;
 		this.controlRecherche=controlRecherche;
 		this.controlSIdentifier=controlSIdentifier;
 		this.controlVerifier = controlVerifier;
 		this.controlModeGestion=controlModeGestion;
+		this.aide=aide;
 	}
 
 
@@ -101,6 +104,42 @@ public class PanAdmin extends JPanel {
 		boutonAide.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonAide.setBorderPainted(false);
 		boutonAide.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.boutonAide.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					aide.aideAminFrancais();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		boutonAcceuil.setBackground(new Color(137,146,153));
 		boutonAcceuil.setForeground(Color.WHITE); //new Color(59, 89, 182)
