@@ -54,10 +54,13 @@ public class PanUser extends JPanel {
 			
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
+	JButton boutonAide = new JButton("Aide");
+	JButton boutonAcceuil = new JButton("Acceuil");
 
 	private JTextArea textAreaMotCle = new JTextArea();
 	
 	private JPanel panTop = new JPanel();
+	private JPanel panBas = new JPanel();
 	private JPanel panTop2 = new JPanel();
 	private JPanel panCenter = new JPanel();
 	
@@ -82,10 +85,26 @@ public class PanUser extends JPanel {
 		this.setBackground(Color.WHITE);
 		this.panTop.setBackground(Color.WHITE);
 		this.panTop2.setBackground(Color.WHITE);
+		this.panBas.setBackground(new Color(137,146,153));
 		this.panCenter.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		
-		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		boutonAide.setBackground(new Color(137,146,153));
+		boutonAide.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonAide.setFocusPainted(false);
+		boutonAide.setFont(new Font("Tahoma", Font.BOLD, 12));
+		boutonAide.setBorderPainted(false);
+		boutonAide.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		boutonAcceuil.setBackground(new Color(137,146,153));
+		boutonAcceuil.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonAcceuil.setFocusPainted(false);
+		boutonAcceuil.setFont(new Font("Tahoma", Font.BOLD, 12));
+		boutonAcceuil.setBorderPainted(false);
+		boutonAcceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		this.panTop.setLayout(new BorderLayout());
 		this.panTop2.setLayout(new BorderLayout());
 		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
@@ -112,8 +131,10 @@ public class PanUser extends JPanel {
 			}
 		});
 		this.panTop.add(labelConnect,BorderLayout.WEST); // ajout de l'image au panel haut
+		this.panBas.add(boutonAide,BorderLayout.EAST);
+		this.panBas.add(boutonAcceuil,BorderLayout.WEST);
 		this.add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
-
+		this.add(panBas,BorderLayout.SOUTH);
 		initBoxMiseEnPageMotCle();
 
 		this.panCenter.add(boxMiseEnPageMotCle);
@@ -127,7 +148,7 @@ public class PanUser extends JPanel {
 	private void initBoxMiseEnPageMotCle() { // configuration du panel central
 
 		boxLogo.add(logoLabel);
-		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
+		//boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageMotCle.add(boxLogo);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMotCle.add(Box.createRigidArea(new Dimension(120,0)));
