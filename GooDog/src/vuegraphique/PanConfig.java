@@ -13,6 +13,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -39,6 +41,11 @@ public class PanConfig extends JPanel {
 	JComboBox <String> comboBoxSon= new JComboBox<>();
 	JComboBox <String> comboBoxSon2= new JComboBox<>();
 	JComboBox <String> comboBoxImg= new JComboBox<>();
+	JComboBox <String> comboBoxTexte= new JComboBox<>();//nouveau stezen
+	JComboBox <String> comboBoxTexte1= new JComboBox<>();//nouveau stezen
+	JComboBox <String> comboBoxTexte2= new JComboBox<>();//nouveau stezen
+	JComboBox <String> comboBoxTexte3= new JComboBox<>();//nouveau stezen
+
 	
 	JLabel boutonConfigTexte = new JLabel();
 	JLabel boutonConfigImage = new JLabel();
@@ -47,12 +54,21 @@ public class PanConfig extends JPanel {
 	int puissance;
 	int intervalle;
 	int quantification;
+	String seuil; //ajouter par Stezen
+	String nombreMot; //ajouter par Stezen
+	String nombreLettre; //ajouter par Stezen
 	
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
 	Box boxTop = Box.createVerticalBox();
 	Box boxTopImg = Box.createVerticalBox();
 	Box boxTopSon = Box.createVerticalBox();
+	Box boxTopTexte = Box.createVerticalBox();
+	Box boxConfigTexte1 = Box.createHorizontalBox();//rajouter stezen
+	Box boxConfigTexte2 = Box.createHorizontalBox();//rajouter stezen
+	Box boxConfigTexte3 = Box.createHorizontalBox();//rajouter stezen
+
+
 
 	
 	Box boxConfigImg1 = Box.createHorizontalBox();
@@ -98,6 +114,14 @@ public class PanConfig extends JPanel {
 		boxTopSon.add(texteTopSon);
 		boxTopSon.add(Box.createRigidArea(new Dimension(0,20)));
 		
+		//debut de la partie rajoutée concernat le texte
+		boxTopTexte.add(Box.createRigidArea(new Dimension(0,20)));
+		JLabel texteTopTexte=new JLabel("   CONFIGURATION DE L'INDEXATION TEXTE"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		texteTopTexte.setFont(new Font("Poppins-Black", Font.BOLD,30));
+		texteTopTexte.setForeground(Color.WHITE);
+		boxTopTexte.add(texteTopTexte);
+		boxTopTexte.add(Box.createRigidArea(new Dimension(0,20)));
+		//fin de la partie rajoutée concernat le texte
 		
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		
@@ -394,8 +418,10 @@ public class PanConfig extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				boutonConfigImage.setIcon(configIndexIconClickClick);
 				if (quantification>0) {
-					fichier.effacer("DESCRIPTEURS/configTexte.txt");
-					fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/configTexte.txt");
+					//fichier.effacer("DESCRIPTEURS/configTexte.txt"); tu t'es trompé de fichier de cofig Charles
+					fichier.effacer("DESCRIPTEURS/ImageConfig"); //ajouter par stezen
+					//fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/ImageConfig"); pareil que là
+					fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/ImageConfig"); //j'ai modifier
 					boxConfigImage.add(texteOKCONFIG); 
 					repaint();
 				} else {
@@ -447,10 +473,187 @@ public class PanConfig extends JPanel {
 
 
 	private void initBoxConfigTexte() {
-		// A FINIR
+		// ce qui à été rajouté. debut stezen
+		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
+		texteSeuil.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,50)));
+		boxConfigTexte1.add(texteSeuil);
+		boxConfigTexte1.add(Box.createRigidArea(new Dimension(10,0)));
 		
-	}
+		List<String> listeValeurLettre3 = new ArrayList<>();
+		for(int i = 0; i<=100; i++) {
+			listeValeurLettre3.add(""+i);
+		}
+		comboBoxTexte.addItem("");
+		 for(String s : listeValeurLettre3) {
+			 comboBoxTexte.addItem(s);
+		 }
+		 
+		 comboBoxTexte.setPreferredSize(new Dimension(90,30));
+		 
+		 comboBoxTexte.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seuil = listeValeurLettre3.get(comboBoxTexte.getSelectedIndex()-1);
+				System.out.println("Seuil choisi : "+seuil);
+			}
+		});
+		 this.boxConfigTexte1.add(comboBoxTexte);
+		 this.boxConfigTexte.add(boxConfigTexte1);
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+		JLabel texteNombreMot=new JLabel("Valeur du nombre de mots: ");
+		texteNombreMot.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+			boxConfigTexte2.add(texteNombreMot);
+			boxConfigTexte2.add(Box.createRigidArea(new Dimension(10,0)));
+			
+			List<String> listeValeurLettre2 = new ArrayList<>();
+			listeValeurLettre2.add("3000"); 
+			listeValeurLettre2.add("3001"); 
+			listeValeurLettre2.add("3002"); 
+			listeValeurLettre2.add("3003"); 
+			listeValeurLettre2.add("3004"); 
+			listeValeurLettre2.add("3005"); 
 
+			comboBoxTexte2.addItem("");
+			 for(String s : listeValeurLettre2) {
+				 comboBoxTexte2.addItem(s);
+			 }
+			 
+			 comboBoxTexte2.setPreferredSize(new Dimension(90,30));
+			
+			comboBoxTexte2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					nombreMot = listeValeurLettre2.get(comboBoxTexte2.getSelectedIndex()-1);
+					System.out.println("nombre de mots choisi : "+nombreMot);
+				}
+			});
+			 this.boxConfigTexte2.add(comboBoxTexte2);
+			 this.boxConfigTexte.add(boxConfigTexte2);
+			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+			 
+
+				JLabel texteNombreLettre=new JLabel("Valeur du nombre de lettre:");
+				texteNombreLettre.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+					boxConfigTexte3.add(texteNombreLettre);
+					boxConfigTexte3.add(Box.createRigidArea(new Dimension(10,0)));
+					
+					List<String> listeValeurLettre = new ArrayList<>();
+					listeValeurLettre.add("4000"); 
+					listeValeurLettre.add("4001"); 
+					listeValeurLettre.add("4002"); 
+					listeValeurLettre.add("4003"); 
+					listeValeurLettre.add("4004"); 
+					listeValeurLettre.add("4005"); 
+
+					comboBoxTexte3.addItem("");
+					 for(String s : listeValeurLettre) {
+						 comboBoxTexte3.addItem(s);
+					 }
+					comboBoxTexte3.setPreferredSize(new Dimension(90,30));
+					
+					comboBoxTexte3.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							nombreLettre = listeValeurLettre.get(comboBoxTexte3.getSelectedIndex()-1);
+							System.out.println("nombre de lettre choisi : "+nombreLettre);
+						}
+					});
+					 this.boxConfigTexte3.add(comboBoxTexte3);
+					 this.boxConfigTexte.add(boxConfigTexte3);
+					 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+						
+					 
+				JLabel boutonConfigTexte = new JLabel();
+						
+						
+					JLabel texteOKCONFIG=new JLabel("Configuration réussi");
+					texteOKCONFIG.setFont(new Font("Poppins-Black", Font.ITALIC,16));
+						
+						
+						
+						BufferedImage configIndex=null;
+						try {
+							configIndex = ImageIO.read(new File("RESSOURCE/IMAGE/Appliquer.png"));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}		
+						ImageIcon configIndexIcon=new ImageIcon(configIndex);
+						BufferedImage configIndexClick=null;
+						try {
+							configIndexClick = ImageIO.read(new File("RESSOURCE/IMAGE/AppliquerClick.png"));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}		
+						
+						BufferedImage configIndexClickClick=null;
+						try {
+							configIndexClickClick = ImageIO.read(new File("RESSOURCE/IMAGE/AppliquerClickClick.png"));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}		
+						ImageIcon configIndexIconClickClick=new ImageIcon(configIndexClickClick);
+						
+						ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
+						boutonConfigTexte.setIcon(configIndexIcon);
+						boutonConfigTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+						boutonConfigTexte.addMouseListener(new MouseListener() {
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								boutonConfigTexte.setIcon(configIndexIcon);
+							}
+							@Override
+							public void mousePressed(MouseEvent e) {
+									boutonConfigTexte.setIcon(configIndexIconClickClick);
+									fichier.effacer("DESCRIPTEURS/configTexte.txt");
+									fichier.ecrire(String.valueOf(seuil),"DESCRIPTEURS/configTexte.txt");
+									fichier.ecrire(String.valueOf(nombreMot),"DESCRIPTEURS/configTexte.txt");
+									fichier.ecrire(String.valueOf(nombreLettre),"DESCRIPTEURS/configTexte.txt");
+									boxConfigTexte.add(texteOKCONFIG); 
+									repaint();
+							}
+				            @Override
+				            public void mouseEntered(MouseEvent e) {
+				            	boutonConfigTexte.setIcon(configIndexIconClick);
+				            }
+
+				            @Override
+				            public void mouseExited(MouseEvent e) {
+				            	boutonConfigTexte.setIcon(configIndexIcon);
+				            }
+							@Override
+							public void mouseClicked(MouseEvent e) {
+							}
+						});
+						
+						
+						
+						boxConfigTexte.add(boutonConfigTexte);
+						
+						//BOUTON RETOUR Texte//
+						boutonRetourTxt.setBackground(new Color(75,91,157));
+						boutonRetourTxt.setForeground(Color.WHITE); //new Color(59, 89, 182)
+						boutonRetourTxt.setFont(new Font("Tahoma", Font.BOLD, 12));
+						boutonRetourTxt.setText("Retour"); 
+						boutonRetourTxt.setBorderPainted(false);
+						boutonRetourTxt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						boutonRetourTxt.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								panTop.remove(boxTopTexte);
+								panTop.add(boxTop,BorderLayout.CENTER);
+								panTop.add(boutonRetour,BorderLayout.WEST);
+								panTop.remove(boutonRetourTxt);
+								
+								boxConfigTexte.setVisible(false);
+								boxMiseEnPageConfig.setVisible(true);
+								repaint(); 
+							}
+						});				 
+	
+		
+		
+	}//fin ajout stezen 
 
 	private void initBoutonConfigTexte() {
 		BufferedImage configIndex=null;
@@ -475,13 +678,13 @@ public class PanConfig extends JPanel {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				/*panTop.remove(boxTop);
+				panTop.remove(boxTop);
 				panTop.remove(boutonRetour);
-				panTop.add(boxTopImg,BorderLayout.CENTER);
-				panTop.add(boutonRetourImg,BorderLayout.WEST);
+				panTop.add(boxTopTexte,BorderLayout.CENTER);
+				panTop.add(boutonRetourTxt,BorderLayout.WEST);
 				boxMiseEnPageConfig.setVisible(false); 
-				boxConfigImage.setVisible(true);
-				repaint();*/
+				boxConfigTexte.setVisible(true);
+				repaint();
 			}
             @Override
             public void mouseEntered(MouseEvent e) {
