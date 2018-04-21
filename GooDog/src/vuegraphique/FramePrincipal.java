@@ -76,7 +76,7 @@ public class FramePrincipal extends JFrame {
 		  ImageJLabel labelAcceuil = new ImageJLabel("RESSOURCE/IMAGE/acceuil.png"); //Cree un label avec l'image
 		  this.panAccueil.add(labelAcceuil);
 		  this.panAccueil.setBackground(Color.WHITE);
-		  this.panAccueil.addMouseListener(new MouseListener() {
+		  labelAcceuil.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub

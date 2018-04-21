@@ -488,7 +488,7 @@ public class PanConfig extends JPanel {
 		// ce qui à été rajouté. debut stezen
 		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
 		texteSeuil.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,50)));
+		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
 		boxConfigTexte1.add(texteSeuil);
 		boxConfigTexte1.add(Box.createRigidArea(new Dimension(10,0)));
 		
@@ -512,20 +512,17 @@ public class PanConfig extends JPanel {
 		});
 		 this.boxConfigTexte1.add(comboBoxTexte);
 		 this.boxConfigTexte.add(boxConfigTexte1);
-		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
 		JLabel texteNombreMot=new JLabel("Valeur du nombre de mots: ");
 		texteNombreMot.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 			boxConfigTexte2.add(texteNombreMot);
 			boxConfigTexte2.add(Box.createRigidArea(new Dimension(10,0)));
 			
+			
 			List<String> listeValeurLettre2 = new ArrayList<>();
-			listeValeurLettre2.add("3000"); 
-			listeValeurLettre2.add("3001"); 
-			listeValeurLettre2.add("3002"); 
-			listeValeurLettre2.add("3003"); 
-			listeValeurLettre2.add("3004"); 
-			listeValeurLettre2.add("3005"); 
-
+			for(int i = 5; i<=20; i++) {
+				listeValeurLettre2.add(""+i);
+			}
 			comboBoxTexte2.addItem("");
 			 for(String s : listeValeurLettre2) {
 				 comboBoxTexte2.addItem(s);
@@ -542,7 +539,7 @@ public class PanConfig extends JPanel {
 			});
 			 this.boxConfigTexte2.add(comboBoxTexte2);
 			 this.boxConfigTexte.add(boxConfigTexte2);
-			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
 			 
 
 				JLabel texteNombreLettre=new JLabel("Valeur du nombre de lettre:");
@@ -551,12 +548,9 @@ public class PanConfig extends JPanel {
 					boxConfigTexte3.add(Box.createRigidArea(new Dimension(10,0)));
 					
 					List<String> listeValeurLettre = new ArrayList<>();
-					listeValeurLettre.add("4000"); 
-					listeValeurLettre.add("4001"); 
-					listeValeurLettre.add("4002"); 
-					listeValeurLettre.add("4003"); 
-					listeValeurLettre.add("4004"); 
-					listeValeurLettre.add("4005"); 
+					for(int i = 3; i<=10; i++) {
+						listeValeurLettre.add(""+i);
+					}					
 
 					comboBoxTexte3.addItem("");
 					 for(String s : listeValeurLettre) {
@@ -573,7 +567,7 @@ public class PanConfig extends JPanel {
 					});
 					 this.boxConfigTexte3.add(comboBoxTexte3);
 					 this.boxConfigTexte.add(boxConfigTexte3);
-					 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
+					 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
 						
 					 
 				JLabel boutonConfigTexte = new JLabel();
@@ -666,6 +660,8 @@ public class PanConfig extends JPanel {
 		
 		
 	}//fin ajout stezen 
+
+
 
 	private void initBoutonConfigTexte() {
 		BufferedImage configIndex=null;
