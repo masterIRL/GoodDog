@@ -60,7 +60,7 @@ public class FrameConnexion extends JFrame{
 	}	
 	
 	private void initBoxMiseEnPageConnexion() {
-		panel.setBackground(new Color(48,89,124));
+		panel.setBackground(new Color(128,102,83));
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
 		
 		boxMiseEnPageConnexion.add(getError()); //ajout du label d'erreur 

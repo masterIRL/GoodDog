@@ -299,7 +299,7 @@ public class PanConfig extends JPanel {
 		boutonConfigSon.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				boutonConfigSon.setIcon(configIndexIcon);
+				boutonConfigSon.setIcon(configIndexIconClick);
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -421,7 +421,7 @@ public class PanConfig extends JPanel {
 		boutonConfigImage.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				boutonConfigImage.setIcon(configIndexIcon);
+				boutonConfigImage.setIcon(configIndexIconClick);
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -606,7 +606,7 @@ public class PanConfig extends JPanel {
 						boutonConfigTexte.addMouseListener(new MouseListener() {
 							@Override
 							public void mouseReleased(MouseEvent e) {
-								boutonConfigTexte.setIcon(configIndexIcon);
+								boutonConfigTexte.setIcon(configIndexIconClick);
 							}
 							@Override
 							public void mousePressed(MouseEvent e) {
