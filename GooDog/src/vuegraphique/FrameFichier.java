@@ -41,6 +41,7 @@ public class FrameFichier  extends JFrame{
 	private Box boxMiseEnPage = Box.createVerticalBox();
 	private Box boxRecherche = Box.createHorizontalBox();
 	private Box boxParcourir = Box.createHorizontalBox();
+	private Box boxErreur = Box.createHorizontalBox();
 	private JComboBox<Integer> comboBoxSeuil = new JComboBox<>();
 
 	//TexteArea
@@ -200,6 +201,7 @@ public class FrameFichier  extends JFrame{
 				}
 				else {
 					System.out.println("Choisissez un fichier"); //Le faire apparaitre à l'écran
+					boxErreur.setVisible(true);
 				}
 			}
 		});
@@ -208,12 +210,22 @@ public class FrameFichier  extends JFrame{
 		////////////////////////////////////////////////////////////////////////////////
 		///////////////              Ajout au Pan Principal           //////////////////
 		////////////////////////////////////////////////////////////////////////////////
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,10)));	
+		boxMiseEnPage.add(getError("Choisissez un fichier valide (xml,jpg ou wav)")); //ajout du label d'erreur 
+		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,10)));
 		boxMiseEnPage.add(boxParcourir);
 		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,15)));
 		boxMiseEnPage.add(boxRecherche);
 
 		panelGeneral.add(boxMiseEnPage);
+	}
+	
+	private Box getError(String s) { //recupere un bouton d'erreur
+		JLabel errorLabel = new JLabel(s);
+		errorLabel.setForeground(Color.red);
+		boxErreur.add(errorLabel);
+		boxErreur.setVisible(false);
+		return boxErreur;
 	}
 
 	public void rechercheFichier() {
@@ -251,6 +263,7 @@ public class FrameFichier  extends JFrame{
 		}
 		else {
 			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'écran grace a un label etc
+			boxErreur.setVisible(true);
 		}
 
 	}

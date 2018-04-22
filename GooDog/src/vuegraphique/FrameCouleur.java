@@ -1,7 +1,6 @@
 package vuegraphique;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -32,7 +31,9 @@ public class FrameCouleur  extends JFrame{
 	//Font
 
 	// boxs
-	private Box boxMiseEnPage = Box.createHorizontalBox();
+	private Box boxMiseEnPageCouleur = Box.createVerticalBox();
+	private Box boxRecherche = Box.createHorizontalBox();
+	private Box boxErreur = Box.createHorizontalBox();
 
 	private JComboBox<Integer> comboBoxSeuil = new JComboBox<>();
 	private JComboBox<String> comboBoxCouleur = new JComboBox<>();
@@ -85,12 +86,11 @@ public class FrameCouleur  extends JFrame{
 	private void initialisation() {
 		this.panelGeneral.setBackground(new Color(220, 151, 53));
 		int espaceEntreElement = 15;
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
 
 		JLabel texteSeuil = new JLabel("Pourcentage:"); //ajout de la partie sélection seuil
 		texteSeuil.setForeground(Color.WHITE);
-		boxMiseEnPage.add(texteSeuil);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		boxRecherche.add(texteSeuil);
+		boxRecherche.add(Box.createRigidArea(new Dimension(5,0)));
 		comboBoxSeuil.setMaximumSize(new Dimension(50,30));
 		for(int i=0;i<101;i++){
 			listSeuil.add(i);
@@ -98,35 +98,34 @@ public class FrameCouleur  extends JFrame{
 		for (Integer integer : listSeuil) {
 			comboBoxSeuil.addItem(integer);
 		}
-		boxMiseEnPage.add(comboBoxSeuil);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
+		boxRecherche.add(comboBoxSeuil);
+		boxRecherche.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
 
 		JLabel texteCouleur = new JLabel("Couleur:"); //ajout de la partie selection couleur
 		texteCouleur.setForeground(Color.WHITE);
-		boxMiseEnPage.add(texteCouleur);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		boxRecherche.add(texteCouleur);
+		boxRecherche.add(Box.createRigidArea(new Dimension(5,0)));
 		comboBoxCouleur.setMaximumSize(new Dimension(70,30));
 		comboBoxCouleur.addItem("");
 		for (String string : listCouleurs) {
 			comboBoxCouleur.addItem(string);
 		}
-		boxMiseEnPage.add(comboBoxCouleur);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(20,0)));
-		lancerRecherche.setMaximumSize(new Dimension(100,30));
+		boxRecherche.add(comboBoxCouleur);
+		boxRecherche.add(Box.createRigidArea(new Dimension(20,0)));
+		
+		lancerRecherche.setMaximumSize(new Dimension(110,30));
 		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
 		lancerRecherche.setBackground(Color.WHITE);
 		lancerRecherche.setForeground(Color.BLACK); 
 		lancerRecherche.setFocusPainted(false);
 		lancerRecherche.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//validerMotCle.setBorderPainted(false);
-		lancerRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lancerRecherche.setPreferredSize(new Dimension(110,30));
 		lancerRecherche.setMaximumSize(new Dimension(110,30));
 		lancerRecherche.setMinimumSize(new Dimension(110,30));
+		
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				//Recupere la couleur dans la box
 				switch((String)comboBoxCouleur.getSelectedItem()) {
 				case "NOIR":
@@ -155,12 +154,25 @@ public class FrameCouleur  extends JFrame{
 				rechercheCouleur();
 			}
 		});
-		boxMiseEnPage.add(lancerRecherche);
+		boxRecherche.add(lancerRecherche);
 
-		panelGeneral.add(boxMiseEnPage);
-
+		boxMiseEnPageCouleur.add(Box.createRigidArea(new Dimension(0,10)));	
+		boxMiseEnPageCouleur.add(getError("Choisissez une couleur")); //ajout du label d'erreur 
+		boxMiseEnPageCouleur.add(Box.createRigidArea(new Dimension(0,10)));
+		boxMiseEnPageCouleur.add(boxRecherche);
+		
+		panelGeneral.add(boxMiseEnPageCouleur);
 	}
 
+	private Box getError(String s) { //recupere un bouton d'erreur
+		JLabel errorLabel = new JLabel(s);
+		errorLabel.setForeground(Color.red);
+		boxErreur.add(errorLabel);
+		boxErreur.setVisible(false);
+		return boxErreur;
+	}
+
+	
 	public void rechercheCouleur() {
 		if(choixCouleur != null)
 		{
@@ -176,6 +188,7 @@ public class FrameCouleur  extends JFrame{
 		}
 		else {
 			System.out.println("Choisissez une couleur"); //non valide la recherche
+			boxErreur.setVisible(true);
 		}
 
 	}

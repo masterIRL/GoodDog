@@ -35,6 +35,7 @@ public class FrameAudio extends JFrame {
 	private Box boxNbOccurrences=Box.createHorizontalBox();
 	private Box boxParcourir=Box.createHorizontalBox();
 	private Box boxRecherche=Box.createHorizontalBox();
+	private Box boxErreur = Box.createHorizontalBox();
 
 	private TextArea barreRecherche = new TextArea();
 
@@ -179,10 +180,12 @@ public class FrameAudio extends JFrame {
 					}
 					else{
 						System.out.println("Choisissez un fichier valide");
+						boxErreur.setVisible(true);
 					}
 				}
 				else {
 					System.out.println("Choisissez un fichier"); //Le faire apparaitre à l'écran
+					boxErreur.setVisible(true);
 				}
 			}
 		});
@@ -195,13 +198,22 @@ public class FrameAudio extends JFrame {
 		////////////////////////////////////////////////////////////////////////////////
 		///////////////              Ajout au Pan Principal           //////////////////
 		////////////////////////////////////////////////////////////////////////////////
-		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,10)));
+		boxMiseEnPageAudio.add(getError("Choisissez un fichier audio valide (wav)")); //ajout du label d'erreur 
+		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,10)));		
 		boxMiseEnPageAudio.add(boxParcourir);
 		boxMiseEnPageAudio.add(Box.createRigidArea(new Dimension(0,15)));
 		boxMiseEnPageAudio.add(boxRecherche);
 
 		this.panelGeneral.add(boxMiseEnPageAudio);
-
+	}
+	
+	private Box getError(String s) { //recupere un bouton d'erreur
+		JLabel errorLabel = new JLabel(s);
+		errorLabel.setForeground(Color.red);
+		boxErreur.add(errorLabel);
+		boxErreur.setVisible(false);
+		return boxErreur;
 	}
 
 	public void rechercheAudio() {
