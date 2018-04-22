@@ -48,7 +48,7 @@ public class FramePrincipal extends JFrame {
 		this.panContents.add(this.panAdmin,"ADMIN");
 		
 		this.pack();
-		this.setDefaultLookAndFeelDecorated(true);
+		//this.setDefaultLookAndFeelDecorated(true);
 		this.setExtendedState(this.MAXIMIZED_BOTH);
 		
 		this.initialisationAcceuil();
