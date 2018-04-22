@@ -83,18 +83,14 @@ public class FrameConnexion extends JFrame{
 		        }
 		    }
 
-		  
-
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 			}
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 		boxLogin.add(textAreaLogin);

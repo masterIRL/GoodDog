@@ -155,7 +155,10 @@ public class FrameCouleur  extends JFrame{
 			}
 		});
 		boxRecherche.add(lancerRecherche);
-
+		
+		////////////////////////////////////////////////////////////////////////////////
+		///////////////              Ajout au Pan Principal           //////////////////
+		////////////////////////////////////////////////////////////////////////////////
 		boxMiseEnPageCouleur.add(Box.createRigidArea(new Dimension(0,10)));	
 		boxMiseEnPageCouleur.add(getError("Choisissez une couleur")); //ajout du label d'erreur 
 		boxMiseEnPageCouleur.add(Box.createRigidArea(new Dimension(0,10)));

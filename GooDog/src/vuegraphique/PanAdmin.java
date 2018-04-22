@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -104,14 +103,11 @@ public class PanAdmin extends JPanel {
 		boutonAide.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonAide.setBorderPainted(false);
 		boutonAide.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
 		this.boutonAide.addMouseListener(new MouseListener() {
-			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
-			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
@@ -119,25 +115,15 @@ public class PanAdmin extends JPanel {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				
 			}
-			
 			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseExited(MouseEvent e) {				
 			}
-			
 			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseEntered(MouseEvent e) {				
 			}
-			
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseClicked(MouseEvent e) {				
 			}
 		});
 		
@@ -151,6 +137,7 @@ public class PanAdmin extends JPanel {
 		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
 		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
 		this.panTop2.setLayout(new BorderLayout());
+		
 		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
 			@Override
