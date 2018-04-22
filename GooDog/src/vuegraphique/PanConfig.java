@@ -308,7 +308,8 @@ public class PanConfig extends JPanel {
 					fichier.effacer("DESCRIPTEURS/config_son.txt");
 					fichier.ecrire(String.valueOf(Math.pow(2,puissance)),"DESCRIPTEURS/config_son.txt");
 					fichier.ecrire(String.valueOf(intervalle),"DESCRIPTEURS/config_son.txt");
-					boxConfigSon.add(texteOKCONFIG); 
+					//boxConfigSon.add(texteOKCONFIG); 
+					//boxConfigSon.repaint();
 					repaint();
 				} else {
 					System.out.println("Valeurs non valide");
@@ -431,8 +432,8 @@ public class PanConfig extends JPanel {
 					fichier.effacer("DESCRIPTEURS/ImageConfig"); //ajouter par stezen
 					//fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/ImageConfig"); pareil que là
 					fichier.ecrire(String.valueOf(quantification),"DESCRIPTEURS/ImageConfig"); //j'ai modifier
-					boxConfigImage.add(texteOKCONFIG); 
-					repaint();
+					//boxConfigImage.add(texteOKCONFIG); 
+					//repaint();
 				} else {
 					System.out.println("Valeur non valide");
 				}
@@ -615,8 +616,8 @@ public class PanConfig extends JPanel {
 									fichier.ecrire(String.valueOf(seuil),"DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(nombreMot),"DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(nombreLettre),"DESCRIPTEURS/configTexte.txt");
-									boxConfigTexte.add(texteOKCONFIG); 
-									repaint();
+								//	boxConfigTexte.add(texteOKCONFIG); 
+								//	repaint();
 							}
 				            @Override
 				            public void mouseEntered(MouseEvent e) {
