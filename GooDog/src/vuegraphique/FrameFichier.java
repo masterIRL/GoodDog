@@ -2,7 +2,6 @@ package vuegraphique;
 
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.TextArea;
@@ -23,6 +22,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
+import autre.FileDrop;
 import control.ControlRecherche;
 import model.TypeFichier;
 
@@ -38,68 +38,73 @@ public class FrameFichier  extends JFrame{
 	//Font
 
 	// boxs
-	private Box boxMiseEnPage = Box.createHorizontalBox();
+	private Box boxMiseEnPage = Box.createVerticalBox();
+	private Box boxRecherche = Box.createHorizontalBox();
+	private Box boxParcourir = Box.createHorizontalBox();
 	private JComboBox<Integer> comboBoxSeuil = new JComboBox<>();
-	
+
 	//TexteArea
-//	private JTextField texteChemin = new JTextField ();
+	//	private JTextField texteChemin = new JTextField ();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 	private TextArea texteChemin = new TextArea();
-	//private String nom;
+	//	private String nom;
 	private TypeFichier typeFichier;
-	
+
 	private int choixSeuil = 0;
 	private List<Integer> listSeuil = new ArrayList<>();
-	
+
 	//Jbouton
 	private JButton parcourir = new JButton();
 	private JButton lancerRecherche = new JButton();
-	
+
 	//Les constructeur
-		public FrameFichier(PanUser panUser, ControlRecherche controlRecherche) {
-			super();
-			this.panUser = panUser;
-			this.controlRecherche = controlRecherche;
-			
-			this.setTitle("Recherche Fichier");
-			this.setSize(new Dimension(900,100));
-	        this.setLocationRelativeTo(null);
-	        this.setResizable(true);
-	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//	        this.setPreferredSize(new Dimension(920,700));
-			
-	        this.initialisation();
-			this.getContentPane().add(panelGeneral);
-			this.setVisible(true);
-		}
-		
-		public FrameFichier(PanAdmin panAdmin, ControlRecherche controlRecherche) {
-			super();
-			this.panAdmin = panAdmin;
-			this.controlRecherche = controlRecherche;
-			this.admin = true;
-			
-			this.setTitle("Recherche Fichier");
-			this.setSize(new Dimension(900,100));
-	        this.setLocationRelativeTo(null);
-	        this.setResizable(true);
-	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//	        this.setPreferredSize(new Dimension(920,700));
-			
-	        this.initialisation();
-			this.getContentPane().add(panelGeneral);
-			this.setVisible(true);
-		}
-	
+	public FrameFichier(PanUser panUser, ControlRecherche controlRecherche) {
+		super();
+		this.panUser = panUser;
+		this.controlRecherche = controlRecherche;
+
+		this.setTitle("Recherche Fichier");
+		this.setSize(new Dimension(900,200));
+		this.setLocationRelativeTo(null);
+		this.setResizable(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		//	        this.setPreferredSize(new Dimension(920,700));
+
+		this.initialisation();
+		this.getContentPane().add(panelGeneral);
+		this.setVisible(true);
+	}
+
+	public FrameFichier(PanAdmin panAdmin, ControlRecherche controlRecherche) {
+		super();
+		this.panAdmin = panAdmin;
+		this.controlRecherche = controlRecherche;
+		this.admin = true;
+
+		this.setTitle("Recherche Fichier");
+		this.setSize(new Dimension(900,200));
+		this.setLocationRelativeTo(null);
+		this.setResizable(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		//	        this.setPreferredSize(new Dimension(920,700));
+
+		this.initialisation();
+		this.getContentPane().add(panelGeneral);
+		this.setVisible(true);
+	}
+
 	private void initialisation() {
 		this.panelGeneral.setBackground(new Color(102, 51, 81));
-		int espaceEntreElement = 50;
-		//boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,70)));
-		
+
+		////////////////////////////////////////////////////////////////////////////////
+		///////////////              Box de Recherche                 //////////////////
+		////////////////////////////////////////////////////////////////////////////////
+
+		///////////////               Texte et box seuil              //////////////////
 		JLabel texteSeuil = new JLabel("Seuil:"); //ajout de la partie seuil
 		texteSeuil.setForeground(Color.WHITE);
-		boxMiseEnPage.add(texteSeuil);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
+		boxParcourir.add(texteSeuil);
+		boxParcourir.add(Box.createRigidArea(new Dimension(5,0)));
 		comboBoxSeuil.setPreferredSize(new Dimension(50,30));
 		for(int i=0;i<101;i++){
 			listSeuil.add(i);
@@ -107,18 +112,40 @@ public class FrameFichier  extends JFrame{
 		for (Integer integer : listSeuil) {
 			comboBoxSeuil.addItem(integer);
 		}
-		boxMiseEnPage.add(comboBoxSeuil);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(10,0)));
+		boxParcourir.add(comboBoxSeuil);
+		boxParcourir.add(Box.createRigidArea(new Dimension(30,0)));
 		
-		JLabel texteFichier = new JLabel("    Fichier: "); //ajout de la partie seuil
+		
+		///////////////               Barre de Recherche               //////////////////
+		JLabel texteFichier = new JLabel("Fichier:"); //ajout de la barre de recherche
 		texteFichier.setForeground(Color.WHITE);
-		boxMiseEnPage.add(texteFichier);
-		
+		boxParcourir.add(texteFichier);
+		boxParcourir.add(Box.createRigidArea(new Dimension(5,0)));
+
 		this.texteChemin.setPreferredSize(new Dimension(500,30)); //ajout de la partie du texte du chemin et son bouton pour parcourir
 		texteChemin.setFont(new Font("Poppins-Black", Font.PLAIN,15));
-		boxMiseEnPage.add(texteChemin);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(5,0)));
-		this.parcourir.setText("...");
+		boxParcourir.add(texteChemin);
+		boxParcourir.add(Box.createRigidArea(new Dimension(5,0)));
+		
+		///////////////                 Drag and Drop                /////////////////
+		new  FileDrop( texteChemin, new FileDrop.Listener()
+		{   public void  filesDropped( java.io.File[] files )
+		{   
+			texteChemin.setText(files[0].getAbsolutePath());
+		}   
+		});
+		
+		
+		///////////////               Bouton Parcourir                //////////////////
+		this.parcourir.setText("Parcourir");
+		parcourir.setBackground(Color.WHITE);
+		parcourir.setForeground(Color.BLACK); 
+		parcourir.setFocusPainted(false);
+		parcourir.setFont(new Font("Tahoma", Font.BOLD, 12));
+		parcourir.setPreferredSize(new Dimension(110,30));
+		parcourir.setMaximumSize(new Dimension(110,30));
+		parcourir.setMinimumSize(new Dimension(110,30));
+		
 		this.parcourir.addActionListener(new ActionListener() { //interaction pour parcourir les fichier
 			public void actionPerformed(ActionEvent e) {
 				FileFilter filtreFichier = new FileNameExtensionFilter("Fichier lisible", "jpg", "xml", "wav"); //creation d'un filtre pour faciliter
@@ -133,20 +160,19 @@ public class FrameFichier  extends JFrame{
 				}
 			}
 		});
-		boxMiseEnPage.add(parcourir);
-		boxMiseEnPage.add(Box.createRigidArea(new Dimension(espaceEntreElement,0)));
-		
-		lancerRecherche.setMaximumSize(new Dimension(100,30));
+		boxParcourir.add(parcourir);
+
+
+		///////////////               Bouton Rechercher                //////////////////
 		lancerRecherche.setText("Rechercher"); //ajout du bouton recherche et son interaction 
 		lancerRecherche.setBackground(Color.WHITE);
 		lancerRecherche.setForeground(Color.BLACK); 
 		lancerRecherche.setFocusPainted(false);
 		lancerRecherche.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//validerMotCle.setBorderPainted(false);
-		lancerRecherche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lancerRecherche.setPreferredSize(new Dimension(110,30));
 		lancerRecherche.setMaximumSize(new Dimension(110,30));
 		lancerRecherche.setMinimumSize(new Dimension(110,30));
+		
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,11 +203,19 @@ public class FrameFichier  extends JFrame{
 				}
 			}
 		});
-		boxMiseEnPage.add(lancerRecherche);
-		
+		boxRecherche.add(lancerRecherche);
+
+		////////////////////////////////////////////////////////////////////////////////
+		///////////////              Ajout au Pan Principal           //////////////////
+		////////////////////////////////////////////////////////////////////////////////
+		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,30)));
+		boxMiseEnPage.add(boxParcourir);
+		boxMiseEnPage.add(Box.createRigidArea(new Dimension(0,15)));
+		boxMiseEnPage.add(boxRecherche);
+
 		panelGeneral.add(boxMiseEnPage);
 	}
-	
+
 	public void rechercheFichier() {
 		if(typeFichier != null)
 		{
@@ -218,6 +252,6 @@ public class FrameFichier  extends JFrame{
 		else {
 			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'écran grace a un label etc
 		}
-		
+
 	}
 }
