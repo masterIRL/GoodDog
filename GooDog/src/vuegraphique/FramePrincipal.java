@@ -32,6 +32,7 @@ public class FramePrincipal extends JFrame {
 
 //	private BufferedImage backgroundAcceuil1;
 	
+	@SuppressWarnings("static-access")
 	public FramePrincipal(int l1, int l2) {
 		this.setTitle("GooDog");  //Définit un titre
 		this.setSize(l1, l2); //Définit sa taille //modifié pour garder format 16:9
@@ -45,6 +46,11 @@ public class FramePrincipal extends JFrame {
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
 		this.panContents.add(this.panUser,"USER");
 		this.panContents.add(this.panAdmin,"ADMIN");
+		
+		this.pack();
+		this.setDefaultLookAndFeelDecorated(true);
+		this.setExtendedState(this.MAXIMIZED_BOTH);
+		
 		this.initialisationAcceuil();
 		this.getContentPane().add(panContents);
 
