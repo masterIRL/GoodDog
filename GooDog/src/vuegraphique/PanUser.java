@@ -140,6 +140,13 @@ public class PanUser extends JPanel {
 		boutonAcceuil.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonAcceuil.setBorderPainted(false);
 		boutonAcceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		boutonAcceuil.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				framePrincipal.showPanAcceuil();
+			}
+		});
 		
 		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
 		this.panTop.setLayout(new BorderLayout());

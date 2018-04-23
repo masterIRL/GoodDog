@@ -125,6 +125,11 @@ public class FramePrincipal extends JFrame {
 		}
 		this.repaint();
 	}
+	
+	public void showPanAcceuil() {
+		this.cartes.show(panContents, "ACCEUIL");
+		this.repaint();
+	}
 
 	public JPanel getPanContents() {
 		return panContents;
