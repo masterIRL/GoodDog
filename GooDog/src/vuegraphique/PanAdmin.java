@@ -54,6 +54,7 @@ public class PanAdmin extends JPanel {
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
 	Box boxEnTete = Box.createHorizontalBox();
+	private Box boxErreur = Box.createHorizontalBox();
 
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
@@ -218,8 +219,7 @@ public class PanAdmin extends JPanel {
 
 		boxLogo.add(logoLabel);
 		//boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
-		boxMiseEnPageMotCle.add(boxLogo);
-		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
+		
 		boxMotCle.add(Box.createRigidArea(new Dimension(120,0)));
 		textAreaMotCle.setMaximumSize(new Dimension(700,30));
 		boxMotCle.add(textAreaMotCle);
@@ -261,10 +261,14 @@ public class PanAdmin extends JPanel {
 				} 
 				else {
 					System.out.println("Non valide");
+					boxErreur.setVisible(true);
 					//ajouter une interraction pour le signaler 
 				}
 			}
 		});
+		boxvaliderMotCle.add(validerMotCle);
+		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
+		boxMotCle.add(boxvaliderMotCle);
 
 		int espaceEntreBouton = 60;
 		
@@ -398,9 +402,10 @@ public class PanAdmin extends JPanel {
 			}
 		});
 		
-		boxvaliderMotCle.add(validerMotCle);
-		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
-		boxMotCle.add(boxvaliderMotCle);
+		boxMiseEnPageMotCle.add(boxLogo);
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,35)));
+		boxMiseEnPageMotCle.add(getError("Entrez des caractères correct"));
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,15)));
 		boxMiseEnPageMotCle.add(boxMotCle);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageMotCle.add(boxBoutons);
@@ -556,5 +561,13 @@ public class PanAdmin extends JPanel {
 
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
+	}
+	
+	private Box getError(String s) { //recupere un bouton d'erreur
+		JLabel errorLabel = new JLabel(s);
+		errorLabel.setForeground(Color.red);
+		boxErreur.add(errorLabel);
+		boxErreur.setVisible(false);
+		return boxErreur;
 	}
 }

@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -52,6 +51,7 @@ public class PanUser extends JPanel {
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
 	Box boxEnTete = Box.createHorizontalBox();
+	Box boxErreur = Box.createHorizontalBox();
 			
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
@@ -188,8 +188,6 @@ public class PanUser extends JPanel {
 
 		boxLogo.add(logoLabel);
 		//boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
-		boxMiseEnPageMotCle.add(boxLogo);
-		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMotCle.add(Box.createRigidArea(new Dimension(120,0)));
 		
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -230,10 +228,14 @@ public class PanUser extends JPanel {
 				} 
 				else {
 					System.out.println("Non valide");
+					boxErreur.setVisible(true);
 					//ajouter une interraction pour le signaler !!
 				}
 			}
 		});
+		boxvaliderMotCle.add(validerMotCle);
+		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
+		boxMotCle.add(boxvaliderMotCle);
 
 		int espaceEntreBouton = 60;
 		
@@ -253,7 +255,7 @@ public class PanUser extends JPanel {
 		}	
 		ImageIcon folder22=new ImageIcon(folder2);
 		labelFile.setIcon(folder11);
-		//Bouton + interaction
+		//Bouton + interraction
 		boxBoutons.add(labelFile);
 		this.labelFile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelFile.addMouseListener(new MouseListener() {
@@ -366,9 +368,10 @@ public class PanUser extends JPanel {
 			}
 		});
 		
-		boxvaliderMotCle.add(validerMotCle);
-		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
-		boxMotCle.add(boxvaliderMotCle);
+		boxMiseEnPageMotCle.add(boxLogo);
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,35)));
+		boxMiseEnPageMotCle.add(getError("Entrez des caractères correct"));
+		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,15)));
 		boxMiseEnPageMotCle.add(boxMotCle);
 		boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,30)));
 		boxMiseEnPageMotCle.add(boxBoutons);
@@ -522,5 +525,13 @@ public class PanUser extends JPanel {
 
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
+	}
+	
+	private Box getError(String s) { //recupere un bouton d'erreur
+		JLabel errorLabel = new JLabel(s);
+		errorLabel.setForeground(Color.red);
+		boxErreur.add(errorLabel);
+		boxErreur.setVisible(false);
+		return boxErreur;
 	}
 }
