@@ -42,7 +42,7 @@ public class PanUser extends JPanel {
 	
 	Font policeTitre = new Font("Calibri", Font.BOLD,24);
 	Font policeEntreeU = new Font("Poppins-Black", Font.PLAIN,20);
-	
+	Box boxMiseEnPageMotCleFinal= Box.createHorizontalBox();
 	Box boxMiseEnPageMotCle = Box.createVerticalBox();
 	Box boxLogo = Box.createHorizontalBox();
 	Box boxMotCle = Box.createHorizontalBox();
@@ -144,6 +144,7 @@ public class PanUser extends JPanel {
 		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
 		this.panTop.setLayout(new BorderLayout());
 		this.panTop2.setLayout(new BorderLayout());
+		//this.panCenter.setLayout(new BorderLayout());
 		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
 			@Override
@@ -174,8 +175,8 @@ public class PanUser extends JPanel {
 		this.add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
 		this.add(panBas,BorderLayout.SOUTH);
 		initBoxMiseEnPageMotCle();
-
-		this.panCenter.add(boxMiseEnPageMotCle);
+		this.boxMiseEnPageMotCleFinal.add(boxMiseEnPageMotCle);
+		this.panCenter.add(boxMiseEnPageMotCleFinal,BorderLayout.CENTER );
 		boxMiseEnPageMotCle.setVisible(true);
 		this.add(panCenter,BorderLayout.CENTER);
 
