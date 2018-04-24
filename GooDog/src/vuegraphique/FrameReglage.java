@@ -40,7 +40,7 @@ public class FrameReglage extends JFrame {
 	private CardLayout cartes = new CardLayout();
 	
 	Box boxMiseEnPageReglage = Box.createVerticalBox();
-	Box boxTop = Box.createVerticalBox();
+	//Box boxTop = Box.createVerticalBox();
 	JButton boutonConfig = new JButton();
 	JButton boutonIndexation = new JButton();
 	JButton boutonMode = new JButton();
@@ -88,18 +88,21 @@ public class FrameReglage extends JFrame {
 	
 	
 	private void initialisation() {
-		this.panTop.setBackground(new Color(75,91,157));
+		this.panTop.setBackground(new Color(104,92,82));
 		this.panCenter.setBackground(Color.WHITE);
 		this.panReglage.setLayout(new BorderLayout());
 		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		/*boutonRetour.setPreferredSize(new Dimension(80,80));
+		boutonRetour.setMaximumSize(new Dimension(80,80));
+		boutonRetour.setMinimumSize(new Dimension(80,80));*/
 		
-		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
-		JLabel texteResultat=new JLabel("                           RÉGLAGES DE GOODOG"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		JLabel texteResultat=new JLabel("RÉGLAGES DE GOODOG"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteResultat.setForeground(Color.WHITE);
-		boxTop.add(texteResultat);
-		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
-		panTop.add(boxTop,BorderLayout.CENTER);
+		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+		panTop.add(Box.createRigidArea(new Dimension(0,80)),BorderLayout.WEST);
+		//panTop.add(Box.createRigidArea(new Dimension(80,80)),BorderLayout.EAST);
+		panTop.add(texteResultat,BorderLayout.CENTER);
 		
 		
 		

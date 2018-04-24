@@ -180,11 +180,11 @@ public class FrameCouleur  extends JFrame{
 		if(choixCouleur != null)
 		{
 			if(!admin) {
-				panUser.initBoxMiseEnPageResultat("                                     Résulats de votre recherche couleur");
+				panUser.initBoxMiseEnPageResultat("Résulats de votre recherche couleur");
 				panUser.resultatImages(controlRecherche.rechercheCouleur(choixCouleur,choixSeuil));
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("                                     Résulats de votre recherche couleur");
+				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche couleur");
 				panAdmin.resultatImages(controlRecherche.rechercheCouleur(choixCouleur,choixSeuil));
 			}
 			dispose(); //ferme la fenetre

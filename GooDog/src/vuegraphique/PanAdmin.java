@@ -56,15 +56,19 @@ public class PanAdmin extends JPanel {
 	Box boxMiseEnPageResultat = Box.createHorizontalBox();
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
-	Box boxEnTete = Box.createHorizontalBox();
 	private Box boxErreur = Box.createHorizontalBox();
-
+	Box boxBoutonRechercher =  Box.createVerticalBox(); //new
+	Box boxAvancee = Box.createHorizontalBox();//new
+	Box boxModeNormal= Box.createHorizontalBox();//new
+	Box boxModeAvance= Box.createHorizontalBox();//new
+	JButton avancee = new JButton();
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
 	JButton boutonAide = new JButton("Aide");
 	JButton boutonAcceuil = new JButton("Acceuil");
 	private JTextArea textAreaMotCle = new JTextArea();
-	
+	boolean modeAvance = false; //new
+
 	private JSpinner spinnerOccurrences=new JSpinner(new SpinnerNumberModel(1, 1, 9, 1));
 	
 	private JPanel panTop = new JPanel();
@@ -167,6 +171,12 @@ public class PanAdmin extends JPanel {
 
 				if(option == JOptionPane.OK_OPTION){
 					framePrincipal.showPanUser(); //ajouter le control de deconnexion dans le controler et utiliser la fonction.	
+					boxModeNormal.setVisible(true);
+					boxAvancee.setVisible(false);
+					modeAvance=false;
+					spinnerOccurrences.setValue(1);
+					avancee.setText("Avancée");
+					boxModeAvance.setVisible(false);
 				}
 			}
 			
@@ -234,22 +244,25 @@ public class PanAdmin extends JPanel {
 		boxMotCle.add(Box.createRigidArea(new Dimension(60,0)));
 		
 		JLabel texteNbOccurrences = new JLabel("Occurrences:");
-		texteNbOccurrences.setFont(policeEntreeU);
+		texteNbOccurrences.setFont(new Font("Tahoma", Font.BOLD, 18));
 		//texteNbOccurrences.setForeground(Color.WHITE);
 
-		spinnerOccurrences.setPreferredSize(new Dimension(50,30));
+		spinnerOccurrences.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		spinnerOccurrences.setPreferredSize(new Dimension(50,40));
+		spinnerOccurrences.setMaximumSize(new Dimension(50,40));
+		spinnerOccurrences.setMinimumSize(new Dimension(50,40));
 		spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
 
-
-		boxMotCle.add(texteNbOccurrences);
-		boxMotCle.add(Box.createRigidArea(new Dimension(5,0)));
-		boxMotCle.add(spinnerOccurrences);
-		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
+		boxModeNormal.add(Box.createRigidArea(new Dimension(75,0)));
+		boxAvancee.add(texteNbOccurrences);
+		boxAvancee.add(Box.createRigidArea(new Dimension(5,0)));
+		boxAvancee.add(spinnerOccurrences);
+		boxAvancee.add(Box.createRigidArea(new Dimension(20,0)));
 		
-		textAreaMotCle.setMaximumSize(new Dimension(700,30));
-		boxMotCle.add(textAreaMotCle);
-		textAreaMotCle.setFont(policeEntreeU);
-
+		boxMotCle.add(boxAvancee);
+		boxMotCle.add(boxModeNormal);
+		boxModeNormal.setVisible(true);
+		boxAvancee.setVisible(false);
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		textAreaMotCle.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		textAreaMotCle.setPreferredSize(new Dimension(750,40));
@@ -270,6 +283,9 @@ public class PanAdmin extends JPanel {
 		validerMotCle.setPreferredSize(new Dimension(130,40));
 		validerMotCle.setMaximumSize(new Dimension(130,40));
 		validerMotCle.setMinimumSize(new Dimension(130,40));
+		
+
+		
 		validerMotCle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -278,22 +294,70 @@ public class PanAdmin extends JPanel {
 
 				if (controlRecherche.verifierMotCle(entreeMotCle)) {
 
-					initBoxMiseEnPageResultat("Recherche par mots Clés");
+					initBoxMiseEnPageResultat("Résulats de votre recherche par mots-clés");
 
 					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, 1));
 					System.out.println("Recherche lancée");				
 					textAreaMotCle.setText("");
+					boxModeNormal.setVisible(true);
+					boxAvancee.setVisible(false);
+					modeAvance=false;
+					spinnerOccurrences.setValue(1);
+					boxModeAvance.setVisible(false);
+					avancee.setText("Avancée");
 				} 
 				else {
 					System.out.println("Non valide");
 					boxErreur.setVisible(true);
-					//ajouter une interraction pour le signaler 
+					//ajouter une interraction pour le signaler !!
 				}
 			}
 		});
-		boxvaliderMotCle.add(validerMotCle);
+		boxBoutonRechercher.add(Box.createRigidArea(new Dimension(0,25)));
+		boxBoutonRechercher.add(validerMotCle);
+		
+		avancee.setText("Avancée");
+
+		avancee.setBackground(Color.WHITE);
+		avancee.setForeground(Color.BLACK); 
+		avancee.setFocusPainted(false);
+		avancee.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		//avancee.setBorderPainted(false);
+		avancee.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		avancee.setPreferredSize(new Dimension(130,20));
+		avancee.setMaximumSize(new Dimension(130,20));
+		avancee.setMinimumSize(new Dimension(130,20));
+		
+		
+		avancee.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!modeAvance) {
+					boxModeNormal.setVisible(false);
+					boxAvancee.setVisible(true);
+					boxModeAvance.setVisible(true);
+					modeAvance=true;
+					avancee.setText("Simple");
+					spinnerOccurrences.setValue(1);
+				} else {
+					boxModeNormal.setVisible(true);
+					boxAvancee.setVisible(false);
+					modeAvance=false;
+					boxModeAvance.setVisible(false);
+					spinnerOccurrences.setValue(1);
+					avancee.setText("Avancée");
+				}
+			}
+		});
+		boxBoutonRechercher.add(Box.createRigidArea(new Dimension(0,5)));
+		boxBoutonRechercher.add(avancee);
+		
+		boxvaliderMotCle.add(boxBoutonRechercher);
 		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
 		boxMotCle.add(boxvaliderMotCle);
+		boxModeAvance.add(Box.createRigidArea(new Dimension(122,0)));
+		boxMotCle.add(boxModeAvance);
+		boxModeAvance.setVisible(false);
 
 		int espaceEntreBouton = 60;
 		
@@ -313,7 +377,7 @@ public class PanAdmin extends JPanel {
 		}	
 		ImageIcon folder22=new ImageIcon(folder2);
 		labelFile.setIcon(folder11);
-		//ajout du bouton + interaction
+		//Bouton + interraction
 		boxBoutons.add(labelFile);
 		this.labelFile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelFile.addMouseListener(new MouseListener() {
@@ -324,16 +388,15 @@ public class PanAdmin extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				new FrameFichier(PanAdmin.this, controlRecherche);
 			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				labelFile.setIcon(folder11);
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				labelFile.setIcon(folder22);
-			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                labelFile.setIcon(folder22);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	labelFile.setIcon(folder11);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
@@ -356,6 +419,7 @@ public class PanAdmin extends JPanel {
 		}	
 		ImageIcon couleur22=new ImageIcon(couleur2);
 		labelCouleur.setIcon(couleur11);
+		//Bouton + interaction
 		boxBoutons.add(labelCouleur);
 		this.labelCouleur.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelCouleur.addMouseListener(new MouseListener() {
@@ -371,18 +435,16 @@ public class PanAdmin extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				labelCouleur.setIcon(couleur11);
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				labelCouleur.setIcon(couleur22);
 			}
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub	
 			}
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
@@ -403,6 +465,7 @@ public class PanAdmin extends JPanel {
 		}	
 		ImageIcon audio22=new ImageIcon(audio2);
 		labelAudio.setIcon(audio11);
+		//Bouton + interaction
 		boxBoutons.add(labelAudio);
 		this.labelAudio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		labelAudio.addMouseListener(new MouseListener() {
@@ -438,17 +501,16 @@ public class PanAdmin extends JPanel {
 
 
 
-
-
 	public void initBoxMiseEnPageResultat(String s) {
 		this.remove(panTop);
 		this.add(panTop2,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
-		boxEnTete.add(Box.createRigidArea(new Dimension(0,60)));
+		//boxEnTete.add(Box.createRigidArea(new Dimension(0,60)));
 		JLabel texteResultat=new JLabel(s);
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,35));
 		texteResultat.setForeground(Color.WHITE);
-		boxEnTete.add(texteResultat);
-		boxEnTete.add(Box.createRigidArea(new Dimension(0,100)));
+		//boxEnTete.add(texteResultat);
+		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+		//boxEnTete.add(Box.createRigidArea(new Dimension(0,100)));
 		boxMiseEnPageResultat.add(dog);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(50,0)));
 
@@ -459,6 +521,9 @@ public class PanAdmin extends JPanel {
 		boutonRetour.setText("Retour");
 		boutonRetour.setBorderPainted(false);
 		boutonRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		boutonRetour.setPreferredSize(new Dimension(80,80));
+		boutonRetour.setMaximumSize(new Dimension(80,80));
+		boutonRetour.setMinimumSize(new Dimension(80,80));
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -466,8 +531,8 @@ public class PanAdmin extends JPanel {
 				setBackground(Color.WHITE);
 				panCenter.setBackground(Color.WHITE);
 				remove(panTop2);
-				boxEnTete.removeAll();
-				panTop2.remove(boxEnTete);
+			//	boxEnTete.removeAll();
+			//	panTop2.remove(boxEnTete);
 				panTop2.removeAll();
 				add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
 				//panTop.setVisible(true);
@@ -475,13 +540,19 @@ public class PanAdmin extends JPanel {
 				boxMiseEnPageResultat.remove(boutonRetour);
 				boxMiseEnPageMotCle.setVisible(true);
 				boxMiseEnPageResultat.removeAll();
+				boxModeNormal.setVisible(true);
+				boxAvancee.setVisible(false);
+				modeAvance=false;
+				boxModeAvance.setVisible(false);
+				avancee.setText("Avancée");
 				repaint(); 
 			}
 		});
 		
 		panTop2.add(boutonRetour,BorderLayout.WEST);
 		//panTop2.add(Box.createRigidArea(new Dimension(0,100)));
-		panTop2.add(boxEnTete);
+		//panTop2.add(boxEnTete);
+		panTop2.add(texteResultat,BorderLayout.CENTER);
 		panCenter.add(boxMiseEnPageResultat);
 		boxMiseEnPageMotCle.setVisible(false); 
 		//panTop.setVisible(false);

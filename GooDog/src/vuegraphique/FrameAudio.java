@@ -218,11 +218,11 @@ public class FrameAudio extends JFrame {
 
 	public void rechercheAudio() {
 		if(!admin) {
-			panUser.initBoxMiseEnPageResultat("                                Résulats de votre recherche par audio");
+			panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
 			panUser.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
 		}
 		else {
-			panAdmin.initBoxMiseEnPageResultat("                                Résulats de votre recherche par audio");
+			panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
 			panAdmin.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
 		}
 		dispose();

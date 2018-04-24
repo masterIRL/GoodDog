@@ -43,7 +43,7 @@ public class PanConfig extends JPanel {
 	JComboBox <String> comboBoxSon2= new JComboBox<>();
 	JComboBox <String> comboBoxImg= new JComboBox<>();
 
-
+	Color couleur=(new Color(104,92,82));
 	
 	JLabel boutonConfigTexte = new JLabel();
 	JLabel boutonConfigImage = new JLabel();
@@ -58,10 +58,7 @@ public class PanConfig extends JPanel {
 	
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
-	Box boxTop = Box.createVerticalBox();
-	Box boxTopImg = Box.createVerticalBox();
-	Box boxTopSon = Box.createVerticalBox();
-	Box boxTopTexte = Box.createVerticalBox();
+
 	Box boxConfigTexte1 = Box.createHorizontalBox();//rajouter stezen
 	Box boxConfigTexte2 = Box.createHorizontalBox();//rajouter stezen
 	Box boxConfigTexte3 = Box.createHorizontalBox();//rajouter stezen
@@ -77,6 +74,10 @@ public class PanConfig extends JPanel {
 	JButton boutonRetourImg = new JButton();
 	JButton boutonRetourTxt = new JButton();
 
+	JLabel texteTop=new JLabel("CONFIGURATION DE L'INDEXATION         "); 
+	JLabel texteTopImg=new JLabel("CONFIGURATION DE L'INDEXATION IMAGE      ");
+	JLabel texteTopSon=new JLabel("CONFIGURATION DE L'INDEXATION SON      "); 
+	JLabel texteTopTexte=new JLabel("CONFIGURATION DE L'INDEXATION TEXTE      "); 
 	public PanConfig (FrameReglage frame) {
 		super();
 		this.frame = frame;
@@ -84,42 +85,39 @@ public class PanConfig extends JPanel {
 	
 	public void initialisation() {
 		
-		this.panTop.setBackground(new Color(75,91,157));
+		this.panTop.setBackground(couleur);
 		this.panCenter.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		this.panTop.setLayout(new BorderLayout());
 		
-		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
-		JLabel texteTop=new JLabel("        CONFIGURATION DE L'INDEXATION"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		//boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+		
 		texteTop.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTop.setForeground(Color.WHITE);
-		boxTop.add(texteTop);
-		boxTop.add(Box.createRigidArea(new Dimension(0,20)));
-		this.panTop.add(boxTop,BorderLayout.CENTER);
-		
-		boxTopImg.add(Box.createRigidArea(new Dimension(0,20)));
-		JLabel texteTopImg=new JLabel("   CONFIGURATION DE L'INDEXATION IMAGE"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		//boxTop.add(texteTop);
+	//	boxTop.add(Box.createRigidArea(new Dimension(0,20)));
+		texteTop.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+		this.panTop.add(texteTop,BorderLayout.CENTER);
+	
+	
 		texteTopImg.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTopImg.setForeground(Color.WHITE);
-		boxTopImg.add(texteTopImg);
-		boxTopImg.add(Box.createRigidArea(new Dimension(0,20)));
+		texteTopImg.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+		
 
 		
-		boxTopSon.add(Box.createRigidArea(new Dimension(0,20)));
-		JLabel texteTopSon=new JLabel("   CONFIGURATION DE L'INDEXATION SON"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+		
 		texteTopSon.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTopSon.setForeground(Color.WHITE);
-		boxTopSon.add(texteTopSon);
-		boxTopSon.add(Box.createRigidArea(new Dimension(0,20)));
+		texteTopSon.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+
+
 		
-		//debut de la partie rajoutée concernat le texte
-		boxTopTexte.add(Box.createRigidArea(new Dimension(0,20)));
-		JLabel texteTopTexte=new JLabel("   CONFIGURATION DE L'INDEXATION TEXTE"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
+
 		texteTopTexte.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTopTexte.setForeground(Color.WHITE);
-		boxTopTexte.add(texteTopTexte);
-		boxTopTexte.add(Box.createRigidArea(new Dimension(0,20)));
-		//fin de la partie rajoutée concernat le texte
+		texteTopTexte.setHorizontalAlignment((int)CENTER_ALIGNMENT);
+
 		
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		
@@ -135,17 +133,19 @@ public class PanConfig extends JPanel {
 		//boutonRetour.setText("   RETOUR   "); //Ajout du bouton retour
 		
 		
-		boutonRetour.setBackground(new Color(75,91,157));
+		boutonRetour.setBackground(couleur);
 		boutonRetour.setForeground(Color.WHITE); //new Color(59, 89, 182)
 		boutonRetour.setFocusPainted(false);
 		boutonRetour.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonRetour.setText("Retour");
 		boutonRetour.setBorderPainted(false);
 		boutonRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		boutonRetour.setPreferredSize(new Dimension(80,80));
+		boutonRetour.setMaximumSize(new Dimension(80,80));
+		boutonRetour.setMinimumSize(new Dimension(80,80));
 		boutonRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boxTop.removeAll();
 				panCenter.removeAll();
 				boxMiseEnPageConfig.removeAll();
 				boxConfigImage.removeAll();
@@ -170,14 +170,11 @@ public class PanConfig extends JPanel {
 				boutonRetourImg.removeAll();
 				boxConfigTexte.removeAll();
 				boutonRetourTxt.removeAll();
-				boxTopTexte.removeAll();
-				boxTopImg.removeAll();
-				boxTopSon.removeAll();
-				boxTopTexte.removeAll();
 				boxConfigTexte1.removeAll();
 				boxConfigTexte2.removeAll();
 				boxConfigTexte3.removeAll();
 				boutonRetourTxt.removeAll();
+				panTop.remove(texteTop);
 				removeAll();
 				frame.showReglage();
 			}
@@ -306,7 +303,7 @@ public class PanConfig extends JPanel {
 				if ((puissance>7) && (intervalle>1)) {
 					boutonConfigSon.setIcon(configIndexIconClickClick);
 					fichier.effacer("DESCRIPTEURS/config_son.txt");
-					fichier.ecrire(String.valueOf(Math.pow(2,puissance)),"DESCRIPTEURS/config_son.txt");
+					fichier.ecrire(String.valueOf((int)(Math.pow(2,puissance))),"DESCRIPTEURS/config_son.txt");
 					fichier.ecrire(String.valueOf(intervalle),"DESCRIPTEURS/config_son.txt");
 					//boxConfigSon.add(texteOKCONFIG); 
 					//boxConfigSon.repaint();
@@ -334,18 +331,21 @@ public class PanConfig extends JPanel {
 		boxConfigSon.add(boutonConfigSon);
 		
 		//BOUTON RETOUR Son//
-		boutonRetourSon.setBackground(new Color(75,91,157));
+		boutonRetourSon.setBackground(couleur);
 		boutonRetourSon.setForeground(Color.WHITE); //new Color(59, 89, 182)
 		boutonRetourSon.setFocusPainted(false);
 		boutonRetourSon.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonRetourSon.setText("Retour"); 
 		boutonRetourSon.setBorderPainted(false);
 		boutonRetourSon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		boutonRetourSon.setPreferredSize(new Dimension(80,80));
+		boutonRetourSon.setMaximumSize(new Dimension(80,80));
+		boutonRetourSon.setMinimumSize(new Dimension(80,80));
 		boutonRetourSon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panTop.remove(boxTopSon);
-				panTop.add(boxTop,BorderLayout.CENTER);
+				panTop.remove(texteTopSon);
+				panTop.add(texteTop,BorderLayout.CENTER);;
 				panTop.add(boutonRetour,BorderLayout.WEST);
 				panTop.remove(boutonRetourSon);
 				
@@ -457,18 +457,21 @@ public class PanConfig extends JPanel {
 		boxConfigImage.add(Box.createRigidArea(new Dimension(0,40)));
 
 		//BOUTON RETOUR IMAGE//
-		boutonRetourImg.setBackground(new Color(75,91,157));
+		boutonRetourImg.setBackground(couleur);
 		boutonRetourImg.setForeground(Color.WHITE); //new Color(59, 89, 182)
 		boutonRetourImg.setFocusPainted(false);
 		boutonRetourImg.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonRetourImg.setText("Retour"); 
 		boutonRetourImg.setBorderPainted(false);
 		boutonRetourImg.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		boutonRetourImg.setPreferredSize(new Dimension(80,80));
+		boutonRetourImg.setMaximumSize(new Dimension(80,80));
+		boutonRetourImg.setMinimumSize(new Dimension(80,80));
 		boutonRetourImg.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panTop.remove(boxTopImg);
-				panTop.add(boxTop,BorderLayout.CENTER);
+				panTop.remove(texteTopImg);
+				panTop.add(texteTop,BorderLayout.CENTER);;
 				panTop.add(boutonRetour,BorderLayout.WEST);
 				panTop.remove(boutonRetourImg);
 				
@@ -638,20 +641,22 @@ public class PanConfig extends JPanel {
 						boxConfigTexte.add(boutonConfigTexte);
 						
 						//BOUTON RETOUR Texte//
-						boutonRetourTxt.setBackground(new Color(75,91,157));
+						boutonRetourTxt.setBackground(couleur);
 						boutonRetourTxt.setForeground(Color.WHITE); //new Color(59, 89, 182)
 						boutonRetourTxt.setFont(new Font("Tahoma", Font.BOLD, 12));
 						boutonRetourTxt.setText("Retour"); 
 						boutonRetourTxt.setBorderPainted(false);
 						boutonRetourTxt.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						boutonRetourTxt.setPreferredSize(new Dimension(80,80));
+						boutonRetourTxt.setMaximumSize(new Dimension(80,80));
+						boutonRetourTxt.setMinimumSize(new Dimension(80,80));
 						boutonRetourTxt.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								panTop.remove(boxTopTexte);
-								panTop.add(boxTop,BorderLayout.CENTER);
+								panTop.remove(texteTopTexte);
+								panTop.add(texteTop,BorderLayout.CENTER);;
 								panTop.add(boutonRetour,BorderLayout.WEST);
 								panTop.remove(boutonRetourTxt);
-								
 								boxConfigTexte.setVisible(false);
 								boxMiseEnPageConfig.setVisible(true);
 								repaint(); 
@@ -687,9 +692,9 @@ public class PanConfig extends JPanel {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				panTop.remove(boxTop);
+				panTop.remove(texteTop);
 				panTop.remove(boutonRetour);
-				panTop.add(boxTopTexte,BorderLayout.CENTER);
+				panTop.add(texteTopTexte,BorderLayout.CENTER);;
 				panTop.add(boutonRetourTxt,BorderLayout.WEST);
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigTexte.setVisible(true);
@@ -734,9 +739,9 @@ public class PanConfig extends JPanel {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				panTop.remove(boxTop);
+				panTop.remove(texteTop);
 				panTop.remove(boutonRetour);
-				panTop.add(boxTopImg,BorderLayout.CENTER);
+				panTop.add(texteTopImg,BorderLayout.CENTER);;
 				panTop.add(boutonRetourImg,BorderLayout.WEST);
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigImage.setVisible(true);
@@ -781,9 +786,9 @@ public class PanConfig extends JPanel {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				panTop.remove(boxTop);
+				panTop.remove(texteTop);
 				panTop.remove(boutonRetour);
-				panTop.add(boxTopSon,BorderLayout.CENTER);
+				panTop.add(texteTopSon,BorderLayout.CENTER);;
 				panTop.add(boutonRetourSon,BorderLayout.WEST);
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigSon.setVisible(true);
