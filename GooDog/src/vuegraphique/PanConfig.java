@@ -195,9 +195,28 @@ public class PanConfig extends JPanel {
 	}
 
 
-	private void initBoxConfigSon() {	
+	private void initBoxConfigSon() {
+		//rajouté par Stezen
 		
-		JLabel texteEchantillon=new JLabel("Nombre d'échantillons par fenêtre:");
+//////debut de ce qui a été de nouveau rajouté///////////////////
+		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
+		configActuelle = fichier.lireInt("DESCRIPTEURS/config_son.txt");
+		JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
+		texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal0 = new JLabel(" Valeur du nombre d'échantillons par fenêtre :                                "+String.valueOf(configActuelle.get(0)));
+		texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal1 = new JLabel(" Valeur du nombre d'intervalle par fenêtre :                                     "+String.valueOf(configActuelle.get(1)));
+		texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		
+		 boxConfigSon.add(Box.createRigidArea(new Dimension(0,50)));
+		 this.boxConfigSon.add(texteSeuilInt);
+		 boxConfigSon.add(Box.createRigidArea(new Dimension(0,20)));
+		 this.boxConfigSon.add(texteNombreLettreVal0);
+		 boxConfigSon.add(Box.createRigidArea(new Dimension(0,10)));
+		 this.boxConfigSon.add(texteNombreLettreVal1);
+//////fin de ce qui a été de nouveau rajouté///////////////////
+	 
+		JLabel texteEchantillon=new JLabel(" Modifier le nombre d'échantillons par fenêtre :  ");
 		texteEchantillon.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon.add(Box.createRigidArea(new Dimension(0,50)));
 		boxConfigSon1.add(texteEchantillon);
@@ -227,7 +246,7 @@ public class PanConfig extends JPanel {
 		 boxConfigSon.add(Box.createRigidArea(new Dimension(0,70)));
 		 
 		 
-		JLabel texteIntervalle=new JLabel("Nombre d'intervalle par fenêtre:");
+		JLabel texteIntervalle=new JLabel(" Modifier le nombre d'intervalle par fenêtre :       ");
 		texteIntervalle.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon2.add(texteIntervalle);
 		boxConfigSon2.add(Box.createRigidArea(new Dimension(10,0)));
@@ -297,7 +316,7 @@ public class PanConfig extends JPanel {
 				if ((puissance>7) && (intervalle>1)) {
 					boutonConfigSon.setIcon(configIndexIconClickClick);
 					fichier.effacer("DESCRIPTEURS/config_son.txt");
-					fichier.ecrire(String.valueOf(Math.pow(2,puissance)),"DESCRIPTEURS/config_son.txt");
+					fichier.ecrire(String.valueOf((int)Math.pow(2,puissance)),"DESCRIPTEURS/config_son.txt");  //c'est pas utile de mettre, d'allieur elle donne des erreures dans la lecture du fichier. je  modifie
 					fichier.ecrire(String.valueOf(intervalle),"DESCRIPTEURS/config_son.txt");
 					boxConfigSon.add(texteOKCONFIG); 
 					repaint();
@@ -350,8 +369,24 @@ public class PanConfig extends JPanel {
 	
 
 	private void initBoxConfigImage() {
+		//rajouté par Stezen
+		
+//////debut de ce qui a été de nouveau rajouté///////////////////
+		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
+		configActuelle = fichier.lireInt("DESCRIPTEURS/ImageConfig");
+		JLabel texteSeuilInt =new JLabel(" Configuration actuelle:                   ");
+		texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal0 = new JLabel(" Nombre de bits de quantification :                        "+String.valueOf(configActuelle.get(0)));
+		texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		
+		 boxConfigImage.add(Box.createRigidArea(new Dimension(0,50)));
+		 this.boxConfigImage.add(texteSeuilInt );
+		 boxConfigImage.add(Box.createRigidArea(new Dimension(0,10)));
+		 this.boxConfigImage.add(texteNombreLettreVal0);		 
+//////fin de ce qui a été de nouveau rajouté///////////////////
+		 
 		boxConfigImage.add(Box.createRigidArea(new Dimension(0,50)));
-		JLabel texteQuanti=new JLabel("Nombre de bits de quantification:");
+		JLabel texteQuanti=new JLabel("Modifier le nombre de bits de quantification:");
 		texteQuanti.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigImg1.add(texteQuanti);
 		boxConfigImg1.add(Box.createRigidArea(new Dimension(10,0)));
@@ -474,7 +509,30 @@ public class PanConfig extends JPanel {
 
 	private void initBoxConfigTexte() {
 		// ce qui à été rajouté. debut stezen
-		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
+		
+		
+//////debut de ce qui a été de nouveau rajouté///////////////////
+		ArrayList<Integer> configActuelle = new ArrayList<Integer>();
+		configActuelle = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
+		JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
+		texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal0 = new JLabel(" Valeur du seuil :                                 "+String.valueOf(configActuelle.get(0)));
+		texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal2 = new JLabel(" Valeur du nombre de mots :               "+String.valueOf(configActuelle.get(1)));
+		texteNombreLettreVal2.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		JLabel texteNombreLettreVal1 = new JLabel(" Valeur du nombre de lettres :             "+String.valueOf(configActuelle.get(2)));
+		texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,50)));
+		 this.boxConfigTexte.add(texteSeuilInt);
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,20)));
+		 this.boxConfigTexte.add(texteNombreLettreVal0);
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,10)));
+		 this.boxConfigTexte.add(texteNombreLettreVal2);
+		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,10)));
+		 this.boxConfigTexte.add(texteNombreLettreVal1);
+//////fin de ce qui a été de nouveau rajouté///////////////////
+
+		JLabel texteSeuil=new JLabel(" Modifier la valeur du seuil :                  ");
 		texteSeuil.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,50)));
 		boxConfigTexte1.add(texteSeuil);
@@ -501,7 +559,7 @@ public class PanConfig extends JPanel {
 		 this.boxConfigTexte1.add(comboBoxTexte);
 		 this.boxConfigTexte.add(boxConfigTexte1);
 		 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
-		JLabel texteNombreMot=new JLabel("Valeur du nombre de mots: ");
+		JLabel texteNombreMot=new JLabel(" Modifier la valeur du nombre de mots: ");
 		texteNombreMot.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 			boxConfigTexte2.add(texteNombreMot);
 			boxConfigTexte2.add(Box.createRigidArea(new Dimension(10,0)));
@@ -528,9 +586,8 @@ public class PanConfig extends JPanel {
 			 this.boxConfigTexte2.add(comboBoxTexte2);
 			 this.boxConfigTexte.add(boxConfigTexte2);
 			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,70)));
-			 
-
-				JLabel texteNombreLettre=new JLabel("Valeur du nombre de lettre:");
+				
+				JLabel texteNombreLettre=new JLabel(" Modifier la valeur du nombre de lettre:");
 				texteNombreLettre.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 					boxConfigTexte3.add(texteNombreLettre);
 					boxConfigTexte3.add(Box.createRigidArea(new Dimension(10,0)));
