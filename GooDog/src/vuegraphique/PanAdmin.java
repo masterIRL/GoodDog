@@ -3,6 +3,7 @@ package vuegraphique;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,7 +23,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
 import autre.ImageJLabel;
@@ -62,6 +65,7 @@ public class PanAdmin extends JPanel {
 	JButton boutonAcceuil = new JButton("Acceuil");
 	private JTextArea textAreaMotCle = new JTextArea();
 	
+	private JSpinner spinnerOccurrences=new JSpinner(new SpinnerNumberModel(1, 1, 9, 1));
 	
 	private JPanel panTop = new JPanel();
 	private JPanel panTop2 = new JPanel();
@@ -227,7 +231,21 @@ public class PanAdmin extends JPanel {
 		boxLogo.add(logoLabel);
 		//boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
 		
-		boxMotCle.add(Box.createRigidArea(new Dimension(120,0)));
+		boxMotCle.add(Box.createRigidArea(new Dimension(60,0)));
+		
+		JLabel texteNbOccurrences = new JLabel("Occurrences:");
+		texteNbOccurrences.setFont(policeEntreeU);
+		//texteNbOccurrences.setForeground(Color.WHITE);
+
+		spinnerOccurrences.setPreferredSize(new Dimension(50,30));
+		spinnerOccurrences.setEditor(new JSpinner.DefaultEditor(spinnerOccurrences));
+
+
+		boxMotCle.add(texteNbOccurrences);
+		boxMotCle.add(Box.createRigidArea(new Dimension(5,0)));
+		boxMotCle.add(spinnerOccurrences);
+		boxMotCle.add(Box.createRigidArea(new Dimension(20,0)));
+		
 		textAreaMotCle.setMaximumSize(new Dimension(700,30));
 		boxMotCle.add(textAreaMotCle);
 		textAreaMotCle.setFont(policeEntreeU);
@@ -481,25 +499,65 @@ public class PanAdmin extends JPanel {
 		panTop2.setBackground((new Color(85,98,133)));
 		panCenter.setBackground(new Color(222, 239, 255));
 		//setBackground(new Color(157, 228, 234));
-		for(int i=0; i<liste.size(); i++) {
-			Box boxListe=Box.createHorizontalBox();
-			String results = liste.get(i);
-			//System.out.println(results.length());
-			JLabel listeResultat=new JLabel(results);
-			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
-			boxListe.add(os);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			boxListe.add(listeResultat);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			//boxListe.add(os2);
-			boxListe.add(Box.createVerticalStrut(0));
-			//boxListe.setBorder(BorderFactory.createEtchedBorder());
-			boxListeResultats.add(boxListe);
-			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+		if(liste.size() != 0) {
+			for(int i=0; i<liste.size(); i++) {
+				Box boxListe=Box.createHorizontalBox();
+				String results = liste.get(i);
+				//System.out.println(results.length());
+				JLabel listeResultat=new JLabel(results);
+				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				listeResultat.addMouseListener(new MouseListener() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+					}
 
+					@Override
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						try {
+							Desktop.getDesktop().open(new File("DATA/TEXTE/"+results));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (NullPointerException e1) {
+							e1.printStackTrace();
+						} catch (IllegalArgumentException e1) {
+							e1.printStackTrace();
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.BLACK);
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.GRAY);
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+
+				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+				boxListe.add(os);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				boxListe.add(listeResultat);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				//boxListe.add(os2);
+				boxListe.add(Box.createVerticalStrut(0));
+				//boxListe.setBorder(BorderFactory.createEtchedBorder());
+				boxListeResultats.add(boxListe);
+				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+			}
 		}
+		
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(150,0)));
@@ -512,25 +570,65 @@ public class PanAdmin extends JPanel {
 		boutonRetour.setBackground(new Color(85,98,133));
 		panTop2.setBackground((new Color(85,98,133)));
 		panCenter.setBackground(new Color(222, 239, 255));
-		for(int i=0; i<liste.size(); i++) {
-			Box boxListe=Box.createHorizontalBox();
-			String results = liste.get(i);
-			//System.out.println(results.length());
-			JLabel listeResultat=new JLabel(results);
-			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
-			boxListe.add(os);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			boxListe.add(listeResultat);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			//boxListe.add(os2);
-			boxListe.add(Box.createVerticalStrut(0));
-			//boxListe.setBorder(BorderFactory.createEtchedBorder());
-			boxListeResultats.add(boxListe);
-			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+		if(liste.size() != 0) {
+			for(int i=0; i<liste.size(); i++) {
+				Box boxListe=Box.createHorizontalBox();
+				String results = liste.get(i);
+				//System.out.println(results.length());
+				JLabel listeResultat=new JLabel(results);
+				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				listeResultat.addMouseListener(new MouseListener() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+					}
 
+					@Override
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						try {
+							Desktop.getDesktop().open(new File("DATA/IMAGE/RGB/"+results));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (NullPointerException e1) {
+							e1.printStackTrace();
+						} catch (IllegalArgumentException e1) {
+							e1.printStackTrace();
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.BLACK);
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.GRAY);
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+
+				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+				boxListe.add(os);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				boxListe.add(listeResultat);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				//boxListe.add(os2);
+				boxListe.add(Box.createVerticalStrut(0));
+				//boxListe.setBorder(BorderFactory.createEtchedBorder());
+				boxListeResultats.add(boxListe);
+				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+			}
 		}
+		
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
@@ -543,25 +641,65 @@ public class PanAdmin extends JPanel {
 		boutonRetour.setBackground(new Color(85,98,133));
 		panTop2.setBackground((new Color(85,98,133)));
 		panCenter.setBackground(new Color(222, 239, 255));
-		for(int i=0; i<liste.size(); i++) {
-			Box boxListe=Box.createHorizontalBox();
-			String results = liste.get(i);
-			//System.out.println(results.length());
-			JLabel listeResultat=new JLabel(results);
-			ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-			listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
-			boxListe.add(os);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			boxListe.add(listeResultat);
-			boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-			//boxListe.add(os2);
-			boxListe.add(Box.createVerticalStrut(0));
-			//boxListe.setBorder(BorderFactory.createEtchedBorder());
-			boxListeResultats.add(boxListe);
-			boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+		if(liste.size() != 0) {
+			for(int i=0; i<liste.size(); i++) {
+				Box boxListe=Box.createHorizontalBox();
+				String results = liste.get(i);
+				//System.out.println(results.length());
+				JLabel listeResultat=new JLabel(results);
+				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				listeResultat.addMouseListener(new MouseListener() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+					}
 
+					@Override
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						try {
+							Desktop.getDesktop().open(new File("DATA/SON/"+results));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} catch (NullPointerException e1) {
+							e1.printStackTrace();
+						} catch (IllegalArgumentException e1) {
+							e1.printStackTrace();
+						}
+					}
+
+					@Override
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.BLACK);
+					}
+
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						listeResultat.setForeground(Color.GRAY);
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent e) {
+					}
+				});
+
+				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+				boxListe.add(os);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				boxListe.add(listeResultat);
+				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+				//boxListe.add(os2);
+				boxListe.add(Box.createVerticalStrut(0));
+				//boxListe.setBorder(BorderFactory.createEtchedBorder());
+				boxListeResultats.add(boxListe);
+				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+
+			}
 		}
+		
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));

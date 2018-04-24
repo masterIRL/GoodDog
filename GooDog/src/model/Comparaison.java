@@ -94,10 +94,10 @@ public class Comparaison {
 		// TODO Auto-generated method stub
 		Map<String,Integer> listMotCle= new HashMap<>();
 
-		listMotCle.put("Damso",11);
-		listMotCle.put("monsterHunter",10);
-		listMotCle.put("OrangeBud",9);
-		listMotCle.put("TheWeeknd",8);
+		listMotCle.put("05-Edition___les_mots_et.xml",11);
+		listMotCle.put("05-Le_Colombien_Juan_Pablo_Montoya.xml",10);
+		listMotCle.put("15-Capturer_et_emprisonner_le_CO.xml",9);
+		listMotCle.put("27-Le_Stade_de_France_s_ouvre.xml",8);
 
 		return listMotCle;
 	}
