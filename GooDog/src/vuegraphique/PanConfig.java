@@ -154,9 +154,6 @@ public class PanConfig extends JPanel {
 				comboBoxSon2.removeAllItems();
 				comboBoxSon.removeAllItems();
 				comboBoxImg.removeAllItems();
-			/*	comboBoxTexte1.removeAllItems();
-				comboBoxTexte2.removeAllItems();
-				comboBoxTexte3.removeAllItems();*/
 				boxConfigImg1.removeAll();
 				boutonConfigTexte.removeAll();
 				boutonConfigImage.removeAll();
