@@ -89,7 +89,6 @@ public class PanConfig extends JPanel {
 		this.panCenter.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
 		this.panTop.setLayout(new BorderLayout());
-		
 		//boxTop.add(Box.createRigidArea(new Dimension(0,20)));
 		
 		texteTop.setFont(new Font("Poppins-Black", Font.BOLD,30));
