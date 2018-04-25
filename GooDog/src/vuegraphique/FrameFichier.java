@@ -248,7 +248,7 @@ public class FrameFichier  extends JFrame{
 		if(typeFichier != null)
 		{
 			if(!admin) {
-				panUser.initBoxMiseEnPageResultat("Rï¿½sulats de votre recherche par fichier");
+				panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panUser.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil)); // remplacer par texteChemin.getText()
@@ -262,7 +262,7 @@ public class FrameFichier  extends JFrame{
 				}
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("Rï¿½sulats de votre recherche par fichier");
+				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
