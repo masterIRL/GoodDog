@@ -63,7 +63,8 @@ public class ControlRecherche {
 				|| mot.contains("*") || mot.contains("[") || mot.contains("]")
 				|| mot.contains("@") || mot.contains("_") || mot.contains("/")
 				|| mot.contains("-") || mot.contains("?") || mot.contains("!")
-				|| mot.contains("�") || mot.contains("#") || mot.contains("=")) 
+				|| mot.contains("�") || mot.contains("#") || mot.contains("=")
+				|| mot.contains(",") || mot.contains("(") || mot.contains(")"))
 		{
 			return false;
 		}

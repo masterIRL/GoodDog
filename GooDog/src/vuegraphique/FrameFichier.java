@@ -50,7 +50,7 @@ public class FrameFichier  extends JFrame{
 	//	private JTextField texteChemin = new JTextField ();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 	private JTextArea texteChemin = new JTextArea();
-	//	private String nom;
+	private String nom;
 	private TypeFichier typeFichier;
 
 	private int choixSeuil = 0;
@@ -168,7 +168,7 @@ public class FrameFichier  extends JFrame{
 				int returnVal = fc.showOpenDialog(parcourir); //lance le gestionaire de fichier en mode ouverture
 				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a �t� s�lectionn�
 					File file = fc.getSelectedFile();
-					//nom = file.getName();
+					nom = file.getName();
 					texteChemin.setText(file.getAbsolutePath()); //r�cup�re le chemin absolu du fichier s�lectionn� et le stock
 				} 
 				else { //Aucun fichier de s�lectionner. Que faire?
@@ -249,13 +249,13 @@ public class FrameFichier  extends JFrame{
 				panUser.initBoxMiseEnPageResultat("R�sulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
-					panUser.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panUser.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil)); // remplacer par texteChemin.getText()
 					break;
 				case IMAGE:
-					panUser.resultatImages(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panUser.resultatImages(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
 					break;
 				case SON:
-					panUser.resultatSons(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panUser.resultatSons(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
 					break;
 				}
 			} 
@@ -263,13 +263,13 @@ public class FrameFichier  extends JFrame{
 				panAdmin.initBoxMiseEnPageResultat("R�sulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
-					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
 					break;
 				case IMAGE:
-					panAdmin.resultatImages(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panAdmin.resultatImages(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
 					break;
 				case SON:
-					panAdmin.resultatSons(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
+					panAdmin.resultatSons(controlRecherche.rechercheFichier(typeFichier, nom, choixSeuil));
 					break;
 				}
 			}

@@ -3,7 +3,6 @@ package vuegraphique;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -48,6 +47,7 @@ public class FrameAudio extends JFrame {
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 
 	private int occurenceAudio = 0;
+	private String nom;
 
 	public FrameAudio(PanUser panUser, ControlRecherche controlRecherche) {
 		super();
@@ -148,7 +148,7 @@ public class FrameAudio extends JFrame {
 				int returnVal = fc.showOpenDialog(buttonParcourir); //lance le gestionaire de fichier en mode ouverture
 				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a ï¿½tï¿½ sï¿½lectionnï¿½
 					File file = fc.getSelectedFile();
-					//String nom = file.getName();
+					nom = file.getName();
 					barreRecherche.setText(file.getAbsolutePath()); //rï¿½cupï¿½re le chemin absolu du fichier sï¿½lectionnï¿½ et le stock
 
 				}
@@ -220,11 +220,11 @@ public class FrameAudio extends JFrame {
 	public void rechercheAudio() {
 		if(!admin) {
 			panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
-			panUser.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
+			panUser.resultatSons(controlRecherche.rechercheAudio(nom,occurenceAudio)); //remplacer nom par barreRecherche.getText()
 		}
 		else {
 			panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par audio");
-			panAdmin.resultatSons(controlRecherche.rechercheAudio(barreRecherche.getText(),occurenceAudio)); 
+			panAdmin.resultatSons(controlRecherche.rechercheAudio(nom,occurenceAudio)); 
 		}
 		dispose();
 	}
