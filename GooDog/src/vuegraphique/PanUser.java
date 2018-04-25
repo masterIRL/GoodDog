@@ -586,68 +586,77 @@ public class PanUser extends JPanel {
 		panCenter.setBackground(new Color(222, 239, 255));
 		//setBackground(new Color(157, 228, 234));
 		if(liste.size() != 0) {
-			for(int i=0; i<liste.size(); i++) {
+			if (!liste.isEmpty()) {
+				for(int i=0; i<liste.size(); i++) {
+					Box boxListe=Box.createHorizontalBox();
+						String results = liste.get(i);
+						//System.out.println(results.length());
+						JLabel listeResultat=new JLabel(results);
+						listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+						listeResultat.addMouseListener(new MouseListener() {
+							@Override
+							public void mouseReleased(MouseEvent e) {
+							}
+		
+							@Override
+							public void mousePressed(MouseEvent e) {
+								// TODO Auto-generated method stub
+								try {
+									Desktop.getDesktop().open(new File("DATA/TEXTE/"+results));
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								} catch (NullPointerException e1) {
+									e1.printStackTrace();
+								} catch (IllegalArgumentException e1) {
+									e1.printStackTrace();
+								}
+							}
+		
+							@Override
+							public void mouseExited(MouseEvent e) {
+								// TODO Auto-generated method stub
+								listeResultat.setForeground(Color.BLACK);
+							}
+		
+							@Override
+							public void mouseEntered(MouseEvent e) {
+								// TODO Auto-generated method stub
+								listeResultat.setForeground(Color.GRAY);
+							}
+		
+							@Override
+							public void mouseClicked(MouseEvent e) {
+							}
+						});
+				
+	
+					ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+					//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
+					listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
+					boxListe.add(os);
+					boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+					boxListe.add(listeResultat);
+					boxListe.add(Box.createRigidArea(new Dimension(20,0)));
+					//boxListe.add(os2);
+					boxListe.add(Box.createVerticalStrut(0));
+					//boxListe.setBorder(BorderFactory.createEtchedBorder());
+					boxListeResultats.add(boxListe);
+					boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
+	
+				}
+			} else {	
+				System.out.println("GHBHJ");
 				Box boxListe=Box.createHorizontalBox();
-				String results = liste.get(i);
-				//System.out.println(results.length());
-				JLabel listeResultat=new JLabel(results);
-				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				listeResultat.addMouseListener(new MouseListener() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-					}
-
-					@Override
-					public void mousePressed(MouseEvent e) {
-						// TODO Auto-generated method stub
-						try {
-							Desktop.getDesktop().open(new File("DATA/TEXTE/"+results));
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						} catch (NullPointerException e1) {
-							e1.printStackTrace();
-						} catch (IllegalArgumentException e1) {
-							e1.printStackTrace();
-						}
-					}
-
-					@Override
-					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
-						listeResultat.setForeground(Color.BLACK);
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
-						listeResultat.setForeground(Color.GRAY);
-					}
-
-					@Override
-					public void mouseClicked(MouseEvent e) {
-					}
-				});
-
-				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
-				boxListe.add(os);
-				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-				boxListe.add(listeResultat);
-				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-				//boxListe.add(os2);
-				boxListe.add(Box.createVerticalStrut(0));
-				//boxListe.setBorder(BorderFactory.createEtchedBorder());
+				boxListe.add(new JLabel("Aucun résultat"));
 				boxListeResultats.add(boxListe);
 				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
-
 			}
-		}
+		
 		
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(150,0)));
-
+		}
 		//boxRetour.add(boutonRetour);
 		//boxMiseEnPageResultat.add(boxRetour);
 	}

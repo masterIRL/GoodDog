@@ -60,7 +60,7 @@ public class PanConfig extends JPanel {
 	
 	Box boxConfigSon1 = Box.createHorizontalBox();
 	Box boxConfigSon2 = Box.createHorizontalBox();
-	Box boxConfigSon9 = Box.createHorizontalBox();
+	Box boxConfigSon9 = Box.createVerticalBox();
 
 
 	Box boxConfigTexte1 = Box.createHorizontalBox();//rajouter stezen
@@ -208,7 +208,7 @@ public class PanConfig extends JPanel {
 	//////debut de ce qui a été de nouveau rajouté///////////////////
 			ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 			configActuelle = fichier.lireInt("DESCRIPTEURS/config_son.txt");
-			/*JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
+			JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
 			texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 			JLabel texteNombreLettreVal0 = new JLabel(" Valeur du nombre d'échantillons par fenêtre :                                "+String.valueOf(configActuelle.get(0)));
 			texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -221,7 +221,7 @@ public class PanConfig extends JPanel {
 			 this.boxConfigSon.add(texteNombreLettreVal0);
 			 boxConfigSon.add(Box.createRigidArea(new Dimension(0,10)));
 			 this.boxConfigSon.add(texteNombreLettreVal1);
-	//////fin de ce qui a été de nouveau rajouté//////////////////*/
+	//////fin de ce qui a été de nouveau rajouté//////////////////
 		JLabel texteEchantillon=new JLabel("Nombre d'échantillons par fenêtre:");
 		texteEchantillon.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon.add(Box.createRigidArea(new Dimension(0,50)));
@@ -341,7 +341,8 @@ public class PanConfig extends JPanel {
 					 boxConfigSon9.add(texteNombreLettreVal01);
 					 boxConfigSon9.add(Box.createRigidArea(new Dimension(0,10)));
 					 boxConfigSon9.add(texteNombreLettreVal11);
-					 
+					 comboBoxSon.setSelectedIndex(0);
+					 comboBoxSon2.setSelectedIndex(0);
 					 boxConfigSon.setVisible(false);
 					 panCenter.add(boxConfigSon9,BorderLayout.SOUTH);
 					 boxConfigSon9.setVisible(true);								 
@@ -388,7 +389,10 @@ public class PanConfig extends JPanel {
 				panTop.add(texteTop,BorderLayout.CENTER);;
 				panTop.add(boutonRetour,BorderLayout.WEST);
 				panTop.remove(boutonRetourSon);
-				
+				panCenter.remove(boxConfigSon9);//stezen
+				/*boxConfigSon.remove(texteSeuilInt);;//stezen
+				boxConfigSon.remove(texteNombreLettreVal0);;//stezen
+				boxConfigSon.remove(texteNombreLettreVal1);;//stezen*/
 				boxConfigSon.setVisible(false);
 				boxMiseEnPageConfig.setVisible(true);
 				repaint(); 
@@ -403,7 +407,7 @@ public class PanConfig extends JPanel {
 	//////debut de ce qui a été de nouveau rajouté///////////////////
 			ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 			configActuelle = fichier.lireInt("DESCRIPTEURS/ImageConfig");
-			/*JLabel texteSeuilInt =new JLabel(" Configuration actuelle:                   ");
+			JLabel texteSeuilInt =new JLabel(" Configuration actuelle:                   ");
 			texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 			JLabel texteNombreLettreVal0 = new JLabel(" Nombre de bits de quantification :                        "+String.valueOf(configActuelle.get(0)));
 			texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -412,7 +416,7 @@ public class PanConfig extends JPanel {
 			 this.boxConfigImage.add(texteSeuilInt );
 			 boxConfigImage.add(Box.createRigidArea(new Dimension(0,10)));
 			 this.boxConfigImage.add(texteNombreLettreVal0);		 
-	//////fin de ce qui a été de nouveau rajouté//////////////////*/
+	//////fin de ce qui a été de nouveau rajouté//////////////////
 		boxConfigImage.add(Box.createRigidArea(new Dimension(0,50)));
 		JLabel texteQuanti=new JLabel("Nombre de bits de quantification:");
 		texteQuanti.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -494,17 +498,18 @@ public class PanConfig extends JPanel {
 					texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 					JLabel texteNombreLettreVal0 = new JLabel("Nouveau Nombre de bits de quantification :                        "+String.valueOf(configActuelle.get(0)));
 					texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-									 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,50)));
-									 boxConfigImage2.add(texteOKCONFIG);
-									 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,20)));
-									// boxConfigImage2.add(texteSeuilInt );
-									 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,10)));
-									 boxConfigImage2.add(texteNombreLettreVal0);
-									
-									 boxConfigImage.setVisible(false);
-									 panCenter.add(boxConfigImage2,BorderLayout.SOUTH);
-									 boxConfigImage2.setVisible(true);								 
-									 repaint();
+					 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,50)));
+					 boxConfigImage2.add(texteOKCONFIG);
+					 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,20)));
+					// boxConfigImage2.add(texteSeuilInt );
+					 boxConfigImage2.add(Box.createRigidArea(new Dimension(0,10)));
+					 boxConfigImage2.add(texteNombreLettreVal0);
+					
+					 boxConfigImage.setVisible(false);
+					 panCenter.add(boxConfigImage2,BorderLayout.SOUTH);
+					 boxConfigImage2.setVisible(true);				
+					 comboBoxImg.setSelectedIndex(0);
+					 repaint();
 					
 					//////fin de ce qui a été de nouveau rajouté///////////////////
 					//repaint();
@@ -548,7 +553,12 @@ public class PanConfig extends JPanel {
 				panTop.add(texteTop,BorderLayout.CENTER);;
 				panTop.add(boutonRetour,BorderLayout.WEST);
 				panTop.remove(boutonRetourImg);
-				
+
+				panCenter.remove( boxConfigImage2);//stezen
+				/*boxConfigSon.remove(texteSeuilInt);;//stezen
+				boxConfigSon.remove(texteNombreLettreVal0);;//stezen
+				boxConfigSon.remove(texteNombreLettreVal1);;//stezen*/
+				 boxConfigImage2.removeAll();
 				boxConfigImage.setVisible(false); 
 				boxMiseEnPageConfig.setVisible(true);
 				repaint(); 
@@ -566,7 +576,7 @@ public class PanConfig extends JPanel {
 	//////debut de ce qui a été de nouveau rajouté///////////////////
 			ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 			configActuelle = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
-			/*JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
+			JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
 			texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 			JLabel texteNombreLettreVal0 = new JLabel(" Valeur du seuil :                                 "+String.valueOf(configActuelle.get(0)));
 			texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
@@ -582,7 +592,8 @@ public class PanConfig extends JPanel {
 			 this.boxConfigTexte.add(texteNombreLettreVal2);
 			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,10)));
 			 this.boxConfigTexte.add(texteNombreLettreVal1);
-	//////fin de ce qui a été de nouveau rajouté//////////////////*/		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
+	//////fin de ce qui a été de nouveau rajouté//////////////////
+		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
 		texteSeuil.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
 		boxConfigTexte1.add(texteSeuil);
@@ -706,6 +717,7 @@ public class PanConfig extends JPanel {
 							}
 							@Override
 							public void mousePressed(MouseEvent e) {
+								if (comboBoxTexte.getSelectedIndex()!=0 && comboBoxTexte3.getSelectedIndex()!=0 && comboBoxTexte2.getSelectedIndex()!=0 ) {
 									boutonConfigTexte.setIcon(configIndexIconClickClick);
 									fichier.effacer("DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(seuil),"DESCRIPTEURS/configTexte.txt");
@@ -723,6 +735,7 @@ public class PanConfig extends JPanel {
 									texteNombreLettreVal2.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 									JLabel texteNombreLettreVal1 = new JLabel(" Nouvelle Valeur du nombre de lettres :                  "+String.valueOf(configActuelle.get(2)));
 									texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+
 									
 									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,60)));
 									 boxConfigTexte21.add(texteOKCONFIG); 
@@ -734,10 +747,13 @@ public class PanConfig extends JPanel {
 									 boxConfigTexte21.add(texteNombreLettreVal2);
 									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,10)));
 									 boxConfigTexte21.add(texteNombreLettreVal1);
-									
+
+
 									 boxConfigTexte.setVisible(false);
 									 panCenter.add(boxConfigTexte21,BorderLayout.SOUTH);
 									 boxConfigTexte21.setVisible(true);
+									 
+							}
 
 							//////fin de ce qui a été de nouveau rajouté///////////////////
 								//	repaint();
@@ -777,6 +793,12 @@ public class PanConfig extends JPanel {
 								panTop.add(texteTop,BorderLayout.CENTER);;
 								panTop.add(boutonRetour,BorderLayout.WEST);
 								panTop.remove(boutonRetourTxt);
+
+								panCenter.remove( boxConfigTexte21);//stezen
+								/*boxConfigSon.remove(texteSeuilInt);;//stezen
+								boxConfigSon.remove(texteNombreLettreVal0);;//stezen
+								boxConfigSon.remove(texteNombreLettreVal1);;//stezen*/
+								boxConfigTexte21.removeAll();
 								boxConfigTexte.setVisible(false);
 								boxMiseEnPageConfig.setVisible(true);
 								repaint(); 

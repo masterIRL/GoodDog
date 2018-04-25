@@ -141,7 +141,9 @@ public class FrameFichier  extends JFrame{
 		texteChemin.setFont(new Font("Poppins-Black", Font.PLAIN,15));
 		boxParcourir.add(texteChemin);
 		boxParcourir.add(Box.createRigidArea(new Dimension(5,0)));
-		
+		texteChemin.setPreferredSize(new Dimension(500,30));
+		texteChemin.setMaximumSize(new Dimension(500,30));
+		texteChemin.setMinimumSize(new Dimension(500,30));
 		///////////////                 Drag and Drop                /////////////////
 		new  FileDrop( texteChemin, new FileDrop.Listener()
 		{   public void  filesDropped( java.io.File[] files )

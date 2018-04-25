@@ -53,7 +53,7 @@ public class FrameReglage extends JFrame {
 		
 		this.setTitle("Réglage");  //Définit un titre
 		this.setBackground(Color.WHITE);
-		this.setSize(800, 500); //Définit sa taille 
+		this.setSize(800, 650); //Définit sa taille 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
