@@ -128,11 +128,14 @@ public class Comparaison {
 			
 		case 48:
 			List<String> imageRouge = new ArrayList<>();
-			imageRouge.add("14.jpg");
-			imageRouge.add("16.jpg");//13,22 bleu
-			imageRouge.add("17.jpg");//14, 16,17,38 rouge
-			imageRouge.add("38.jpg");//32, 35, vert
-			return imageRouge;
+			imageRouge.add("17.jpg");//13,22 bleu
+			imageRouge.add("16.jpg");//14, 16,17,38 rouge
+			imageRouge.add("13.jpg");//32, 35, vert
+			imageRouge.add("27.jpg");
+			imageRouge.add("44.jpg");
+			imageRouge.add("47.jpg");
+			
+			return imageRouge; // image rouge a 10%
 			
 		case 12:
 			List<String> imageVert = new ArrayList<>();
@@ -144,11 +147,15 @@ public class Comparaison {
 			
 		case 3:
 			List<String> imageBleu = new ArrayList<>();
-			imageBleu.add("13.jpg");
-			imageBleu.add("20.jpg");//14, 16,17,38 rouge
-			imageBleu.add("21.jpg");//32, 35, vert
-			imageBleu.add("46.jpg");//13,22 bleu
-			return imageBleu;
+			List<String> imageBleu2 = new ArrayList<>();
+			imageBleu.add("34.jpg");
+			imageBleu.add("35.jpg");
+
+			if(pourcentage > 20) {
+				return imageBleu;
+			}
+			else
+				return imageBleu2;
 			
 		case 0:
 			List<String> imagesNoire = new ArrayList<>();
