@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -43,7 +44,7 @@ public class FrameFichier  extends JFrame{
 	private Box boxRecherche = Box.createHorizontalBox();
 	private Box boxParcourir = Box.createHorizontalBox();
 	private Box boxErreur = Box.createHorizontalBox();
-	private JComboBox<Integer> comboBoxSeuil = new JComboBox<>();
+	private JSlider comboBoxSeuil = new JSlider();
 
 	//TexteArea
 	//	private JTextField texteChemin = new JTextField ();
@@ -66,7 +67,7 @@ public class FrameFichier  extends JFrame{
 		this.controlRecherche = controlRecherche;
 
 		this.setTitle("Recherche Fichier");
-		this.setSize(new Dimension(900,200));
+		this.setSize(new Dimension(1200,200));
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -84,7 +85,7 @@ public class FrameFichier  extends JFrame{
 		this.admin = true;
 
 		this.setTitle("Recherche Fichier");
-		this.setSize(new Dimension(900,200));
+		this.setSize(new Dimension(1200,200));
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -96,7 +97,7 @@ public class FrameFichier  extends JFrame{
 	}
 
 	private void initialisation() {
-		this.panelGeneral.setBackground(new Color(102, 51, 81));
+		this.panelGeneral.setBackground(new Color(128,102,83));
 
 		////////////////////////////////////////////////////////////////////////////////
 		///////////////              Box de Recherche                 //////////////////
@@ -107,13 +108,25 @@ public class FrameFichier  extends JFrame{
 		texteSeuil.setForeground(Color.WHITE);
 		boxParcourir.add(texteSeuil);
 		boxParcourir.add(Box.createRigidArea(new Dimension(5,0)));
-		comboBoxSeuil.setPreferredSize(new Dimension(50,30));
-		for(int i=0;i<101;i++){
-			listSeuil.add(i);
-		}
-		for (Integer integer : listSeuil) {
-			comboBoxSeuil.addItem(integer);
-		}
+		
+		comboBoxSeuil.setMaximumSize(new Dimension(300,40));
+		comboBoxSeuil.setMinimumSize(new Dimension(300,40));
+		comboBoxSeuil.setPreferredSize(new Dimension(300,40));
+		comboBoxSeuil.setBackground(new Color(128,102,83));
+		comboBoxSeuil.setForeground(Color.WHITE);
+		comboBoxSeuil.setMaximum(100);
+
+		comboBoxSeuil.setMinimum(0);
+
+		comboBoxSeuil.setValue(33);
+
+		comboBoxSeuil.setPaintTicks(true);
+
+		comboBoxSeuil.setPaintLabels(true);
+
+		comboBoxSeuil.setMinorTickSpacing(10);
+
+		comboBoxSeuil.setMajorTickSpacing(10);
 		boxParcourir.add(comboBoxSeuil);
 		boxParcourir.add(Box.createRigidArea(new Dimension(30,0)));
 		
@@ -153,12 +166,12 @@ public class FrameFichier  extends JFrame{
 				FileFilter filtreFichier = new FileNameExtensionFilter("Fichier lisible", "jpg", "xml", "wav"); //creation d'un filtre pour faciliter
 				fc.addChoosableFileFilter(filtreFichier); // ajout du filtre
 				int returnVal = fc.showOpenDialog(parcourir); //lance le gestionaire de fichier en mode ouverture
-				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a été sélectionné
+				if (returnVal == JFileChooser.APPROVE_OPTION) { //un fichier a ï¿½tï¿½ sï¿½lectionnï¿½
 					File file = fc.getSelectedFile();
 					//nom = file.getName();
-					texteChemin.setText(file.getAbsolutePath()); //récupère le chemin absolu du fichier sélectionné et le stock
+					texteChemin.setText(file.getAbsolutePath()); //rï¿½cupï¿½re le chemin absolu du fichier sï¿½lectionnï¿½ et le stock
 				} 
-				else { //Aucun fichier de sélectionner. Que faire?
+				else { //Aucun fichier de sï¿½lectionner. Que faire?
 				}
 			}
 		});
@@ -178,9 +191,9 @@ public class FrameFichier  extends JFrame{
 		lancerRecherche.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//récupère le type de fichier
+				//rï¿½cupï¿½re le type de fichier
 				if(texteChemin.getText().length() >= 3) {
-					String extension = texteChemin.getText().substring(texteChemin.getText().length()-3); //récupère les 3 dernieres lettre
+					String extension = texteChemin.getText().substring(texteChemin.getText().length()-3); //rï¿½cupï¿½re les 3 dernieres lettre
 					if(extension.equals("xml")) {
 						typeFichier = TypeFichier.TEXTE;
 					}
@@ -195,13 +208,13 @@ public class FrameFichier  extends JFrame{
 					}
 					System.out.println(extension + " , " + typeFichier);
 					//Recupere la valeur du seuil dans sa box
-					choixSeuil = comboBoxSeuil.getSelectedIndex();
-					System.out.println(choixSeuil); // vérifier la valeur
+					choixSeuil = comboBoxSeuil.getValue();
+					System.out.println(choixSeuil); // vï¿½rifier la valeur
 
 					rechercheFichier();//lance la recherche
 				}
 				else {
-					System.out.println("Choisissez un fichier"); //Le faire apparaitre à l'écran
+					System.out.println("Choisissez un fichier"); //Le faire apparaitre ï¿½ l'ï¿½cran
 					boxErreur.setVisible(true);
 				}
 			}
@@ -233,7 +246,7 @@ public class FrameFichier  extends JFrame{
 		if(typeFichier != null)
 		{
 			if(!admin) {
-				panUser.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
+				panUser.initBoxMiseEnPageResultat("Rï¿½sulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panUser.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
@@ -247,7 +260,7 @@ public class FrameFichier  extends JFrame{
 				}
 			} 
 			else {
-				panAdmin.initBoxMiseEnPageResultat("Résulats de votre recherche par fichier");
+				panAdmin.initBoxMiseEnPageResultat("Rï¿½sulats de votre recherche par fichier");
 				switch(typeFichier) {
 				case TEXTE:
 					panAdmin.resultatsTextes(controlRecherche.rechercheFichier(typeFichier, texteChemin.getText(), choixSeuil));
@@ -263,7 +276,7 @@ public class FrameFichier  extends JFrame{
 			dispose(); //ferme la fenetre
 		}
 		else {
-			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'écran grace a un label etc
+			System.out.println("Choisissez un fichier valide"); // Le faire apparaitre a l'ï¿½cran grace a un label etc
 			boxErreur.setVisible(true);
 		}
 
