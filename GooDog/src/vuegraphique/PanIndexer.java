@@ -9,7 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -29,24 +35,22 @@ class PanIndexer extends JPanel {
 
 	private JPanel panTop=new JPanel();
 	private JPanel panCenter = new JPanel();
+	Color couleur=(new Color(104,92,82));
+	Color couleur2=(new Color(177,143,117));
 
-	private JButton buttonIndexImage=new JButton();
-	private JButton buttonIndexTexte=new JButton();
-	private JButton buttonIndexSon=new JButton();
+
 	private JButton buttonRetour=new JButton();
 
+	private JLabel boutonIndexTexte = new JLabel();
+	private JLabel boutonIndexImage= new JLabel();
+	private JLabel boutonIndexSon= new JLabel();
+	
 	private Box boxMiseEnPageIndexation=Box.createVerticalBox();
 	private Box boxChoixIndexImage=Box.createHorizontalBox();
 	private Box boxChoixIndexTexte=Box.createHorizontalBox();
 	private Box boxChoixIndexSon=Box.createHorizontalBox();
 
-	private JCheckBox checkboxImage=new JCheckBox();
-	private JCheckBox checkboxTexte=new JCheckBox();
-	private JCheckBox checkboxSon=new JCheckBox();
 
-	private JProgressBar progressbarImage=new JProgressBar();
-	private JProgressBar progressbarTexte=new JProgressBar();
-	private JProgressBar progressbarSon=new JProgressBar();
 
 	private Timer timerImage;
 	private Timer timerTexte;
@@ -60,7 +64,19 @@ class PanIndexer extends JPanel {
 	}
 
 	public void initialisation(){
+		JCheckBox checkboxImage=new JCheckBox();
+		JCheckBox checkboxTexte=new JCheckBox();
+		JCheckBox checkboxSon=new JCheckBox();
 
+		JProgressBar progressbarImage=new JProgressBar();
+		progressbarImage.setForeground(couleur2);
+		progressbarImage.setBorderPainted(false);
+		JProgressBar progressbarTexte=new JProgressBar();
+		progressbarTexte.setForeground(couleur2);
+		progressbarTexte.setBorderPainted(false);
+		JProgressBar progressbarSon=new JProgressBar();
+		progressbarSon.setForeground(couleur2);
+		progressbarSon.setBorderPainted(false);
 		this.setLayout(new BorderLayout());
 
 		//////////////////////////////////////////////////////////////////////
@@ -70,24 +86,32 @@ class PanIndexer extends JPanel {
 		///////////////                                   ////////////////////
 		//////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////
-		panTop.setBackground(Color.WHITE);
+		panTop.setBackground(couleur);
 		panTop.setLayout(new BorderLayout());
 
 		//////////////////////////////////////////////////////////////////////
 		////////////                bouton Retour          ///////////////////
 		//////////////////////////////////////////////////////////////////////
-		buttonRetour.setBackground(Color.WHITE);
-		buttonRetour.setForeground(new Color(59, 89, 182));
+		
+		buttonRetour.setBackground(couleur);
+		buttonRetour.setForeground(Color.WHITE); //new Color(59, 89, 182)
 		buttonRetour.setFocusPainted(false);
 		buttonRetour.setFont(new Font("Tahoma", Font.BOLD, 12));
 		buttonRetour.setText("Retour");
 		buttonRetour.setBorderPainted(false);
+		buttonRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		buttonRetour.setPreferredSize(new Dimension(80,80));
+		buttonRetour.setMaximumSize(new Dimension(80,80));
+		buttonRetour.setMinimumSize(new Dimension(80,80));
 		buttonRetour.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		////////////        listener du bouton retour           //////////////
 		buttonRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boxMiseEnPageIndexation.removeAll();
+				boxChoixIndexTexte.removeAll();
+				boxChoixIndexImage.removeAll();
+				boxChoixIndexSon.removeAll();
 				removeAll();
 				frame.showReglage();
 			}
@@ -97,8 +121,9 @@ class PanIndexer extends JPanel {
 		//////////////////////////////////////////////////////////////////////
 		////////////                Texte titre            ///////////////////
 		//////////////////////////////////////////////////////////////////////
-		JLabel texteResultat=new JLabel("Indexation:");
+		JLabel texteResultat=new JLabel("INDEXATION          ");
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
+		texteResultat.setForeground(Color.WHITE);
 		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 		panTop.add(texteResultat,BorderLayout.CENTER);
 
@@ -117,26 +142,14 @@ class PanIndexer extends JPanel {
 		////////////          bouton indexation Image          ///////////////
 		//////////////////////////////////////////////////////////////////////
 
-		buttonIndexImage.setBackground(Color.WHITE);
-		buttonIndexImage.setForeground(new Color(59, 89, 182));
-		buttonIndexImage.setFocusPainted(false);
-		buttonIndexImage.setFont(new Font("Tahoma", Font.BOLD, 12));
-		buttonIndexImage.setText("Indexation Image");
-		buttonIndexImage.setBorderPainted(false);
-
-		buttonIndexImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
+		
 		checkboxImage.setVisible(false);
 		checkboxImage.setBackground(Color.WHITE);
 		checkboxImage.setEnabled(false);
 		checkboxImage.setBorderPainted(false);
 		progressbarImage.setVisible(false);
 		progressbarImage.setStringPainted(true);
-		progressbarImage.setBounds(0, 0, 40, 20);
-
-
-		////////////        listener du bouton index Image           /////////////
-		///////////             click sur le bouton                  /////////////
+		
 		ActionListener updateProBarImage = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				int val = progressbarImage.getValue();
@@ -151,74 +164,69 @@ class PanIndexer extends JPanel {
 			}
 		};
 		timerImage = new Timer(20, updateProBarImage);
-		buttonIndexImage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		BufferedImage configIndex=null;
+		try {
+			configIndex = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigImage.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndexIcon=new ImageIcon(configIndex);
+		BufferedImage configIndexClick=null;
+		try {
+			configIndexClick = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigIndexImage.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
+		boutonIndexImage.setIcon(configIndexIcon);
+		boutonIndexImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		boutonIndexImage.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
 				if(progressbarImage.getValue()<100 && progressbarImage.getValue() >=0) {
-					indexer(TypeFichier.IMAGE); //Lance l'indexation image
+					indexer(TypeFichier.IMAGE); //indexation du Texte
 					progressbarImage.setVisible(true);
 					timerImage.start();   
 				}
 			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	boutonIndexImage.setIcon(configIndexIconClick);
+            }
 
-		});
-
-		////////////        listener du bouton index Image           /////////////
-		///////////         passage de la souris sur le bouton       /////////////  
-		buttonIndexImage.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexImage.setForeground(new Color(59, 89, 182));
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexImage.setForeground(Color.GRAY);
-			}
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	boutonIndexImage.setIcon(configIndexIcon);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
 			}
 		});
-
-		boxChoixIndexImage.add(buttonIndexImage);
+		boxChoixIndexImage.add(boutonIndexImage);
 		boxChoixIndexImage.add(checkboxImage);
 		boxChoixIndexImage.add(progressbarImage);	
 		boxMiseEnPageIndexation.add(boxChoixIndexImage);
 		boxMiseEnPageIndexation.add(Box.createRigidArea(new Dimension(0,30)));
+		
+		
 
 		
 		//////////////////////////////////////////////////////////////////////
 		////////////          bouton indexation Texte          ///////////////
 		//////////////////////////////////////////////////////////////////////
 		
-		buttonIndexTexte.setBackground(Color.WHITE);
-		buttonIndexTexte.setForeground(new Color(59, 89, 182));
-		buttonIndexTexte.setFocusPainted(false);
-		buttonIndexTexte.setFont(new Font("Tahoma", Font.BOLD, 12));
-		buttonIndexTexte.setText("Indexation Texte");
-		buttonIndexTexte.setBorderPainted(false);
-
-		buttonIndexTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
+		
 		checkboxTexte.setVisible(false);
 		checkboxTexte.setBackground(Color.WHITE);
 		checkboxTexte.setEnabled(false);
 		checkboxTexte.setBorderPainted(false);
 		progressbarTexte.setVisible(false);
 		progressbarTexte.setStringPainted(true);
-
-		////////////        listener du bouton index Texte           //////////////
-		///////////             click sur le bouton                  /////////////
+		
 		ActionListener updateProBarTexte = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				int val = progressbarTexte.getValue();
@@ -234,74 +242,68 @@ class PanIndexer extends JPanel {
 		};
 		timerTexte = new Timer(20, updateProBarTexte);
 		
-		buttonIndexTexte.addActionListener(new ActionListener() { //click sur le bouton
-			public void actionPerformed(ActionEvent e) {
+		BufferedImage configIndex1=null;
+		try {
+			configIndex1 = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigTexte.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndex1Icon=new ImageIcon(configIndex1);
+		BufferedImage configIndex1Click=null;
+		try {
+			configIndex1Click = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigIndexTexte.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndex1IconClick=new ImageIcon(configIndex1Click);
+		boutonIndexTexte.setIcon(configIndex1Icon);
+		boutonIndexTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		boutonIndexTexte.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
 				if(progressbarTexte.getValue()<100 && progressbarTexte.getValue() >=0) {
 					indexer(TypeFichier.TEXTE); //indexation du Texte
 					progressbarTexte.setVisible(true);
 					timerTexte.start();   
 				}
 			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	boutonIndexTexte.setIcon(configIndex1IconClick);
+            }
 
-		});
-
-		////////////        listener du bouton index Texte           //////////////
-		///////////         passage de la souris sur le bouton        ///////////// 
-		buttonIndexTexte.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexTexte.setForeground(new Color(59, 89, 182));
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexTexte.setForeground(Color.GRAY);
-			}
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	boutonIndexTexte.setIcon(configIndex1Icon);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
 			}
 		});
-
-		boxChoixIndexTexte.add(buttonIndexTexte);
+		boxChoixIndexTexte.add(boutonIndexTexte);
 		boxChoixIndexTexte.add(checkboxTexte);
 		boxChoixIndexTexte.add(progressbarTexte);	
 		boxMiseEnPageIndexation.add(boxChoixIndexTexte);
 		boxMiseEnPageIndexation.add(Box.createRigidArea(new Dimension(0,30)));
-
+		
+		
+		
+		
+		
 		
 		//////////////////////////////////////////////////////////////////////
 		////////////          bouton indexation Son          /////////////////
 		//////////////////////////////////////////////////////////////////////
-		
-		buttonIndexSon.setBackground(Color.WHITE);
-		buttonIndexSon.setForeground(new Color(59, 89, 182));
-		buttonIndexSon.setFocusPainted(false);
-		buttonIndexSon.setFont(new Font("Tahoma", Font.BOLD, 12));
-		buttonIndexSon.setText("Indexation Son");
-		buttonIndexSon.setBorderPainted(false);
-
-		buttonIndexSon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
 		checkboxSon.setVisible(false);
 		checkboxSon.setBackground(Color.WHITE);
 		checkboxSon.setEnabled(false);
 		checkboxSon.setBorderPainted(false);
 		progressbarSon.setVisible(false);
 		progressbarSon.setStringPainted(true);
-
-		////////////          listener du bouton index Son           //////////////
-		///////////             click sur le bouton                  /////////////
+		
 		ActionListener updateProBarSon = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				int val = progressbarSon.getValue();
@@ -317,50 +319,53 @@ class PanIndexer extends JPanel {
 		};
 		timerSon = new Timer(20, updateProBarSon);
 		
-		buttonIndexSon.addActionListener(new ActionListener() { //click sur le bouton
-			public void actionPerformed(ActionEvent e) {
+		BufferedImage configIndex2=null;
+		try {
+			configIndex2 = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigSon.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndex2Icon=new ImageIcon(configIndex2);
+		BufferedImage configIndex2Click=null;
+		try {
+			configIndex2Click = ImageIO.read(new File("RESSOURCE/IMAGE/ConfigIndexSon.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon configIndex2IconClick=new ImageIcon(configIndex2Click);
+		boutonIndexSon.setIcon(configIndex2Icon);
+		boutonIndexSon.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		boutonIndexSon.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
 				if(progressbarSon.getValue()<100 && progressbarSon.getValue() >=0) {
-					indexer(TypeFichier.SON); //Indexation du son
+					indexer(TypeFichier.SON); //indexation du Son
 					progressbarSon.setVisible(true);
 					timerSon.start();   
 				}
 			}
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	boutonIndexSon.setIcon(configIndex2IconClick);
+            }
 
-		});
-
-		////////////          listener du bouton index Son            /////////////
-		///////////         passage de la souris sur le bouton        ///////////// 
-		buttonIndexSon.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexSon.setForeground(new Color(59, 89, 182));
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				buttonIndexSon.setForeground(Color.GRAY);
-			}
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	boutonIndexSon.setIcon(configIndex2Icon);
+            }
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
 			}
 		});
-		
-		boxChoixIndexSon.add(buttonIndexSon);
+		boxChoixIndexSon.add(boutonIndexSon);
 		boxChoixIndexSon.add(checkboxSon);
 		boxChoixIndexSon.add(progressbarSon);	
 		boxMiseEnPageIndexation.add(boxChoixIndexSon);
 		boxMiseEnPageIndexation.add(Box.createRigidArea(new Dimension(0,30)));
+		
 
 		////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////
