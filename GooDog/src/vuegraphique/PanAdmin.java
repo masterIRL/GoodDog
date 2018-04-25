@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -284,7 +286,46 @@ public class PanAdmin extends JPanel {
 		validerMotCle.setMaximumSize(new Dimension(130,40));
 		validerMotCle.setMinimumSize(new Dimension(130,40));
 		
+		textAreaMotCle.addKeyListener(new KeyListener(){
+		    @Override
+		    public void keyPressed(KeyEvent e){
+		        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+		        	e.consume();
+					textAreaMotCle.setFont(policeEntreeU);
+					String entreeMotCle = (textAreaMotCle.getText());
+	
+					if (controlRecherche.verifierMotCle(entreeMotCle)) {
+	
+						initBoxMiseEnPageResultat("Résulats de votre recherche par mots-clés");
+	
+						resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, (int) spinnerOccurrences.getValue()));
+						System.out.println("Recherche lancée");				
+						textAreaMotCle.setText("");
+						boxModeNormal.setVisible(true);
+						boxAvancee.setVisible(false);
+						modeAvance=false;
+						spinnerOccurrences.setValue(1);
+						boxModeAvance.setVisible(false);
+						avancee.setText("Avancée");
+					} 
+					else {
+						System.out.println("Non valide");
+						boxErreur.setVisible(true);
+						//ajouter une interraction pour le signaler !!
+					}
+		        }		        
+		    }
 
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub	
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+			}
+		});
 		
 		validerMotCle.addActionListener(new ActionListener() {
 			@Override
@@ -296,7 +337,7 @@ public class PanAdmin extends JPanel {
 
 					initBoxMiseEnPageResultat("Résulats de votre recherche par mots-clés");
 
-					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, 1));
+					resultatsTextes(controlRecherche.rechercheMotCle(entreeMotCle, (int) spinnerOccurrences.getValue()));
 					System.out.println("Recherche lancée");				
 					textAreaMotCle.setText("");
 					boxModeNormal.setVisible(true);

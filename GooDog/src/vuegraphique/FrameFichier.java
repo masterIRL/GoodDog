@@ -18,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -47,7 +48,7 @@ public class FrameFichier  extends JFrame{
 	//TexteArea
 	//	private JTextField texteChemin = new JTextField ();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
-	private TextArea texteChemin = new TextArea();
+	private JTextArea texteChemin = new JTextArea();
 	//	private String nom;
 	private TypeFichier typeFichier;
 

@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -37,7 +38,7 @@ public class FrameAudio extends JFrame {
 	private Box boxRecherche=Box.createHorizontalBox();
 	private Box boxErreur = Box.createHorizontalBox();
 
-	private TextArea barreRecherche = new TextArea();
+	private JTextArea barreRecherche = new JTextArea();
 
 	private JSpinner spinnerOccurrences=new JSpinner(new SpinnerNumberModel(1, 1, 9, 1));
 
