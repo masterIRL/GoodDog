@@ -40,7 +40,6 @@ public class FrameReglage extends JFrame {
 	private CardLayout cartes = new CardLayout();
 	
 	Box boxMiseEnPageReglage = Box.createVerticalBox();
-	//Box boxTop = Box.createVerticalBox();
 	JButton boutonConfig = new JButton();
 	JButton boutonIndexation = new JButton();
 	JButton boutonMode = new JButton();
@@ -70,19 +69,6 @@ public class FrameReglage extends JFrame {
 		this.getContentPane().add(panContents);
 		this.setVisible(true);
 		
-		
-
-		
-		
-
-		/*this.panTop.add(labelConnect,BorderLayout.WEST); // ajout de l'image au panel haut
-		this.add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur 
-
-		initBoxMiseEnPageMotCle();
-
-		this.panCenter.add(boxMiseEnPageMotCle);
-		boxMiseEnPageMotCle.setVisible(true);
-		this.add(panCenter,BorderLayout.CENTER); */
 
 	}
 	
@@ -92,16 +78,13 @@ public class FrameReglage extends JFrame {
 		this.panCenter.setBackground(Color.WHITE);
 		this.panReglage.setLayout(new BorderLayout());
 		this.panTop.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
-		/*boutonRetour.setPreferredSize(new Dimension(80,80));
-		boutonRetour.setMaximumSize(new Dimension(80,80));
-		boutonRetour.setMinimumSize(new Dimension(80,80));*/
+
 		
 		JLabel texteResultat=new JLabel("RÉGLAGES DE GOODOG"); //TROUVER UNE SOLUTION POUR AFFICHER LE TEXTE AU CENTRE
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteResultat.setForeground(Color.WHITE);
 		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 		panTop.add(Box.createRigidArea(new Dimension(0,80)),BorderLayout.WEST);
-		//panTop.add(Box.createRigidArea(new Dimension(80,80)),BorderLayout.EAST);
 		panTop.add(texteResultat,BorderLayout.CENTER);
 		
 		

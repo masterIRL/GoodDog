@@ -32,71 +32,77 @@ public class PanConfig extends JPanel {
 	private static final long serialVersionUID = 631353338464027426L;
 	private FrameReglage frame;
 	
-	Box boxMiseEnPageConfig = Box.createVerticalBox();
 	private JPanel panTop = new JPanel();
 	private JPanel panCenter = new JPanel();
-	Box boxConfigTexte= Box.createVerticalBox();
-	Box boxConfigImage= Box.createVerticalBox();
-	Box boxConfigImageFinal= Box.createVerticalBox();
-	Box boxConfigTexteFinal= Box.createVerticalBox();
-	Box boxConfigSonFinal= Box.createVerticalBox();
-	Box boxConfigSon= Box.createVerticalBox();
 	
+	private Box boxMiseEnPageConfig = Box.createVerticalBox();
 	
+	private Box boxConfigImg1 = Box.createHorizontalBox();
+	private Box boxConfigImage2= Box.createVerticalBox();
+	private Box boxConfigImage= Box.createVerticalBox();
+	private Box boxConfigImageFinal= Box.createVerticalBox();
+	
+	private Box boxConfigSonFinal= Box.createVerticalBox();
+	private Box boxConfigSon= Box.createVerticalBox();
+	private Box boxConfigSon1 = Box.createHorizontalBox();
+	private Box boxConfigSon2 = Box.createHorizontalBox();
+	private Box boxConfigSonConfigAchieved = Box.createVerticalBox();
+
+	private Box boxConfigActuelleSon =  Box.createVerticalBox();
+	private Box boxConfigActuelleImage =  Box.createVerticalBox();
+	private Box boxConfigActuelleTexte =  Box.createVerticalBox();
+
+	private Box boxConfigTexte= Box.createVerticalBox();
+	private Box boxConfigTexte1 = Box.createHorizontalBox();
+	private Box boxConfigTexte2 = Box.createHorizontalBox();
+	private Box boxConfigTexte3 = Box.createHorizontalBox();
+	private Box boxConfigTexteFinal= Box.createVerticalBox();
+	private Box boxConfigTexteConfigAchieved= Box.createVerticalBox();
+
+
+
 	private int i = 1;
 	private int k = 1;
-	JComboBox <String> comboBoxSon= new JComboBox<>();
-	JComboBox <String> comboBoxSon2= new JComboBox<>();
-	JComboBox <String> comboBoxImg= new JComboBox<>();
-	JComboBox <String> comboBoxTexte= new JComboBox<>();
-	JComboBox <String> comboBoxTexte2= new JComboBox<>();
-	JComboBox <String> comboBoxTexte3= new JComboBox<>();
-	Color couleur=(new Color(104,92,82));
 	
-	JLabel boutonConfigTexte = new JLabel();
-	JLabel boutonConfigImage = new JLabel();
-	JLabel boutonConfigSon = new JLabel();
+	//Combobox des configs
+	private JComboBox <String> comboBoxSon= new JComboBox<>();
+	private JComboBox <String> comboBoxSon2= new JComboBox<>();
+	private JComboBox <String> comboBoxImg= new JComboBox<>();
+	private JComboBox <String> comboBoxTexte= new JComboBox<>();
+	private JComboBox <String> comboBoxTexte2= new JComboBox<>();
+	private JComboBox <String> comboBoxTexte3= new JComboBox<>();
+	
+	private Color couleur=(new Color(104,92,82));
+	
+	private JLabel boutonConfigTexte = new JLabel();
+	private JLabel boutonConfigImage = new JLabel();
+	private JLabel boutonConfigSon = new JLabel();
 	
 	int puissance;
 	int intervalle;
 	int quantification;
-	String seuil; 
-	String nombreMot; 
-	String nombreLettre; 
+	private String seuil; 
+	private String nombreMot; 
+	private String nombreLettre; 
 	
-	Box boxConfigSon1 = Box.createHorizontalBox();
-	Box boxConfigSon2 = Box.createHorizontalBox();
-	Box boxConfigSonConfigAchieved = Box.createVerticalBox();
 
-	Box boxConfigActuelleSon =  Box.createVerticalBox();
-	Box boxConfigActuelleImage =  Box.createVerticalBox();
-	Box boxConfigActuelleTexte =  Box.createVerticalBox();
-
-
-	Box boxConfigTexte1 = Box.createHorizontalBox();
-	Box boxConfigTexte2 = Box.createHorizontalBox();
-	Box boxConfigTexte3 = Box.createHorizontalBox();
-
-	Box boxConfigTexteConfigAchieved= Box.createVerticalBox();
-	Box boxConfigImage2= Box.createVerticalBox();
-
+	private Fichier fichier=new Fichier();
 	
-	Box boxConfigImg1 = Box.createHorizontalBox();
-	Fichier fichier=new Fichier();
+	private JButton boutonRetour = new JButton();
+	private JButton boutonRetourSon = new JButton();
+	private JButton boutonRetourImg = new JButton();
+	private JButton boutonRetourTxt = new JButton();
 	
-	JButton boutonRetour = new JButton();
-	JButton boutonRetourSon = new JButton();
-	JButton boutonRetourImg = new JButton();
-	JButton boutonRetourTxt = new JButton();
-	ArrayList<Integer> configActuelleSon = new ArrayList<Integer>();
-	ArrayList<Integer> configActuelleImage = new ArrayList<Integer>();
-	ArrayList<Integer> configActuelleTexte = new ArrayList<Integer>();
+	private ArrayList<Integer> configActuelleSon = new ArrayList<Integer>();
+	private ArrayList<Integer> configActuelleImage = new ArrayList<Integer>();
+	private ArrayList<Integer> configActuelleTexte = new ArrayList<Integer>();
 
 
-	JLabel texteTop=new JLabel("CONFIGURATION DE L'INDEXATION         "); 
-	JLabel texteTopImg=new JLabel("CONFIGURATION DE L'INDEXATION IMAGE      ");
-	JLabel texteTopSon=new JLabel("CONFIGURATION DE L'INDEXATION SON      "); 
-	JLabel texteTopTexte=new JLabel("CONFIGURATION DE L'INDEXATION TEXTE      "); 
+	private JLabel texteTop=new JLabel("CONFIGURATION DE L'INDEXATION         "); 
+	private JLabel texteTopImg=new JLabel("CONFIGURATION DE L'INDEXATION IMAGE      ");
+	private JLabel texteTopSon=new JLabel("CONFIGURATION DE L'INDEXATION SON      "); 
+	private JLabel texteTopTexte=new JLabel("CONFIGURATION DE L'INDEXATION TEXTE      "); 
+	
 	public PanConfig (FrameReglage frame) {
 		super();
 		this.frame = frame;
@@ -119,21 +125,14 @@ public class PanConfig extends JPanel {
 		texteTopImg.setForeground(Color.WHITE);
 		texteTopImg.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 		
-
-		
-		
 		texteTopSon.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTopSon.setForeground(Color.WHITE);
 		texteTopSon.setHorizontalAlignment((int)CENTER_ALIGNMENT);
-
-
-		
 
 		texteTopTexte.setFont(new Font("Poppins-Black", Font.BOLD,30));
 		texteTopTexte.setForeground(Color.WHITE);
 		texteTopTexte.setHorizontalAlignment((int)CENTER_ALIGNMENT);
 
-		
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,70)));
 		
 		initBoutonConfigTexte();
@@ -146,7 +145,7 @@ public class PanConfig extends JPanel {
 		boxMiseEnPageConfig.add(boutonConfigSon);
 		boxMiseEnPageConfig.add(Box.createRigidArea(new Dimension(0,25)));
 		
-		
+		//BOUTON RETOUR PRINCIPAL
 		boutonRetour.setBackground(couleur);
 		boutonRetour.setForeground(Color.WHITE); 
 		boutonRetour.setFocusPainted(false);
@@ -194,7 +193,6 @@ public class PanConfig extends JPanel {
 			}
 		});
 		panTop.add(boutonRetour,BorderLayout.WEST);
-
 		initBoxConfigTexte();
 		initBoxConfigImage();
 		initBoxConfigSon();
@@ -220,9 +218,7 @@ public class PanConfig extends JPanel {
 		boxConfigSon.add(Box.createRigidArea(new Dimension(0,50)));
 		boxConfigSon1.add(texteEchantillon);
 		boxConfigSon1.add(Box.createRigidArea(new Dimension(10,0)));
-		
 
-		 
 		 comboBoxSon.addItem("");
 		 comboBoxSon.addItem("256");
 		 comboBoxSon.addItem("512");
@@ -231,8 +227,6 @@ public class PanConfig extends JPanel {
 		 comboBoxSon.addItem("4096");
 		 comboBoxSon.addItem("8192");
 		comboBoxSon.setPreferredSize(new Dimension(90,30));
-
-		 
 		 comboBoxSon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -248,9 +242,7 @@ public class PanConfig extends JPanel {
 		texteIntervalle.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigSon2.add(texteIntervalle);
 		boxConfigSon2.add(Box.createRigidArea(new Dimension(10,0)));
-		
-		
-		 
+
 		comboBoxSon2.addItem("");
 		comboBoxSon2.addItem("10");
 		comboBoxSon2.addItem("20");
@@ -389,8 +381,7 @@ public class PanConfig extends JPanel {
 		});
 	}
 
-	
-	
+
 
 	private void initBoxConfigImage() {
 

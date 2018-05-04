@@ -47,14 +47,12 @@ public class FrameFichier  extends JFrame{
 	private JSlider comboBoxSeuil = new JSlider();
 
 	//TexteArea
-	//	private JTextField texteChemin = new JTextField ();
 	private JFileChooser fc =new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory()); //cree un file chooser au home
 	private JTextArea texteChemin = new JTextArea();
 	private String nom;
 	private TypeFichier typeFichier;
 
 	private int choixSeuil = 0;
-	private List<Integer> listSeuil = new ArrayList<>();
 
 	//Jbouton
 	private JButton parcourir = new JButton();
@@ -71,7 +69,6 @@ public class FrameFichier  extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		//	        this.setPreferredSize(new Dimension(920,700));
 
 		this.initialisation();
 		this.getContentPane().add(panelGeneral);
@@ -89,7 +86,6 @@ public class FrameFichier  extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		//	        this.setPreferredSize(new Dimension(920,700));
 
 		this.initialisation();
 		this.getContentPane().add(panelGeneral);

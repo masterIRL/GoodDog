@@ -27,10 +27,8 @@ public class FramePrincipal extends JFrame {
 	private JPanel panContents = new JPanel();
 	private PanUser panUser;
 	private PanAdmin panAdmin;
-//	private ImageJLabel backgroundAcceuil = new ImageJLabel("RESSOURCE/IMAGE/acceuil_background.jpg"); //modifié
 	private CardLayout cartes = new CardLayout();
 
-//	private BufferedImage backgroundAcceuil1;
 	
 	@SuppressWarnings("static-access")
 	public FramePrincipal(int l1, int l2) {
@@ -48,7 +46,6 @@ public class FramePrincipal extends JFrame {
 		this.panContents.add(this.panAdmin,"ADMIN");
 		
 		this.pack();
-		//this.setDefaultLookAndFeelDecorated(true);
 		this.setExtendedState(this.MAXIMIZED_BOTH);
 		
 		this.initialisationAcceuil();
@@ -56,29 +53,9 @@ public class FramePrincipal extends JFrame {
 
 		this.setVisible(true);
 	}
-	/*
-		public void paint (Graphics g)
-		{
-			super.paint(g);
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.drawImage(backgroundAcceuil1, 0,0, null);
-		}*/
 
 	
 	private void initialisationAcceuil(){
-		 // this.panAccueil.setBackground();
-		  //this.panAccueil(backgroundAcceuil.getImage());
-			
-	/*	this.setLayout(new BorderLayout());
-		this.setContentPane(backgroundAcceuil);
-		this.setLayout(new FlowLayout());*/
-		/*
-		try {
-			backgroundAcceuil1 = ImageIO.read(new File("RESSOURCE/IMAGE/acceuil_background.jpg"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}		
-*/
 		
 		  ImageJLabel labelAcceuil = new ImageJLabel("RESSOURCE/IMAGE/acceuil.png"); //Cree un label avec l'image
 		  this.panAccueil.add(labelAcceuil);
