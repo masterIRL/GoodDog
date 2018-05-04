@@ -48,7 +48,9 @@ public class PanConfig extends JPanel {
 	JComboBox <String> comboBoxSon= new JComboBox<>();
 	JComboBox <String> comboBoxSon2= new JComboBox<>();
 	JComboBox <String> comboBoxImg= new JComboBox<>();
-
+	JComboBox <String> comboBoxTexte= new JComboBox<>();
+	JComboBox <String> comboBoxTexte2= new JComboBox<>();
+	JComboBox <String> comboBoxTexte3= new JComboBox<>();
 	Color couleur=(new Color(104,92,82));
 	
 	JLabel boutonConfigTexte = new JLabel();
@@ -75,7 +77,7 @@ public class PanConfig extends JPanel {
 	Box boxConfigTexte2 = Box.createHorizontalBox();
 	Box boxConfigTexte3 = Box.createHorizontalBox();
 
-	Box boxConfigTexte21= Box.createVerticalBox();
+	Box boxConfigTexteConfigAchieved= Box.createVerticalBox();
 	Box boxConfigImage2= Box.createVerticalBox();
 
 	
@@ -535,29 +537,8 @@ public class PanConfig extends JPanel {
 
 
 	private void initBoxConfigTexte() {
-		JComboBox <String> comboBoxTexte= new JComboBox<>();//nouveau stezen
-		JComboBox <String> comboBoxTexte2= new JComboBox<>();//nouveau stezen
-		JComboBox <String> comboBoxTexte3= new JComboBox<>();//nouveau stezen
-	//////debut de ce qui a été de nouveau rajouté///////////////////
-			ArrayList<Integer> configActuelle = new ArrayList<Integer>();
-			configActuelle = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
-			JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
-			texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-			JLabel texteNombreLettreVal0 = new JLabel(" Valeur du seuil :                                 "+String.valueOf(configActuelle.get(0)));
-			texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-			JLabel texteNombreLettreVal2 = new JLabel(" Valeur du nombre de mots :               "+String.valueOf(configActuelle.get(1)));
-			texteNombreLettreVal2.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-			JLabel texteNombreLettreVal1 = new JLabel(" Valeur du nombre de lettres :             "+String.valueOf(configActuelle.get(2)));
-			texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,50)));
-			 this.boxConfigTexte.add(texteSeuilInt);
-			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,20)));
-			 this.boxConfigTexte.add(texteNombreLettreVal0);
-			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,10)));
-			 this.boxConfigTexte.add(texteNombreLettreVal2);
-			 boxConfigTexte.add(Box.createRigidArea(new Dimension(0,10)));
-			 this.boxConfigTexte.add(texteNombreLettreVal1);
-	//////fin de ce qui a été de nouveau rajouté//////////////////
+
+
 		JLabel texteSeuil=new JLabel("Valeur du seuil :                  ");
 		texteSeuil.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 		boxConfigTexte.add(Box.createRigidArea(new Dimension(0,40)));
@@ -674,7 +655,7 @@ public class PanConfig extends JPanel {
 						
 						ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
 						boutonConfigTexte.setIcon(configIndexIcon);
-						boutonConfigTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+						boutonConfigTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 						boutonConfigTexte.addMouseListener(new MouseListener() {
 							@Override
 							public void mouseReleased(MouseEvent e) {
@@ -683,13 +664,12 @@ public class PanConfig extends JPanel {
 							@Override
 							public void mousePressed(MouseEvent e) {
 								if (comboBoxTexte.getSelectedIndex()!=0 && comboBoxTexte3.getSelectedIndex()!=0 && comboBoxTexte2.getSelectedIndex()!=0 ) {
+									boxConfigActuelleTexte.setVisible(false);
 									boutonConfigTexte.setIcon(configIndexIconClickClick);
 									fichier.effacer("DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(seuil),"DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(nombreMot),"DESCRIPTEURS/configTexte.txt");
 									fichier.ecrire(String.valueOf(nombreLettre),"DESCRIPTEURS/configTexte.txt");
-								//	boxConfigTexte.add(texteOKCONFIG); 
-									//////debut de ce qui a été de nouveau rajouté///////////////////
 									ArrayList<Integer> configActuelle = new ArrayList<Integer>();
 									configActuelle = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
 									JLabel texteSeuilInt=new JLabel(" Rappel de la Configuration :                   "+k++);
@@ -699,29 +679,22 @@ public class PanConfig extends JPanel {
 									JLabel texteNombreLettreVal2 = new JLabel(" Nouvelle Valeur du nombre de mots :                    "+String.valueOf(configActuelle.get(1)));
 									texteNombreLettreVal2.setFont(new Font("Poppins-Black", Font.PLAIN,18));
 									JLabel texteNombreLettreVal1 = new JLabel(" Nouvelle Valeur du nombre de lettres :                  "+String.valueOf(configActuelle.get(2)));
-									texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
-
-									
-									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,60)));
-									 boxConfigTexte21.add(texteOKCONFIG); 
-									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,30)));
-									// boxConfigTexte21.add(texteSeuilInt);
-									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,20)));
-									 boxConfigTexte21.add(texteNombreLettreVal0);
-									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,10)));
-									 boxConfigTexte21.add(texteNombreLettreVal2);
-									 boxConfigTexte21.add(Box.createRigidArea(new Dimension(0,10)));
-									 boxConfigTexte21.add(texteNombreLettreVal1);
-
-
+									texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));									
+									 boxConfigTexteConfigAchieved.add(Box.createRigidArea(new Dimension(0,60)));
+									 boxConfigTexteConfigAchieved.add(texteOKCONFIG); 
+									 boxConfigTexteConfigAchieved.add(Box.createRigidArea(new Dimension(0,30)));
+									 boxConfigTexteConfigAchieved.add(Box.createRigidArea(new Dimension(0,20)));
+									 boxConfigTexteConfigAchieved.add(texteNombreLettreVal0);
+									 boxConfigTexteConfigAchieved.add(Box.createRigidArea(new Dimension(0,10)));
+									 boxConfigTexteConfigAchieved.add(texteNombreLettreVal2);
+									 boxConfigTexteConfigAchieved.add(Box.createRigidArea(new Dimension(0,10)));
+									 boxConfigTexteConfigAchieved.add(texteNombreLettreVal1);
 									 boxConfigTexte.setVisible(false);
-									 panCenter.add(boxConfigTexte21,BorderLayout.SOUTH);
-									 boxConfigTexte21.setVisible(true);
+									 panCenter.add(boxConfigTexteConfigAchieved,BorderLayout.SOUTH);
+									 boxConfigTexteConfigAchieved.setVisible(true);
 									 
 							}
-
-							//////fin de ce qui a été de nouveau rajouté///////////////////
-								//	repaint();
+									repaint();
 							}
 				            @Override
 				            public void mouseEntered(MouseEvent e) {
@@ -743,7 +716,7 @@ public class PanConfig extends JPanel {
 						
 						//BOUTON RETOUR Texte//
 						boutonRetourTxt.setBackground(couleur);
-						boutonRetourTxt.setForeground(Color.WHITE); //new Color(59, 89, 182)
+						boutonRetourTxt.setForeground(Color.WHITE); 
 						boutonRetourTxt.setFont(new Font("Tahoma", Font.BOLD, 12));
 						boutonRetourTxt.setText("Retour"); 
 						boutonRetourTxt.setBorderPainted(false);
@@ -758,21 +731,18 @@ public class PanConfig extends JPanel {
 								panTop.add(texteTop,BorderLayout.CENTER);;
 								panTop.add(boutonRetour,BorderLayout.WEST);
 								panTop.remove(boutonRetourTxt);
-
-								panCenter.remove( boxConfigTexte21);//stezen
-								/*boxConfigSon.remove(texteSeuilInt);;//stezen
-								boxConfigSon.remove(texteNombreLettreVal0);;//stezen
-								boxConfigSon.remove(texteNombreLettreVal1);;//stezen*/
-								boxConfigTexte21.removeAll();
-								boxConfigTexte.setVisible(false);
+								panCenter.remove(boxConfigTexteConfigAchieved);
+								boxConfigTexteConfigAchieved.removeAll();
+								
+								boxConfigTexteFinal.setVisible(false);
+								boxConfigTexteFinal.remove(boxConfigActuelleTexte);
+								boxConfigTexteFinal.remove(boxConfigTexte);
+								boxConfigActuelleTexte.removeAll();
 								boxMiseEnPageConfig.setVisible(true);
 								repaint(); 
 							}
 						});				 
-	
-		
-		
-	}//fin ajout stezen 
+	}
 
 
 
@@ -792,7 +762,7 @@ public class PanConfig extends JPanel {
 		}		
 		ImageIcon configIndexIconClick=new ImageIcon(configIndexClick);
 		boutonConfigTexte.setIcon(configIndexIcon);
-		boutonConfigTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		boutonConfigTexte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		boutonConfigTexte.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -805,6 +775,36 @@ public class PanConfig extends JPanel {
 				panTop.add(boutonRetourTxt,BorderLayout.WEST);
 				boxMiseEnPageConfig.setVisible(false); 
 				boxConfigTexte.setVisible(true);
+				repaint();
+				
+				
+				configActuelleTexte = fichier.lireInt("DESCRIPTEURS/configTexte.txt");
+				JLabel texteSeuilInt=new JLabel(" Configuration actuelle:                   ");
+				texteSeuilInt.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+				JLabel texteNombreLettreVal0 = new JLabel(" Valeur du seuil :                                 "+String.valueOf(configActuelleTexte.get(0)));
+				texteNombreLettreVal0.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+				JLabel texteNombreLettreVal2 = new JLabel(" Valeur du nombre de mots :               "+String.valueOf(configActuelleTexte.get(1)));
+				texteNombreLettreVal2.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+				JLabel texteNombreLettreVal1 = new JLabel(" Valeur du nombre de lettres :             "+String.valueOf(configActuelleTexte.get(2)));
+				texteNombreLettreVal1.setFont(new Font("Poppins-Black", Font.PLAIN,18));
+				boxConfigActuelleTexte.add(Box.createRigidArea(new Dimension(0,50)));
+				 boxConfigActuelleTexte.add(texteSeuilInt);
+				 boxConfigActuelleTexte.add(Box.createRigidArea(new Dimension(0,20)));
+				 boxConfigActuelleTexte.add(texteNombreLettreVal0);
+				 boxConfigActuelleTexte.add(Box.createRigidArea(new Dimension(0,10)));
+				 boxConfigActuelleTexte.add(texteNombreLettreVal2);
+				 boxConfigActuelleTexte.add(Box.createRigidArea(new Dimension(0,10)));
+				 boxConfigActuelleTexte.add(texteNombreLettreVal1);
+
+				boxConfigTexteFinal.add(boxConfigActuelleTexte);
+				boxConfigTexteFinal.add(boxConfigTexte);
+				boxConfigActuelleTexte.setVisible(true);
+				panTop.remove(texteTop);
+				panTop.remove(boutonRetour);
+				panTop.add(texteTopTexte,BorderLayout.CENTER);;
+				panTop.add(boutonRetourTxt,BorderLayout.WEST);
+				boxMiseEnPageConfig.setVisible(false); 
+				boxConfigTexteFinal.setVisible(true);
 				repaint();
 			}
             @Override
@@ -921,8 +921,6 @@ public class PanConfig extends JPanel {
 				boxConfigActuelleSon.add(Box.createRigidArea(new Dimension(0,10)));
 				boxConfigActuelleSon.add(texteNombreLettreVal1);
 				boxConfigSonFinal.add(boxConfigActuelleSon);
-			//	boxConfigActuelleSon.setVisible(true);
-			//	boxConfigSon.setVisible(true);
 				boxConfigSonFinal.add(boxConfigSon);
 				boxConfigActuelleSon.remove(texteSeuilInt);
 				configActuelleSon = fichier.lireInt("DESCRIPTEURS/config_son.txt");
