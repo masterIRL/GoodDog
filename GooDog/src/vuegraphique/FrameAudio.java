@@ -86,7 +86,7 @@ public class FrameAudio extends JFrame {
 
 	private void initialisation() {
 		this.setBackground(new Color(102, 51, 81));
-		this.panelGeneral.setBackground(new Color(193, 94, 28));
+		this.panelGeneral.setBackground(new Color(128,102,83));
 
 		////////////////////////////////////////////////////////////////////////////////
 		///////////////              Nombre d'occurrences             //////////////////
