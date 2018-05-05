@@ -36,13 +36,11 @@ public class FrameCouleur  extends JFrame{
 	private Box boxRecherche = Box.createHorizontalBox();
 	private Box boxErreur = Box.createHorizontalBox();
 
-	//private JComboBox<Integer> comboBoxSeuil = new JComboBox<>();
 	private JComboBox<String> comboBoxCouleur = new JComboBox<>();
 	private JSlider comboBoxSeuil = new JSlider();
 
 	private int choixSeuil = 0;
 	private Couleur choixCouleur = null;
-	private List<Integer> listSeuil = new ArrayList<>();
 	private final List<String>  listCouleurs = new ArrayList<>(Arrays.asList("NOIR", "BLANC", "ROUGE", "VERT", "BLEU"));
 
 	//Jbouton
@@ -88,28 +86,23 @@ public class FrameCouleur  extends JFrame{
 	private void initialisation() {
 		this.panelGeneral.setBackground(new Color(128,102,83));
 		int espaceEntreElement = 15;
-
 		JLabel texteSeuil = new JLabel("Pourcentage:"); //ajout de la partie s�lection seuil
 		texteSeuil.setForeground(Color.WHITE);
+		
 		boxRecherche.add(texteSeuil);
 		boxRecherche.add(Box.createRigidArea(new Dimension(5,0)));
+		
 		comboBoxSeuil.setMaximumSize(new Dimension(300,40));
 		comboBoxSeuil.setMinimumSize(new Dimension(300,40));
 		comboBoxSeuil.setPreferredSize(new Dimension(300,40));
 		comboBoxSeuil.setBackground(new Color(128,102,83));
 		comboBoxSeuil.setForeground(Color.WHITE);
 		comboBoxSeuil.setMaximum(100);
-
 		comboBoxSeuil.setMinimum(0);
-
 		comboBoxSeuil.setValue(33);
-
 		comboBoxSeuil.setPaintTicks(true);
-
 		comboBoxSeuil.setPaintLabels(true);
-
 		comboBoxSeuil.setMinorTickSpacing(10);
-
 		comboBoxSeuil.setMajorTickSpacing(10);
 		
 		boxRecherche.add(comboBoxSeuil);

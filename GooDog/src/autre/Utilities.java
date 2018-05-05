@@ -25,18 +25,6 @@ public class Utilities {
 		return bImageNew;
 	}
 	
-	//Fonction qui permet de faire apparaitre les résultats alignés à gauche
-	public String aligner (String mot) {
-		int espaces= Math.abs(100 - mot.length());
-		System.out.println(espaces);
-		String retour = new String();
-		//retour = "";
- 		for (int i=0; i<espaces; i++) {
-			retour = retour + "|";
-		}
- 		System.out.println(retour.length());
- 		return retour;
-	}
 }
 
 //JDialog

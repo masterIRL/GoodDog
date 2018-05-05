@@ -55,15 +55,14 @@ public class PanUser extends JPanel {
 	Box boxMiseEnPageResultat = Box.createHorizontalBox();
 	Box boxListeResultats = Box.createVerticalBox();
 	Box boxRetour = Box.createVerticalBox();
-	//Box boxEnTete = Box.createHorizontalBox();
 	Box boxErreur = Box.createHorizontalBox();
-	Box boxBoutonRechercher =  Box.createVerticalBox(); //new
-	Box boxAvancee = Box.createHorizontalBox();//new
-	Box boxModeNormal= Box.createHorizontalBox();//new
-	Box boxModeAvance= Box.createHorizontalBox();//new
+	Box boxBoutonRechercher =  Box.createVerticalBox(); 
+	Box boxAvancee = Box.createHorizontalBox();
+	Box boxModeNormal= Box.createHorizontalBox();
+	Box boxModeAvance= Box.createHorizontalBox();
 	JButton avancee = new JButton();
 	
-	boolean modeAvance = false; //new
+	boolean modeAvance = false; 
 			
 	JButton validerRecherche = new JButton();
 	JButton boutonRetour = new JButton();
@@ -106,7 +105,7 @@ public class PanUser extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		boutonAide.setBackground(new Color(137,146,153));
-		boutonAide.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonAide.setForeground(Color.WHITE); 
 		boutonAide.setFocusPainted(false);
 		boutonAide.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonAide.setBorderPainted(false);
@@ -115,8 +114,6 @@ public class PanUser extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -131,25 +128,19 @@ public class PanUser extends JPanel {
 			}
 			
 			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseExited(MouseEvent e) {				
 			}
 			
 			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseEntered(MouseEvent e) {				
 			}
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+			public void mouseClicked(MouseEvent e) {				
 			}
 		});
 		boutonAcceuil.setBackground(new Color(137,146,153));
-		boutonAcceuil.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonAcceuil.setForeground(Color.WHITE); 
 		boutonAcceuil.setFocusPainted(false);
 		boutonAcceuil.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonAcceuil.setBorderPainted(false);
@@ -157,7 +148,6 @@ public class PanUser extends JPanel {
 		boutonAcceuil.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				framePrincipal.showPanAcceuil();
 			}
 		});
@@ -165,16 +155,13 @@ public class PanUser extends JPanel {
 		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
 		this.panTop.setLayout(new BorderLayout());
 		this.panTop2.setLayout(new BorderLayout());
-		//this.panCenter.setLayout(new BorderLayout());
 		this.labelConnect.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
 		this.labelConnect.addMouseListener(new MouseListener() {//creation de l'interaction avec l'image de connexion admin
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 			      new FrameConnexion(framePrincipal,controlSIdentifier);
 				boxModeNormal.setVisible(true);
 				boxAvancee.setVisible(false);
@@ -185,15 +172,12 @@ public class PanUser extends JPanel {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 			}
 		});
 		this.panTop.add(labelConnect,BorderLayout.WEST); // ajout de l'image au panel haut
@@ -213,15 +197,11 @@ public class PanUser extends JPanel {
 
 	private void initBoxMiseEnPageMotCle() { // configuration du panel central
 
-		boxLogo.add(logoLabel);
-		//boxMiseEnPageMotCle.add(Box.createRigidArea(new Dimension(0,50)));
-		
+		boxLogo.add(logoLabel);		
 		boxMotCle.add(Box.createRigidArea(new Dimension(60,0)));
 		
 		JLabel texteNbOccurrences = new JLabel("Occurrences:");
 		texteNbOccurrences.setFont(new Font("Tahoma", Font.BOLD, 18));
-		//texteNbOccurrences.setForeground(Color.WHITE);
-
 		spinnerOccurrences.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		spinnerOccurrences.setPreferredSize(new Dimension(50,40));
 		spinnerOccurrences.setMaximumSize(new Dimension(50,40));
@@ -253,7 +233,6 @@ public class PanUser extends JPanel {
 		validerMotCle.setForeground(Color.BLACK); 
 		validerMotCle.setFocusPainted(false);
 		validerMotCle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		//validerMotCle.setBorderPainted(false);
 		validerMotCle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		validerMotCle.setPreferredSize(new Dimension(130,40));
 		validerMotCle.setMaximumSize(new Dimension(130,40));
@@ -284,19 +263,16 @@ public class PanUser extends JPanel {
 					else {
 						System.out.println("Non valide");
 						boxErreur.setVisible(true);
-						//ajouter une interraction pour le signaler !!
 					}
 		        }
 		    }
 
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub	
 			}
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub
 			}
 		});
 
@@ -324,7 +300,6 @@ public class PanUser extends JPanel {
 				else {
 					System.out.println("Non valide");
 					boxErreur.setVisible(true);
-					//ajouter une interraction pour le signaler !!
 				}
 			}
 		});
@@ -337,7 +312,6 @@ public class PanUser extends JPanel {
 		avancee.setForeground(Color.BLACK); 
 		avancee.setFocusPainted(false);
 		avancee.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		//avancee.setBorderPainted(false);
 		avancee.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		avancee.setPreferredSize(new Dimension(130,20));
 		avancee.setMaximumSize(new Dimension(130,20));
@@ -444,7 +418,6 @@ public class PanUser extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				new FrameCouleur(PanUser.this, controlRecherche);
 			}
 
@@ -459,7 +432,6 @@ public class PanUser extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub	
 			}
 		});
 		boxBoutons.add(Box.createRigidArea(new Dimension(espaceEntreBouton,0)));
@@ -489,7 +461,6 @@ public class PanUser extends JPanel {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				new FrameAudio(PanUser.this, controlRecherche);
 			}
             @Override
@@ -519,18 +490,15 @@ public class PanUser extends JPanel {
 	public void initBoxMiseEnPageResultat(String s) {
 		this.remove(panTop);
 		this.add(panTop2,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
-		//boxEnTete.add(Box.createRigidArea(new Dimension(0,60)));
 		JLabel texteResultat=new JLabel(s);
 		texteResultat.setFont(new Font("Poppins-Black", Font.BOLD,35));
 		texteResultat.setForeground(Color.WHITE);
-		//boxEnTete.add(texteResultat);
 		texteResultat.setHorizontalAlignment((int)CENTER_ALIGNMENT);
-		//boxEnTete.add(Box.createRigidArea(new Dimension(0,100)));
 		boxMiseEnPageResultat.add(dog);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(50,0)));
 
 		
-		boutonRetour.setForeground(Color.WHITE); //new Color(59, 89, 182)
+		boutonRetour.setForeground(Color.WHITE); 
 		boutonRetour.setFocusPainted(false);
 		boutonRetour.setFont(new Font("Tahoma", Font.BOLD, 12));
 		boutonRetour.setText("Retour");
@@ -546,11 +514,8 @@ public class PanUser extends JPanel {
 				setBackground(Color.WHITE);
 				panCenter.setBackground(Color.WHITE);
 				remove(panTop2);
-			//	boxEnTete.removeAll();
-			//	panTop2.remove(boxEnTete);
 				panTop2.removeAll();
 				add(panTop,BorderLayout.NORTH); //ajout du panel haut au panel utilisateur
-				//panTop.setVisible(true);
 				boxListeResultats.removeAll();
 				boxMiseEnPageResultat.remove(boutonRetour);
 				boxMiseEnPageMotCle.setVisible(true);
@@ -565,32 +530,23 @@ public class PanUser extends JPanel {
 		});
 		
 		panTop2.add(boutonRetour,BorderLayout.WEST);
-		//panTop2.add(Box.createRigidArea(new Dimension(0,100)));
-		//panTop2.add(boxEnTete);
 		panTop2.add(texteResultat,BorderLayout.CENTER);
 		panCenter.add(boxMiseEnPageResultat);
 		boxMiseEnPageMotCle.setVisible(false); 
-		//panTop.setVisible(false);
-		
-
-
 		boxMiseEnPageResultat.setVisible(true); 
 		repaint(); 
 	}
 
 
 	public void resultatsTextes(List<String> liste) { //sera valable pour tous les textes, ajouter ouverture texte
-		//panCenter.setBackground(new Color(157, 228, 234));
 		boutonRetour.setBackground(new Color(85,98,133));
 		panTop2.setBackground((new Color(85,98,133)));
 		panCenter.setBackground(new Color(222, 239, 255));
-		//setBackground(new Color(157, 228, 234));
 		if(liste.size() != 0) {
 			if (!liste.isEmpty()) {
 				for(int i=0; i<liste.size(); i++) {
 					Box boxListe=Box.createHorizontalBox();
 						String results = liste.get(i);
-						//System.out.println(results.length());
 						JLabel listeResultat=new JLabel(results);
 						listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 						listeResultat.addMouseListener(new MouseListener() {
@@ -600,7 +556,6 @@ public class PanUser extends JPanel {
 		
 							@Override
 							public void mousePressed(MouseEvent e) {
-								// TODO Auto-generated method stub
 								try {
 									Desktop.getDesktop().open(new File("DATA/TEXTE/"+results));
 								} catch (IOException e1) {
@@ -614,13 +569,11 @@ public class PanUser extends JPanel {
 		
 							@Override
 							public void mouseExited(MouseEvent e) {
-								// TODO Auto-generated method stub
 								listeResultat.setForeground(Color.BLACK);
 							}
 		
 							@Override
 							public void mouseEntered(MouseEvent e) {
-								// TODO Auto-generated method stub
 								listeResultat.setForeground(Color.GRAY);
 							}
 		
@@ -631,15 +584,12 @@ public class PanUser extends JPanel {
 				
 	
 					ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-					//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 					listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
 					boxListe.add(os);
 					boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 					boxListe.add(listeResultat);
 					boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-					//boxListe.add(os2);
 					boxListe.add(Box.createVerticalStrut(0));
-					//boxListe.setBorder(BorderFactory.createEtchedBorder());
 					boxListeResultats.add(boxListe);
 					boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 	
@@ -657,8 +607,6 @@ public class PanUser extends JPanel {
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(150,0)));
 		}
-		//boxRetour.add(boutonRetour);
-		//boxMiseEnPageResultat.add(boxRetour);
 	}
 
 	public void resultatImages(List<String> liste) { //sera valable pour toutes les images , Ajouter ouverture image
@@ -669,7 +617,6 @@ public class PanUser extends JPanel {
 			for(int i=0; i<liste.size(); i++) {
 				Box boxListe=Box.createHorizontalBox();
 				String results = liste.get(i);
-				//System.out.println(results.length());
 				JLabel listeResultat=new JLabel(results);
 				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				listeResultat.addMouseListener(new MouseListener() {
@@ -679,7 +626,6 @@ public class PanUser extends JPanel {
 
 					@Override
 					public void mousePressed(MouseEvent e) {
-						// TODO Auto-generated method stub
 						try {
 							Desktop.getDesktop().open(new File("DATA/IMAGE/RGB/"+results));
 						} catch (IOException e1) {
@@ -693,13 +639,11 @@ public class PanUser extends JPanel {
 
 					@Override
 					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
 						listeResultat.setForeground(Color.BLACK);
 					}
 
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
 						listeResultat.setForeground(Color.GRAY);
 					}
 
@@ -709,15 +653,12 @@ public class PanUser extends JPanel {
 				});
 
 				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
 				boxListe.add(os);
 				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 				boxListe.add(listeResultat);
 				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-				//boxListe.add(os2);
 				boxListe.add(Box.createVerticalStrut(0));
-				//boxListe.setBorder(BorderFactory.createEtchedBorder());
 				boxListeResultats.add(boxListe);
 				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
@@ -727,9 +668,6 @@ public class PanUser extends JPanel {
 		boxListeResultats.add(Box.createRigidArea(new Dimension(0,50)));
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
-
-		//boxRetour.add(boutonRetour);
-		//boxMiseEnPageResultat.add(boxRetour);
 	}
 
 	public void resultatSons(List<String> liste) { //sera valable pour tous les sons , Ajouter ouverture son
@@ -740,7 +678,6 @@ public class PanUser extends JPanel {
 			for(int i=0; i<liste.size(); i++) {
 				Box boxListe=Box.createHorizontalBox();
 				String results = liste.get(i);
-				//System.out.println(results.length());
 				JLabel listeResultat=new JLabel(results);
 				listeResultat.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				listeResultat.addMouseListener(new MouseListener() {
@@ -750,7 +687,6 @@ public class PanUser extends JPanel {
 
 					@Override
 					public void mousePressed(MouseEvent e) {
-						// TODO Auto-generated method stub
 						try {
 							Desktop.getDesktop().open(new File("DATA/SON/"+results));
 						} catch (IOException e1) {
@@ -764,13 +700,11 @@ public class PanUser extends JPanel {
 
 					@Override
 					public void mouseExited(MouseEvent e) {
-						// TODO Auto-generated method stub
 						listeResultat.setForeground(Color.BLACK);
 					}
 
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						// TODO Auto-generated method stub
 						listeResultat.setForeground(Color.GRAY);
 					}
 
@@ -780,15 +714,12 @@ public class PanUser extends JPanel {
 				});
 
 				ImageJLabel os = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
-				//ImageJLabel os2 = new ImageJLabel("RESSOURCE/IMAGE/OS.png");
 				listeResultat.setFont(new Font("Poppins-Black", Font.PLAIN,26));
 				boxListe.add(os);
 				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
 				boxListe.add(listeResultat);
 				boxListe.add(Box.createRigidArea(new Dimension(20,0)));
-				//boxListe.add(os2);
 				boxListe.add(Box.createVerticalStrut(0));
-				//boxListe.setBorder(BorderFactory.createEtchedBorder());
 				boxListeResultats.add(boxListe);
 				boxListeResultats.add(Box.createRigidArea(new Dimension(0,20)));
 
@@ -799,8 +730,6 @@ public class PanUser extends JPanel {
 		boxMiseEnPageResultat.add(boxListeResultats);
 		boxMiseEnPageResultat.add(Box.createRigidArea(new Dimension(200,0)));
 
-		//boxRetour.add(boutonRetour);
-		//boxMiseEnPageResultat.add(boxRetour);
 	}
 	
 	private Box getError(String s) { //recupere un bouton d'erreur

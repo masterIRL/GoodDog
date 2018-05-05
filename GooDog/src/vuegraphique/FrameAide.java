@@ -63,28 +63,5 @@ public void aideUserFrancais() throws IOException {//pour les user lambda
 	frame.setLocation(100, 100);
 	frame.setVisible(true);
 }
-
-
-/* pour l'aide admin, voici le code à mettre dans le listener: 
-	PanAide aide = new PanAide(); // il sera mieu que tu declares cette variable plus haut;
-	
-	try {
-		aide.aideAminFrancais();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	
-*/
-
-
-/* pour l'aide generale, voici le code à mettre dans le listener: 	
-	PanAide aide = new PanAide(); // il sera mieu que tu declares cette variable plus haut;
- 
-	/*try {
-		aide.aideUserFrancais();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}*/
-
-
 }
+
