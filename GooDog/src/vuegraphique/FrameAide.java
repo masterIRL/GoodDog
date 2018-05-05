@@ -63,4 +63,5 @@ public void aideUserFrancais() throws IOException {//pour les user lambda
 	frame.setLocation(100, 100);
 	frame.setVisible(true);
 }
+}
 
